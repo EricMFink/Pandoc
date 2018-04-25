@@ -1,0 +1,183 @@
+%%% emf-article.latex
+%%% Template for Pandoc conversion of .md file with YAML frontmatter 
+%%% Created by Eric M. Fink
+%%% 
+
+\documentclass[$fontsize$,letterpaper,twoside]{article}
+\usepackage[english]{babel}  
+\usepackage[mmddyyyy]{datetime}
+
+
+% ==================
+% = Colors & Fonts =
+% ==================
+
+\usepackage{xcolor}
+\definecolor{myblack}{HTML}{231F20} 
+\definecolor{mybrightred}{HTML}{EC1F27} 
+\definecolor{mydarkred}{HTML}{b03a2e} 
+\definecolor{mydarkblue}{HTML}{154360}
+\definecolor{mylightblue}{HTML}{3498DB} 
+
+\usepackage{fontspec}
+\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+\setsansfont{$sansfont$}[Mapping=tex-text]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+
+
+
+% ===========
+% = Spacing =
+% ===========
+
+\usepackage[hmarginratio=1:1,top=1.75in,bottom=1in,left=1.9in,right=1.9in]{geometry}
+\raggedbottom
+
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+% =======================
+% = Headers and Footers = 
+% =======================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyfoot{}
+\fancyfoot[C]{}
+\fancyfoot[RO]{}
+\fancyfoot[LO]{}
+\fancyhead{}
+\fancyhead[C]{\small\textsc{$header$}}
+\fancyhead[RO]{\small{\thepage}}
+\fancyhead[RE]{\small{[Draft}}
+\fancyhead[LO]{\small{\today]}}
+\fancyhead[LE]{\small{\thepage}}
+
+
+% =====================
+% = Section Numbering =
+% =====================
+
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+
+% ============
+% = Headings =
+% ============
+
+\usepackage[compact]{titlesec}  
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+\titlespacing*{\section}{0em}{2em}{0.5em}
+\titlespacing*{\subsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\paragraph}{0em}{1em}{0pt}
+\titlespacing*{\subparagraph}{0em}{0.5em}{0em}
+
+\titleformat{\section}[hang]
+{\large\bfseries}
+{\thesection}
+{1em}
+{}
+
+\titleformat{\subsection}[hang]
+{\normalsize\bfseries}
+{\thesubsection}
+{1em}
+{}
+
+\titleformat{\subsubsection}[hang]
+{\normalsize\itshape}
+{\thesubsubsection}
+{1em}
+{}
+
+\titleformat{\paragraph}[hang]
+{\normalsize\itshape}
+{\theparagraph}
+{1em}
+{}
+
+\titleformat{\subparagraph}[hang]
+{\normalsize\itshape}
+{\thesubparagraph}
+{1em}
+{}
+
+
+% ================
+% = Title Layout =
+% ================
+
+\usepackage{titling}
+\setlength{\droptitle}{-3cm}
+\title{\Large\textbf{{$title$}$if(subtitle)$: $subtitle$}$endif$}
+\author{$for(author)$\large $author.name$\thanks{$author.title$, $author.affiliation$, $author.address$. $author.email$. $thanks$} $endfor$}
+\date{\small\textit{Draft: \today}}
+
+
+% ============
+% = Epigraph =
+% ============
+
+\usepackage{epigraph}
+\setlength\epigraphwidth{.5\textwidth}
+\setlength\epigraphrule{0pt}
+
+
+
+% ============
+% = Graphics =
+% ============
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
+
+
+% ==============
+% = Hyperlinks =
+% ==============
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,allcolors=black,}
+
+
+
+% ==============================================================================
+% =============================== BEGIN DOCUMENT =============================== 
+% ==============================================================================
+
+\begin{document}
+
+\maketitle
+
+$if(abstract)$
+\begin{abstract}
+\noindent{$abstract$}
+$endif$
+\end{abstract}
+
+$if(epigraph)$
+\epigraph{$epigraph$}%
+{\textit{$epigraph-source$}\\ \textsc{$epigraph-author$}}$endif$
+
+$body$
+
+\end{document}

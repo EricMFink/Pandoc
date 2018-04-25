@@ -1,0 +1,227 @@
+%%% emf-plain.latex
+%%% Template for Pandoc conversion of .md file with YAML frontmatter 
+%%% No Title, No Pagination
+%%% Created by Eric M. Fink
+%%% 
+
+\documentclass[$fontsize$,letterpaper,oneside]{article}
+\usepackage[english]{babel}  
+% \usepackage[ddmmyyyy]{datetime}
+
+
+% ==================
+% = Colors & Fonts =
+% ==================
+
+\usepackage{xcolor}
+\definecolor{myblack}{HTML}{231F20} 
+\definecolor{mybrightred}{HTML}{EC1F27} 
+\definecolor{mydarkred}{HTML}{b03a2e} 
+\definecolor{mydarkblue}{HTML}{154360}
+\definecolor{mylightblue}{HTML}{3498DB} 
+
+\usepackage{fontspec}
+\setmainfont{$mainfont$}[Mapping={tex-text}]
+\setsansfont{$sansfont$}[Mapping=tex-text]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+
+% ===========
+% = Spacing =
+% ===========
+
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+\raggedbottom
+
+\usepackage[$for(setspace)$$setspace$$sep$,$endfor$]{setspace}
+
+\usepackage{ragged2e}
+\setlength{\RaggedRightParindent}{2em}
+\RaggedRight
+\usepackage[none]{hyphenat}
+
+\usepackage{parskip}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.2em}
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0em}\setlength{\parskip}{0.2em}\setlength{\itemindent}{1.5em}}
+
+\usepackage[hang,flushmargin]{footmisc} 
+
+
+% =======================
+% = Headers and Footers = 
+% =======================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyfoot{}
+\fancyfoot[C]{}
+\fancyfoot[RO]{}
+\fancyfoot[LO]{}
+\fancyhead{}
+\fancyhead[C]{\huge\bfseries\sffamily{$header$}}
+\fancyhead[RO]{}
+\fancyhead[RE]{}
+\fancyhead[LO]{}
+\fancyhead[LE]{}
+
+
+% =====================
+% = Section Numbering =
+% =====================
+
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+% ============
+% = Headings =
+% ============
+
+\usepackage[largestsep]{titlesec}  
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+\titlespacing*{\section}{0em}{3em}{0.5em}
+\titlespacing*{\subsection}{0em}{0.5em}{0em}
+\titlespacing*{\subsubsection}{0em}{0em}{0em}
+\titlespacing*{\paragraph}{0em}{0em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0em}
+
+$if(numbersections)$
+\titleformat{\section}[hang]
+{\Large\bfseries\sffamily}
+{}
+{1em}
+{}
+
+\titleformat{\subsection}[hang]
+{\large\bfseries\sffamily}
+{}
+{1em}
+{}
+
+\titleformat{\subsubsection}[hang]
+{\normalsize\bfseries\sffamily}
+{\thesubsubsection}
+{1em}
+{}
+
+\titleformat{\paragraph}[hang]
+{\normalsize\bfseries\sffamily}
+{\theparagraph}
+{1em}
+{}
+
+\titleformat{\subparagraph}[hang]
+{\normalsize\bfseries\sffamily}
+{\thesubparagraph}
+{1em}
+{}
+
+$else$
+\titleformat{\section}
+{\Large\bfseries\sffamily}
+{}
+{0em}
+{}
+
+\titleformat{\subsection}
+{\large\itshape\sffamily}
+{}
+{0em}
+{}
+
+\titleformat{\subsubsection}
+{\normalsize\bfseries\sffamily}
+{}
+{0em}
+{}
+
+\titleformat{\paragraph}
+{\normalsize\bfseries\sffamily}
+{}
+{0em}
+{}
+
+
+\titleformat{\subparagraph}
+{\normalsize\bfseries\sffamily}
+{}
+{0em}
+{}
+$endif$
+
+
+% =========
+% = Lists =
+% =========
+
+\usepackage{fontawesome}
+\newfontfamily{\FA}{[FontAwesome.otf]}
+\usepackage{enumitem}
+\setlistdepth{6}
+\renewlist{itemize}{itemize}{6}
+
+% initially, use dots for all levels
+\setlist[itemize]{label=\tiny\faCircle}
+
+% customize levels
+\setlist[itemize,1]{label=\tiny\faCircle}
+\setlist[itemize,2]{label=\tiny\faCircleO}
+\setlist[itemize,3]{label=\tiny\faChevronRight}
+\setlist[itemize,4]{label=\tiny\faCaretRight} 
+\setlist[itemize,5]{label=\tiny\faAngleRight} 
+\setlist[itemize,6]{label=\tiny\faAngleDoubleRight} 
+
+\setlist[itemize]{leftmargin=1em}
+
+\providecommand{\tightlist}{ % pandoc wants this
+      \setlength{\itemsep}{$itemsep$}\setlength{\parskip}{$parskip$}
+}
+
+
+
+
+
+% ============
+% = Graphics =
+% ============
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
+
+
+% ==============
+% = Hyperlinks =
+% ==============
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,allcolors=mylightblue,}
+
+
+
+% ==============================================================================
+% =============================== BEGIN DOCUMENT =============================== 
+% ==============================================================================
+
+\begin{document}
+
+$body$
+
+\end{document}

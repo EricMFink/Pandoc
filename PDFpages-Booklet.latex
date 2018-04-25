@@ -1,0 +1,5 @@
+\documentclass{scrartcl}
+\usepackage{pdfpages}
+\begin{document}
+\includepdf[pages=-,signature=24,landscape]{$fname$.pdf}
+\end{document}
