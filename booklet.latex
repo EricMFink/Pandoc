@@ -2,32 +2,36 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD)
 %%% 
 
-\documentclass[letterpaper,twoside,$fontsize$]{memoir}
+\documentclass[$papertype$,twoside,showtrims,final,$fontsize$]{memoir}
 
 \usepackage[osf]{mathpazo}
 \usepackage[mathcal,mathbf]{euler}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=false,pdfpagelayout=TwoPageRight}
 \usepackage{graphicx,sidecap,tikz}
 % \usepackage{siunitx} % automatic number formatting, decimal point alignment
 
 \usepackage{graphicx}
-\graphicspath{$images$}
+
 
 \usepackage{multicol}
+\setlength{\columnsep}{$columnsep$}
 
-\raggedbottom
+
 \openright
+
 
 
 % =======================
 % = Stock and Typeblock =
 % =======================
 
-\usepackage[footnotesep=1\baselineskip]{geometry}
-\setstocksize{8.5in}{5.5in}
-\settrimmedsize{\stockheight}{\stockwidth}{*}
-\settrims{0pt}{0pt}
+\setstocksize{$stockheight$}{$stockwidth$}
+% \trimFrame
+\settrimmedsize{$trimheight$}{$trimwidth$}{*}
+\settrims{$trimtop$}{$trimoutside$}
 
 \settypeblocksize{$typeblockheight$}{$typeblockwidth$}{$typeblockratio$} % {height}{width}{ratio}
 \setlrmargins{$insidemargin$}{$outsidemargin$}{$insideoutsideratio$} % {inside margin}{outside margin}{ratio}
@@ -36,6 +40,8 @@
 
 \setheadfoot{$headheight$}{1.5\onelineskip} % headheight and footskip
 \setheaderspaces{$headdrop$}{$headsep$}{$headratio$} % headdrop, headsep, and ratio
+
+\raggedbottom
 
 \checkandfixthelayout[lines]
 
@@ -118,6 +124,7 @@ $endif$
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
 
 \newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+\newfontface\subtitlefont{$subtitlefont$}[Colour=$titlecolor$]
 
 
 % =======================
@@ -131,13 +138,8 @@ $endif$
 \makeheadposition{stylish}{flushleft}{flushright}{}{}
 \pagestyle{stylish}
 
-$if(evenhead)$
-\makeevenhead{stylish}{\thepage}{}{\textsc{$evenhead$}}
-\makeoddhead{stylish}{\textsc{$oddhead$}}{}{\thepage}
-$else$
 \makeevenhead{stylish}{\thepage}{}{\textsc{$title$}}
 \makeoddhead{stylish}{\textsc\leftmark}{}{\thepage}
-$endif$
 
 \copypagestyle{chapter}{plain}
 \makeoddfoot{chapter}{}{}{}
@@ -229,10 +231,6 @@ $endif$
 
 
 
-\usepackage[hidelinks]{hyperref}
-\hypersetup{
-    colorlinks=false,
-}
 
 
 % ==============================================================================
@@ -241,43 +239,45 @@ $endif$
 
 \begin{document}
 
-% =========
-% = Cover =
-% =========
-
-% \cleartorecto
-\thispagestyle{empty}
-\mbox{}\vspace{1.5in}
-\noindent
-
-\begin{flushleft}\begin{DoubleSpace}
-{\$titlesize$\titlefont{$title$}}\\[1\baselineskip]
-$if(subtitle)$ {\$subtitlesize$\titlefont{$subtitle$}}\\[2\baselineskip]$endif$
-\end{DoubleSpace}
-
-\vspace{6\baselineskip}
-{\Large{$author$}}
-
-$if(orig_date)$
-{\small{$orig_date$}}
-$endif$
-
-\end{flushleft}
-
-
-% Blank page after cover
-
-\clearpage
-\thispagestyle{empty}
-\null
-
-% \clearpage
-
 % ================
 % = Front Matter =
 % ================
 
 \frontmatter
+
+% =============
+% = TitlePage =
+% =============
+
+% \cleartorecto
+\thispagestyle{empty}
+\mbox{}\vspace{0.5in}
+\noindent
+
+\begin{center}\begin{DoubleSpace}
+{\fontsize{$titlesize$}{$titleskip$}\titlefont{$title$}}\\[1\baselineskip]
+$if(subtitle)$ {\$subtitlesize$\subtitlefont{$subtitle$}}\\[2\baselineskip]$endif$
+\end{DoubleSpace}
+
+$if(author)$ 
+\vspace{6\baselineskip}
+{\LARGE{$author$}}
+$endif$
+
+$if(titleimage)$ 
+\vfill
+\centerline{\includegraphics[width=0.3\textwidth]{../Images/$titleimage$}}
+$endif$
+
+\end{center}
+
+\clearpage
+
+% Blank page after titlepage
+% \clearpage
+% \thispagestyle{empty}
+% \null
+
 
 % ============
 % = Colophon =
@@ -287,8 +287,8 @@ $endif$
 % \clearpage
 % \thispagestyle{empty}
 % \null
+% \cleartoverso
 
-\cleartoverso
 \thispagestyle{empty}
 \noindent
 \begin{flushleft}
@@ -348,22 +348,21 @@ $endif$
 
 \chapterstyle{color}
 
-\thispagestyle{empty}
+% \thispagestyle{empty}
 
 % \vspace*{1.5in}
 
 $body$
 
-\cleartorecto
+
 
 % ================
 % = Back Matter =
 % ================
 
 $if(backmatter)$
-
-\backmatter
 \cleartorecto
+\backmatter
 $endif$
 
 
