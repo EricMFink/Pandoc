@@ -103,9 +103,6 @@ $endif$
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{$itemsep$}\setlength{\parskip}{$itemskip$}\setlength{\itemindent}{$itemindent$}}
 
-% Adjust spacing for lists
-\usepackage{enumitem}
-
 
 % ==================
 % = Colors & Fonts =
