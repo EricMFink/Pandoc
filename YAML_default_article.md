@@ -64,6 +64,6 @@ default: true
 output: 
   pdf_document:
     latex_engine: xelatex
-    template: emf-default.latex
+    template: default_article.latex
     
 ---

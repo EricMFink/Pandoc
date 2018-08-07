@@ -118,6 +118,6 @@ CustomBullets:
 output:
   pdf_document:
     latex_engine: xelatex
-    template: booklet.latex
+    template: default_memoir.latex
 
 ---
