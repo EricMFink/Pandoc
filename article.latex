@@ -1,13 +1,12 @@
 %%% article.latex
-%%% Template for academic article using legal-style section headings (1, 1.1, 1.1.1, etc.)
-%%% For Pandoc conversion from .md with YAML frontmatter 
-%%% Created by Eric M. Fink
+%%% Academic article template for pandoc with legal-style section headings (1, 1.1, 1.1.1, etc.)
+%%% For creating PDF from .md file with YAML frontmatter 
+%%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
 \documentclass[$fontsize$,letterpaper,twoside]{article}
 \usepackage[english]{babel}  
-\usepackage[mmddyyyy]{datetime}
-
+\usepackage[us,nodayofweek]{datetime}
 
 % ==================
 % = Colors & Fonts =
@@ -21,9 +20,18 @@
 \definecolor{mylightblue}{HTML}{3498DB} 
 
 \usepackage{fontspec}
+$if(draft)$
+\setmainfont{$draftfont$}[Mapping=tex-text]
+\setsansfont{$draftfont$}[Mapping=tex-text]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+
+
+$else$
 \setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
 \setsansfont{$sansfont$}[Mapping=tex-text]
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+
+$endif$
 
 
 
@@ -31,8 +39,18 @@
 % = Spacing =
 % ===========
 
-\usepackage[hmarginratio=1:1,top=1.75in,bottom=1in,left=1.9in,right=1.9in]{geometry}
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+
 \raggedbottom
+
+\usepackage[bottom]{footmisc}
+
+\usepackage{setspace}
+$if(draft)$
+\doublespacing
+$else$
+\singlespacing
+$endif$
 
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -47,10 +65,10 @@
 
 \fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[RO]{}
-\fancyfoot[LO]{}
+\fancyfoot[R]{\tiny\texttt{$path$} Revised: \today}
+\fancyfoot[L]{}
 \fancyhead{}
-\fancyhead[C]{\small\textsc{$title$}}
+\fancyhead[C]{\small\textsc{$header$}}
 \fancyhead[RO]{\small{\thepage}}
 \fancyhead[RE]{\small{[Draft}}
 \fancyhead[LO]{\small{\today]}}
@@ -61,13 +79,17 @@
 % = Section Numbering =
 % =====================
 
+
+\usepackage{enumitem}
+\setlistdepth{$listdepth$}
 \setcounter{secnumdepth}{$secnumdepth$}
 
 % ============
 % = Headings =
 % ============
 
-\usepackage[compact]{titlesec}  
+
+\usepackage[]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{2em}{0.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{0.5em}
@@ -75,35 +97,32 @@
 \titlespacing*{\paragraph}{0em}{1em}{0pt}
 \titlespacing*{\subparagraph}{0em}{0.5em}{0em}
 
-\titleformat{\section}[hang]
-{\large\bfseries}
-{\thesection}
-{1em}
-{}
 
-\titleformat{\subsection}[hang]
-{\normalsize\bfseries}
-{\thesubsection}
-{1em}
-{}
-
-\titleformat{\subsubsection}[hang]
-{\normalsize\itshape}
-{\thesubsubsection}
-{1em}
-{}
-
-\titleformat{\paragraph}[hang]
-{\normalsize\itshape}
-{\theparagraph}
-{1em}
-{}
-
-\titleformat{\subparagraph}[hang]
-{\normalsize\itshape}
-{\thesubparagraph}
-{1em}
-{}
+\titleformat{\section}[block]
+  {\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[block]
+  {\normalsize\bfseries}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[block]
+  {\normalsize\itshape}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[block]
+  {\normalsize\itshape}
+  {\thesubparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[block]
+  {\normalsize\itshape}
+  {\theparagraph}
+  {1em}
+  {}
 
 
 % ================
@@ -111,10 +130,19 @@
 % ================
 
 \usepackage{titling}
+
 \setlength{\droptitle}{-3cm}
-\title{\Large\textbf{{$title$}$if(subtitle)$: $subtitle$}$endif$}
-\author{$for(author)$\large{$author.name$}\thanks{$author.position$, $author.affiliation$, $author.address$. $author.email$. $author.thanks$} $sep$ \and $endfor$}
-\date{\small\textit{Draft: \today}}
+\title{\Large\textbf{{$title$}$if(subtitle)$: \\ $subtitle$}$endif$}
+
+\vspace{-0.5in}
+
+% \author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
+
+\author{$for(author)$\large{$author.name$}\thanks{$author.position$, $author.affiliation$. $author.thanks$} $sep$ \and $endfor$}
+
+\date{}
+
+
 
 
 % ============
@@ -163,12 +191,13 @@ $endif$
 \begin{document}
 
 \maketitle
+\vspace{-0.5in}
 
 $if(abstract)$
 \begin{abstract}
 \noindent{$abstract$}
-$endif$
 \end{abstract}
+$endif$
 
 $if(epigraph)$
 \epigraph{$epigraph$}%

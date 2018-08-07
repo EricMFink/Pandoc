@@ -1,7 +1,7 @@
-%%% emf-syllabus.latex
-%%% Syllabus template 
-%%% For Pandoc conversion to PDF from .md file with YAML frontmatter 
-%%% Created by Eric M. Fink
+%%% syllabus.latex
+%%% Course syllabus template for Pandoc using LaTeX article class
+%%% For creating PDF from .md file with YAML frontmatter 
+%%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
 \documentclass[$fontsize$,$paper$,$sides$]{article}
@@ -78,7 +78,7 @@
 \pagestyle{fancy}
 \fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt{Revised: \mydate\today}}
+\fancyfoot[R]{\tiny\texttt{$path$ Revised: \mydate\today}}
 \fancyfoot[L]{}
 \fancyhead[CE]{\textsc{$title$}}
 \fancyhead[CO]{\textsc{$affiliation$}}
@@ -180,7 +180,7 @@ $endif$
 % = Title Layout =
 % ================
 \usepackage{titling}
-\setlength{\droptitle}{-3cm}
+\setlength{\droptitle}{-2cm}
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
 \Huge\bfseries{\titlefont{$title$}} \\

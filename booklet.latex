@@ -1,5 +1,7 @@
-%%% Template for Booklet
-%%% Created by Eric M. Fink (https://github.com/LuckyJimJD)
+%%% booklet.latex
+%%% Booklet template for Pandoc using LaTeX memoir class
+%%% For creating PDF from .md file with YAML frontmatter 
+%%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
 \documentclass[$papertype$,twoside,showtrims,final,$fontsize$]{memoir}
