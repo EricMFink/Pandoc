@@ -134,7 +134,7 @@
 % H3 - Sub-Unit Title 
 \setsubsecheadstyle{\normalsize\bfseries\sffamily}
 \setbeforesubsecskip{0em}
-\setaftersubsecskip{0.5em}
+\setaftersubsecskip{0.25em}
 
 % H4 - Course Material Subheads 
 \setsubsubsecheadstyle{\normalsize\bfseries\sffamily}
