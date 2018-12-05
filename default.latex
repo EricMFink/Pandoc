@@ -125,8 +125,8 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{2em}{0.5em}
-\titlespacing*{\subsection}{1em}{0.2em}
-\titlespacing*{\subsubsection}{1em}{0.2em}
+\titlespacing*{\subsection}{0em}{1em}{0.2em}
+\titlespacing*{\subsubsection}{0em}{1em}{0.2em}
 \titlespacing*{\paragraph}{0em}{1em}{0.2em}
 \titlespacing*{\subparagraph}{0em}{1em}{0.2em}
 
@@ -203,19 +203,15 @@ $endif$
 \setlength{\droptitle}{-2cm}
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
-$titlesize${\titlefont{$title$}$if(subtitle)$: \newline {$subtitle$}}$endif$ \\
-\vspace{0.5cm}
-$if(author)$\$authorsize${$author$}$endif$ 
-$if(position)$\$authorsize${$position$}$endif$ 
-$if(affiliation)$\$authorsize${$affiliation$}$endif$
-$if(address1)$\$contactsize${$address1$}$endif$
-$if(address2)$\$contactsize${$address2$}$endif$
-$if(email)$\$contactsize${$email$}$endif$
-$if(phone)$\$contactsize${$phone$}$endif$
-$if(date)$\$datesize${$date$}$endif$
+\huge\titlefont{$title$}: \\
+\bf\huge\titlefont{$subtitle$} \\
+\vspace{0.5em}
+\rmfamily\normalsize{$author$} \\
+\normalsize{$affiliation$} \\
+
 }
 \title{\titling}
-\posttitle{\end{flushleft}\vspace{-1cm}}
+\posttitle{\end{flushleft}\vspace{-4em}}
 \date{}
 
 % ============

@@ -4,10 +4,13 @@
 %%% 
 
 \documentclass[$fontsize$,letterpaper,twoside]{article}
-\usepackage[english]{babel}  
-\usepackage[ddmmyyyy]{datetime}
+% \usepackage[english]{babel} 
+\usepackage[none]{hyphenat} 
+\usepackage[us, nodayofweek]{datetime}
 \usepackage{currfile}
-
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
 
 % ==================
 % = Colors & Fonts =
@@ -19,23 +22,27 @@
 \definecolor{mydarkred}{HTML}{b03a2e} 
 \definecolor{mydarkblue}{HTML}{154360}
 \definecolor{mylightblue}{HTML}{3498DB} 
+\definecolor{mylightgray}{gray}{0.9}
 
 \usepackage{fontspec}
-\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$},Numbers={OldStyle},Ligatures={Common}]
+\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+\setromanfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
 \setsansfont{$sansfont$}[Mapping=tex-text]
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale={1.0}]
 
-\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
 
+\usepackage{fontawesome}
+\newfontfamily{\FA}{[FontAwesome.otf]}
 
 % ===========
 % = Spacing =
 % ===========
 
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+\usepackage[hmarginratio=1:1,top=1.25in,bottom=1in,left=1.5in,right=1.5in]{geometry}
 \raggedbottom
 
-\usepackage[$for(setspace)$$setspace$$sep$,$endfor$]{setspace}
+\usepackage[singlespacing]{setspace}
 
 \usepackage{ragged2e}
 \RaggedRight
@@ -60,12 +67,13 @@
 
 \fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[R]{\footnotesize\texttt{\today}}
+\fancyfoot[R]{\tiny\texttt{Revised: \today}}
 \fancyfoot[L]{\footnotesize\texttt{}}
 \fancyhead{}
-\fancyhead[C]{\footnotesize\textsf{$title$: $subtitle$}}
+\fancyhead[CO]{\footnotesize\textsf{$subtitle$}}
+\fancyhead[CE]{\footnotesize\textsf{$title$}}
 \fancyhead[RO]{\footnotesize\textsf{\thepage}}
-\fancyhead[RE]{\footnotesize\textsf{Elon Law School}}
+\fancyhead[RE]{\footnotesize\textsf{$term$}}
 \fancyhead[LO]{\footnotesize\textsf{Prof. Fink}}
 \fancyhead[LE]{\footnotesize\textsf{\thepage}}
 
@@ -82,35 +90,35 @@
 \titlespacing*{\section}{0em}{2em}{0em}
 \titlespacing*{\subsection}{0em}{1.5em}{0em}
 \titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{1em}{0em}
+\titlespacing*{\paragraph}{0em}{0em}{0em}
 \titlespacing*{\subparagraph}{0em}{0em}{0em}
 
 \titleformat{\section}[hang]
-  {\LARGE\bfseries\sffamily}
+  {\Large\bf\sffamily}
   {\thesection}
   {1em}
   {}
 
 \titleformat{\subsection}[hang]
-  {\Large\bfseries\sffamily}
+  {\large\bf\sffamily}
   {\thesubsection}
   {1em}
   {}
 
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\sffamily}
+  {\normalsize\bf\sffamily}
   {\thesubsubsection}
   {1em}
   {}
 
 \titleformat{\paragraph}
-  {\Large\bfseries\rmfamily}
+  {\normalsize\bf\rmfamily}
   {\theparagraph}
   {1em}
   {}
 
 \titleformat{\subparagraph}
-  {\normalsize\bfseries\rmfamily}
+  {\normalsize\bf\rmfamily}
   {\thesubparagraph}
   {1em}
   {}
@@ -121,19 +129,14 @@
 % = Lists =
 % =========
 
-\usepackage{fontawesome}
-\newfontfamily{\FA}{[FontAwesome.otf]}
 \usepackage{enumitem}
-\setlistdepth{6}
-\renewlist{itemize}{itemize}{6}
+\setlistdepth{8}
 
-\providecommand{\tightlist}{ % pandoc wants this
-      \setlength{\itemsep}{0em}\setlength{\parskip}{0em}
-}
-
+\renewlist{itemize}{itemize}{8}
+% customize levels
+\renewlist{itemize}{itemize}{8}
 % initially, use dots for all levels
 \setlist[itemize]{label=\tiny\faCircle}
-
 % customize levels
 \setlist[itemize,1]{label=\tiny\faCircle}
 \setlist[itemize,2]{label=\tiny\faCircleO}
@@ -141,10 +144,11 @@
 \setlist[itemize,4]{label=\tiny\faCaretRight} 
 \setlist[itemize,5]{label=\tiny\faAngleRight} 
 \setlist[itemize,6]{label=\tiny\faAngleDoubleRight} 
+\setlist[itemize]{label={},leftmargin={2em},rightmargin={0em}}
+\setlist[enumerate]{label={},nosep}
 
-\setlist[itemize]{leftmargin=1em}
 
-
+\providecommand{\tightlist}{\setlength{\itemsep}{0.25em}\setlength{\parsep}{0em}\setlength{\parskip}{0.25em}\setlength{\itemindent}{0em}}
 
 
 
@@ -153,8 +157,10 @@
 % = Quotes =
 % ==========
 
+
 \usepackage{csquotes}
-\AtBeginEnvironment{quote}{\itshape}
+
+\AtBeginEnvironment{quote}{\color{blue}\itshape\small\list{}{\rightmargin=1em \leftmargin=-0.3em}\item\relax}{\endlist}
 
 
 % ================
@@ -165,12 +171,13 @@
 \setlength{\droptitle}{-2cm}
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
-\titlefont\Huge{$title$} \\
+\huge\titlefont{$title$}: \\
+\bf\huge\titlefont{$subtitle$} \\
 \vspace{0.5em}
 \rmfamily\normalsize{$author$} \\
 \normalsize{$affiliation$} \\
-\vspace{3em}
-\Huge\bfseries{$subtitle$}
+\normalsize{$term$} \\
+
 }
 \title{\titling}
 \posttitle{\end{flushleft}\vspace{-4em}}

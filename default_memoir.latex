@@ -27,6 +27,18 @@ $endif$
 % = Stock and Typeblock =
 % =======================
 
+\setstocksize{11in}{8.5in}
+\settrimmedsize{11in}{8.5in}{*}
+\settypeblocksize{8.75in}{5.5in}{*} % {height}{width}{ratio}
+\setlrmargins{*}{*}{1} % {inside margin}{outside margin}{ratio}
+\setulmargins{*}{*}{0.8} % {top margin}{bottom margin}{ratio}
+
+\setheadfoot{0.2in}{2\onelineskip} % headheight and footskip
+\setheaderspaces{*}{*}{0.5} % headdrop, headsep, and ratio
+
+
+\checkandfixthelayout[lines]
+
 % ===========
 % = Spacing =
 % ===========

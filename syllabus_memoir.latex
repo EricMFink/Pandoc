@@ -68,6 +68,7 @@
 \setmonofont{$monofont$}[Mapping=tex-text,Scale={1.0}]
 
 \newfontface\titlefont{$titlefont$}[Colour=mydarkred]
+\newfontface\chapterfont{$chapterfont$}[Colour=mydarkred]
 
 % =======================
 % = Headers and Footers = 
@@ -108,14 +109,11 @@
 % H1 - Main Division Heads
 \makechapterstyle{color}{%
     \setlength{\beforechapskip}{0em}
-    \renewcommand{\chaptitlefont}{\titlefont}%
-    \renewcommand{\chapnamefont}{\chaptitlefont}%
-    \renewcommand{\chapnumfont}{\chaptitlefont}%
-    \renewcommand{\printchaptertitle}[1]{\Large\bfseries\chaptitlefont{##1}}%
+    \renewcommand{\printchaptertitle}[1]{\Large\chapterfont{##1}}%
     \renewcommand{\printchaptername}{}% 
     \renewcommand{\printchapternum}{}%
     \setlength{\midchapskip}{2em}
-    \setlength{\afterchapskip}{0.5em}%
+    \setlength{\afterchapskip}{0.2em}%
 }
 
 % \newcommand{\chapsubhead}[1]{%

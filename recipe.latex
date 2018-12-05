@@ -1,0 +1,178 @@
+%%% recipe.latex
+%%% Pandoc template for recipes using LaTeX article class
+%%% For creating PDF from .md file with YAML frontmatter 
+%%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
+%%% 
+
+\documentclass[$fontsize$,letterpaper,twoside]{article}
+\usepackage[english]{babel}  
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{currfile}
+
+
+% ==================
+% = Colors & Fonts =
+% ==================
+
+\usepackage{xcolor}
+\definecolor{myblack}{HTML}{231F20} 
+\definecolor{mybrightred}{HTML}{EC1F27} 
+\definecolor{mydarkred}{HTML}{b03a2e} 
+\definecolor{mydarkblue}{HTML}{154360}
+\definecolor{mylightblue}{HTML}{3498DB} 
+
+\usepackage{fontspec}
+\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+\setsansfont{$sansfont$}[Mapping=tex-text]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+
+\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
+
+
+% ===========
+% = Spacing =
+% ===========
+
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+\raggedbottom
+
+\usepackage[bottom]{footmisc}
+
+\usepackage{setspace}
+\singlespacing
+
+\usepackage{ragged2e}
+\setlength{\RaggedRightParindent}{0em}
+\RaggedRight
+\usepackage[none]{hyphenat}
+
+\usepackage{parskip}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+% ===========
+% = Lists =
+% ===========
+
+\usepackage{enumitem}
+
+% \def\tightlist{}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0.25em}\setlength{\parsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
+
+\setlist[enumerate]{topsep=0em,leftmargin=*}
+
+\setlist[itemize]{topsep=0em,leftmargin=*}
+
+% =======================
+% = Headers and Footers = 
+% =======================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[C]{\textsc{$title$}}
+\fancyhead[L]{\textsc{}}
+\fancyhead[R]{\textsc{}}
+
+% ============
+% = Headings =
+% ============
+
+\usepackage[compact]{titlesec}  
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+\titlespacing*{\section}{0em}{2em}{0.5em}
+\titlespacing*{\subsection}{0em}{1em}{0.2em}
+\titlespacing*{\subsubsection}{0em}{1em}{0.2em}
+\titlespacing*{\paragraph}{0em}{1em}{0.2em}
+\titlespacing*{\subparagraph}{0em}{1em}{0.2em}
+
+\titleformat{\section}
+  {\Large\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subsection}
+  {\large\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\paragraph}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subparagraph}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+ 
+
+% ================
+% = Title Layout =
+% ================
+
+\usepackage{titling}
+\setlength{\droptitle}{-2cm}
+\pretitle{\begin{flushleft}}
+\DeclareRobustCommand{\titling}{
+\huge\titlefont{$title$} \\
+\vspace{0.5em}
+
+}
+\title{\titling}
+\posttitle{\end{flushleft}\vspace{-4em}}
+\date{}
+
+% ============
+% = Graphics =
+% ============
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
+
+
+% ==============
+% = Hyperlinks =
+% ==============
+
+\usepackage[unicode=true]{hyperref}
+\hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
+
+
+
+
+% ==============================================================================
+% =============================== BEGIN DOCUMENT =============================== 
+% ==============================================================================
+
+\begin{document}\thispagestyle{empty}
+
+\maketitle
+
+\thispagestyle{empty}
+
+$body$
+
+
+
+\end{document}

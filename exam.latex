@@ -4,12 +4,7 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-$if(draft)$
-\documentclass[10pt,letterpaper,oneside]{article}
-$else$
-\documentclass[12pt,letterpaper,twoside]{article}
-$endif$
-
+\documentclass[$fontsize$,letterpaper,twoside]{article}
 \usepackage[english]{babel}  
 \usepackage[us,nodayofweek]{datetime}
 
@@ -25,18 +20,9 @@ $endif$
 \definecolor{mylightblue}{HTML}{3498DB} 
 
 \usepackage{fontspec}
-$if(draft)$
-\setmainfont{$monofont$}[Mapping=tex-text]
-\setsansfont{$monofont$}[Mapping=tex-text]
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
-
-
-$else$
 \setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
 \setsansfont{$sansfont$}[Mapping=tex-text]
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
-
-$endif$
 
 
 
@@ -44,24 +30,33 @@ $endif$
 % = Spacing =
 % ===========
 
-$if(draft)$
-\usepackage[hmarginratio=1:1,top=1.1in,bottom=1.2in,left=0.75in,right=1.75in]{geometry}
-$else$
-\usepackage[hmarginratio=1:1,top=1.1in,bottom=1.4in,left=1.75in,right=1.75in]{geometry}
-$endif$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+
 \raggedbottom
 
 \usepackage[bottom]{footmisc}
 
 \usepackage{setspace}
-$if(draft)$
-\doublespacing
-$else$
 \singlespacing
-$endif$
 
-\providecommand{\tightlist}{%
-\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{parskip}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+
+% \providecommand{\tightlist}{%
+% \setlength{\topsep}{3em}\setlength{\itemsep}{0em}\setlength{\parskip}{0pt}}
+
+\usepackage{enumitem}
+
+
+\def\tightlist{}
+
+\setlist[enumerate]{topsep=0.25em,leftmargin=*}
+
+
+
+% \setlist[itemize]{topsep=1.5em,leftmargin=1em}
 
 
 % =======================
@@ -73,14 +68,14 @@ $endif$
 
 \fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt Revised: \today}
-\fancyfoot[L]{\tiny\texttt{$path$}}
+\fancyfoot[R]{}
+\fancyfoot[L]{}
 \fancyhead{}
-\fancyhead[C]{\small\textsc{$header$}}
-\fancyhead[RO]{\small{\thepage}}
-\fancyhead[RE]{\small{[Draft}}
-\fancyhead[LO]{\small{\today]}}
-\fancyhead[LE]{\small{\thepage}}
+\fancyhead[C]{\scriptsize\sffamily{$title$}}
+\fancyhead[RO]{\scriptsize\sffamily{\thepage}}
+\fancyhead[RE]{\scriptsize\sffamily{$subtitle$}}
+\fancyhead[LO]{\scriptsize\sffamily{$date$}}
+\fancyhead[LE]{\scriptsize\sffamily{\thepage}}
 
 
 % =====================
@@ -89,8 +84,8 @@ $endif$
 
 
 \usepackage{enumitem}
-\setlistdepth{5}
-\setcounter{secnumdepth}{5}
+\setlistdepth{6}
+\setcounter{secnumdepth}{$secnumdepth$}
 
 % ============
 % = Headings =
@@ -101,23 +96,23 @@ $endif$
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{2em}{0.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1em}{0.5em}
 \titlespacing*{\paragraph}{0em}{1em}{0pt}
 \titlespacing*{\subparagraph}{0em}{0.5em}{0em}
 
 
 \titleformat{\section}[block]
-  {\large\bfseries}
+  {\Large\bfseries\sffamily}
   {\thesection}
   {1em}
   {}
 \titleformat{\subsection}[block]
-  {\normalsize\bfseries}
+  {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
   {}
 \titleformat{\subsubsection}[block]
-  {\normalsize\itshape}
+  {\large\itshape}
   {\thesubsubsection}
   {1em}
   {}
@@ -138,28 +133,18 @@ $endif$
 % ================
 
 \usepackage{titling}
-
-\setlength{\droptitle}{-3cm}
-\title{\Large\textbf{{$title$}$if(subtitle)$: \\ $subtitle$}$endif$}
-
-\vspace{-0.5in}
-
-% \author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
-
-\author{$for(author)$\large{$author.name$}\thanks{$author.position$, $author.affiliation$, $author.address$. $author.thanks$} $sep$ \and $endfor$}
-
+\setlength{\droptitle}{-2cm}
+\pretitle{\begin{flushleft}}
+\DeclareRobustCommand{\titling}{
+\Large{\sffamily{\textbf{$title$}: \\ \textbf{$subtitle$}}} \\
+\vspace{0.5cm}
+\large{{$affiliation$} \\ {$author$}} \\
+\vspace{0.5cm}
+\normalsize{$date$}
+}
+\title{\titling}
+\posttitle{\end{flushleft}\vspace{-2cm}}
 \date{}
-
-
-
-
-% ============
-% = Epigraph =
-% ============
-
-\usepackage{epigraph}
-\setlength\epigraphwidth{.5\textwidth}
-\setlength\epigraphrule{0pt}
 
 
 
@@ -199,18 +184,6 @@ $endif$
 \begin{document}
 
 \maketitle
-\vspace{-0.5in}
-
-$if(abstract)$
-\begin{abstract}
-\noindent{$abstract$}
-\end{abstract}
-$endif$
-
-$if(epigraph)$
-\epigraph{$epigraph$}%
-{\textit{$epigraph-source$}\\ \textsc{$epigraph-author$}}
-$endif$
 
 $body$
 

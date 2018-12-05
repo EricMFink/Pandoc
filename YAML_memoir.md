@@ -29,7 +29,7 @@ fontsize: 11pt
 mainfont: 'Cormorant Garamond'
 scfont: 'Cormorant SC'
 sansfont: 'Proza Libre'
-monofont: 'Inconsolata'
+monofont: 'Cousine'
 monofontscale: '1.0'
 
 titlefont: '$sansfont$'
@@ -89,7 +89,7 @@ itemskip: 0em
 itemindent: 0em
 columnsep: 10mm
 
-papertype: b5paper
+papertype: letterpaper
 stockheight: '250mm'
 stockwidth: '176mm'
 trimheight: '250mm'
