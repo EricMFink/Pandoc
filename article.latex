@@ -5,7 +5,7 @@
 %%% 
 
 $if(draft)$
-\documentclass[10pt,letterpaper,oneside]{article}
+\documentclass[10pt,letterpaper,twoside]{article}
 $else$
 \documentclass[12pt,letterpaper,twoside]{article}
 $endif$
@@ -26,9 +26,9 @@ $endif$
 
 \usepackage{fontspec}
 $if(draft)$
-\setmainfont{$monofont$}[Mapping=tex-text]
-\setsansfont{$monofont$}[Mapping=tex-text]
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+\setmainfont{$draftfont$}[Mapping=tex-text]
+\setsansfont{$draftfont$}[Mapping=tex-text]
+\setmonofont{$draftfont$}[Mapping=tex-text,Scale=1.0]
 
 
 $else$
@@ -45,10 +45,11 @@ $endif$
 % ===========
 
 $if(draft)$
-\usepackage[hmarginratio=1:1,top=1.1in,bottom=1.2in,left=0.75in,right=1.75in]{geometry}
+\usepackage[hmarginratio=1:1,top=1.1in,bottom=2in,left=0.5in,right=2in]{geometry}
 $else$
 \usepackage[hmarginratio=1:1,top=1.1in,bottom=1.4in,left=1.75in,right=1.75in]{geometry}
 $endif$
+
 \raggedbottom
 
 \usepackage[bottom]{footmisc}

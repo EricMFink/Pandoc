@@ -45,7 +45,6 @@
 \usepackage[singlespacing]{setspace}
 
 \usepackage{ragged2e}
-\RaggedRight
 
 \usepackage{parskip}
 \setlength{\parindent}{0pt}
