@@ -13,6 +13,8 @@ $endif$
 \usepackage[english]{babel}  
 \usepackage[us,nodayofweek]{datetime}
 
+
+
 % ==================
 % = Colors & Fonts =
 % ==================
@@ -37,7 +39,6 @@ $else$
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
 
 $endif$
-
 
 
 % ===========
@@ -183,6 +184,20 @@ $if(graphics)$
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 $endif$
 
+% =============
+% = Citations =
+% =============
+
+\usepackage[
+    backend=biber,
+    style=verbose-inote,
+    sortlocale=auto,
+    natbib=true,
+    url=false, 
+    doi=true,
+    eprint=false
+]{biblatex}
+\addbibresource{biblatex-examples.bib}
 
 % ==============
 % = Hyperlinks =
@@ -190,7 +205,7 @@ $endif$
 
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,allcolors=black,}
-
+\urlstyle{same}
 
 
 % ==============================================================================
