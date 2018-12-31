@@ -38,6 +38,8 @@ $else$
 \setsansfont{$sansfont$}[Mapping=tex-text]
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
 
+\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+
 $endif$
 
 
@@ -141,11 +143,15 @@ $endif$
 
 \usepackage{titling}
 
-\setlength{\droptitle}{-3cm}
-\title{\Large\textbf{{$title$}$if(subtitle)$: \\ $subtitle$}$endif$}
+% = Uncomment next line to reduce spacing of Title from top of page =
+% \setlength{\droptitle}{-1cm}
 
-\vspace{-0.5in}
+\title{$for(title)$\Large{$title$}$if(subtitle)$: {$subtitle$} $endif$ $endfor$}
 
+% = Uncomment next line to adjust spacing between Title and Author = 
+% \vspace{0.5em}
+
+% = Alternative format for Author & Affiliation with no footnote = 
 % \author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
 
 \author{$for(author)$\large{$author.name$}\thanks{$author.position$, $author.affiliation$, $author.address$. $author.thanks$} $sep$ \and $endfor$}
@@ -155,13 +161,15 @@ $endif$
 
 
 
+
 % ============
 % = Epigraph =
 % ============
 
 \usepackage{epigraph}
-\setlength\epigraphwidth{.5\textwidth}
+% \setlength\epigraphwidth{.5\textwidth}
 \setlength\epigraphrule{0pt}
+\renewcommand{\epigraphsize}{\footnotesize}
 
 
 
@@ -224,8 +232,8 @@ $if(abstract)$
 $endif$
 
 $if(epigraph)$
-\epigraph{$epigraph$}%
-{\textit{$epigraph-source$}\\ \textsc{$epigraph-author$}}
+\epigraph{{$for(epigraph)${$epigraph.content$}$endfor$}}%
+{$for(epigraph)$\textit{$epigraph.from$}\\ \textsc{$epigraph.by$}$endfor$}
 $endif$
 
 $body$

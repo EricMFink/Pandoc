@@ -129,12 +129,12 @@
 \setbeforesecskip{0em}
 \setaftersecskip{0.5em}
 
-% H3 - Unit Sub-Section
-\setsubsecheadstyle{\normalsize\sffamily}
+% H3 - Sub-Unit Title 
+\setsubsecheadstyle{\normalsize\bfseries\sffamily}
 \setbeforesubsecskip{0em}
 \setaftersubsecskip{0.25em}
 
-% H4 - Assignment Type (Reading, Problem, Etc.)
+% H4 - Course Material Subheads 
 \setsubsubsecheadstyle{\normalsize\bfseries\sffamily}
 \setbeforesubsubsecskip{1.5em}
 \setaftersubsubsecskip{0.5em}
@@ -188,7 +188,7 @@
 % ===============
 
 \usepackage[unicode=true]{hyperref}
-\hypersetup{colorlinks=true, allcolors=mydarkblue,}
+\hypersetup{colorlinks=true, linkcolor=mydarkblue, citecolor=mydarkblue, urlcolor=mydarkblue,}
 
 
 % ==================
