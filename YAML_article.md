@@ -1,11 +1,10 @@
 ---
-date: 2017-07-26
-
+date: 2018-01-25 
 path: 
 
-title: TITLE
-subtitle: SUBTITLE
-header: SHORT TITLE FOR HEADER
+title: 'TITLE'
+subtitle: 'SUBTITLE'
+header: 'SHORT TITLE FOR HEADER'
 
 author:
   - name: Eric M. Fink
@@ -13,41 +12,32 @@ author:
     affiliation: Elon Law School 
     address: Greensboro, North Carolina
     email: efink@elon.edu
-    thanks: Thanks to Elon Law student Rachel Stariha (J.D. 2018) for her valuable research assistance. 
+    thanks: Thanks to WHOEVER.
 
-author2: 
-  - name: 
-    position: 
-    affiliation: 
-    address: 
-    email: 
-    thanks: 
+abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+keywords: 'keywords, comma separated'
 
-abstract: 
-keywords: 
+epigraph:
+  - by: 'AUTHOR'
+    from: 'TITLE (YEAR)'
+    content: 'QUOTATION.'
 
-epigraph: Progress is born of agitation. It is agitation or stagnation.
-epigraph-author: Eugene V. Debs
-epigraph-source: The Issue (1908)
+mainfont: 'Minion Pro'
+scfont: 'Minion RegularSC'
+sansfont: 'Gill Sans MT'
+monofont: 'Cousine'
+draftfont: 'Cousine'
+titlefont: 'Minion RegularSC'
+titlecolor: 'b03a2e'
 
-mainfont: 'Cormorant Garamond'
-scfont: 'Cormorant SC'
-sansfont: 'Proza Libre'
-monofont: Inconsolata
-titlefont: 'Proza Libre Bold'
-fontsize: 12pt
+draft: true 
 
-geometry: hmarginratio=1:1,top=1.1in,bottom=1.4in,left=1.75in,right=1.75in
-setspace: singlespacing
-indent: false
-secnumdepth: 5
-
-bibliography: '/home/fink/Juris-M/better-bibtex/Juris-M.bib'
-csl: '/home/fink/Juris-M/styles/jm-indigobook.csl'
+bibliography: '../../Bibliography/bibtex/Juris-M.yaml'
+csl: '../../Bibliography/CSL-styles/us-law-review.csl'
 
 output: 
   pdf_document:
     latex_engine: xelatex
     template: article.latex
-  
+
 ---

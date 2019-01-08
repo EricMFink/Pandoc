@@ -5,13 +5,15 @@
 %%% 
 
 $if(draft)$
-\documentclass[10pt,letterpaper,twoside]{article}
+\documentclass[10pt,letterpaper,oneside]{article}
 $else$
 \documentclass[12pt,letterpaper,twoside]{article}
 $endif$
 
 \usepackage[english]{babel}  
-\usepackage[us,nodayofweek]{datetime}
+% \usepackage[us,nodayofweek]{datetime}
+\usepackage[nodayofweek]{datetime}
+\newdateformat{mydate}{\THEDAY -\shortmonthname -\THEYEAR}
 
 
 
@@ -48,7 +50,7 @@ $endif$
 % ===========
 
 $if(draft)$
-\usepackage[hmarginratio=1:1,top=1.1in,bottom=2in,left=0.5in,right=2in]{geometry}
+\usepackage[hmarginratio=1:1,top=1.1in,bottom=1in,left=1.5in,right=1.5in]{geometry}
 $else$
 \usepackage[hmarginratio=1:1,top=1.1in,bottom=1.4in,left=1.75in,right=1.75in]{geometry}
 $endif$
@@ -58,11 +60,7 @@ $endif$
 \usepackage[bottom]{footmisc}
 
 \usepackage{setspace}
-$if(draft)$
-\doublespacing
-$else$
-\singlespacing
-$endif$
+
 
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -75,16 +73,32 @@ $endif$
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
+$if(draft)$
+
 \fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt Revised: \today}
+\fancyfoot[R]{\tiny\texttt{Revised: {\mydate\today}}}
 \fancyfoot[L]{\tiny\texttt{$path$}}
+\fancyhead{}
+\fancyhead[C]{\small\textsc{$header$}}
+\fancyhead[R]{\small{\thepage}}
+\fancyhead[L]{\small{Draft]}}
+
+
+$else$
+
+\fancyfoot{}
+\fancyfoot[C]{}
+\fancyfoot[RO]{\tiny\texttt{$path$}}
+\fancyfoot[LE]{\tiny\texttt{$path$}}
 \fancyhead{}
 \fancyhead[C]{\small\textsc{$header$}}
 \fancyhead[RO]{\small{\thepage}}
 \fancyhead[RE]{\small{[Draft}}
-\fancyhead[LO]{\small{\today]}}
+\fancyhead[LO]{\small{\mydate\today]}}
 \fancyhead[LE]{\small{\thepage}}
+
+$endif$
 
 
 % =====================
@@ -143,10 +157,31 @@ $endif$
 
 \usepackage{titling}
 
+
+
+$if(draft)$
+
 % = Uncomment next line to reduce spacing of Title from top of page =
 % \setlength{\droptitle}{-1cm}
 
-\title{$for(title)$\Large{$title$}$if(subtitle)$: {$subtitle$} $endif$ $endfor$}
+\title{$for(title)$\large{$title$}$if(subtitle)$:\\ {$subtitle$} $endif$ $endfor$}
+
+% = Uncomment next line to adjust spacing between Title and Author = 
+% \vspace{0.5em}
+
+
+\author{$for(author)$\normalsize{$author.name$}\\ \footnotesize{$author.affiliation$}\\ \footnotesize{$author.address$}$endfor$}
+
+
+
+\date{}
+
+$else$
+
+% = Uncomment next line to reduce spacing of Title from top of page =
+% \setlength{\droptitle}{-1cm}
+
+\title{$for(title)$\Large{$title$}$if(subtitle)$:\\ {$subtitle$} $endif$ $endfor$}
 
 % = Uncomment next line to adjust spacing between Title and Author = 
 % \vspace{0.5em}
@@ -159,7 +194,7 @@ $endif$
 \date{}
 
 
-
+$endif$
 
 
 % ============
@@ -222,8 +257,22 @@ $endif$
 
 \begin{document}
 
+
+% =========================
+% = Insert Title & Author =
+% =========================
+
 \maketitle
 \vspace{-0.5in}
+
+
+% ==============================
+% = Insert Abstract & Epigraph =
+% ==============================
+
+$if(draft)$
+
+$else$
 
 $if(abstract)$
 \begin{abstract}
@@ -235,6 +284,20 @@ $if(epigraph)$
 \epigraph{{$for(epigraph)${$epigraph.content$}$endfor$}}%
 {$for(epigraph)$\textit{$epigraph.from$}\\ \textsc{$epigraph.by$}$endfor$}
 $endif$
+
+$endif$
+
+% =================================
+% = Set Line Spacing for Main Body=
+% =================================
+
+
+$if(draft)$
+\doublespacing
+$else$
+\singlespacing
+$endif$
+
 
 $body$
 
