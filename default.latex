@@ -4,7 +4,7 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-\documentclass[$fontsize$,$paper$,$sides$]{article}
+\documentclass[$fontsize$,letterpaper,$sides$]{article}
 \usepackage[english]{babel}  
 \usepackage[ddmmyyyy]{datetime}
 \usepackage{currfile}
@@ -26,33 +26,47 @@
 \setsansfont{$sansfont$}[Mapping=tex-text]
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
 
-\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
 
+
+% ===================
+% = Page Dimensions =
+% ===================
+
+
+\usepackage[top=1.25in,bottom=1in,left=1.25in,right=1.25in]{geometry}
+\raggedbottom
 
 % ===========
 % = Spacing =
 % ===========
 
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-\raggedbottom
-
 \usepackage[$for(setspace)$$setspace$$sep$,$endfor$]{setspace}
 
 $if(RaggedRightParindent)$
 \usepackage{ragged2e}
-\setlength{\RaggedRightParindent}{$RaggedRightParindent$}
+\setlength{\RaggedRightParindent}{2em}
 \RaggedRight
 \usepackage[none]{hyphenat}
 $endif$
 
+
+
 \usepackage{parskip}
-\setlength{\parindent}{$parindent$}
-\setlength{\parskip}{$parskip$}
+
+$if(indent)$
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.2em}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+$else$
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+$endif$
+
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
 \usepackage[hang,flushmargin]{footmisc} 
-
 
 % =========
 % = Lists =
@@ -62,24 +76,11 @@ $endif$
 \newfontfamily{\FA}{[FontAwesome.otf]}
 \usepackage{enumitem}
 \setlistdepth{$listdepth$}
-\renewlist{itemize}{itemize}{$listdepth$}
+% \renewlist{itemize}{itemize}{6}
 
-% initially, use dots for all levels
-\setlist[itemize]{label=\tiny\faCircle}
-
-% customize levels
-\setlist[itemize,1]{label=\tiny\faCircle}
-\setlist[itemize,2]{label=\tiny\faCircleO}
-\setlist[itemize,3]{label=\tiny\faChevronRight}
-\setlist[itemize,4]{label=\tiny\faCaretRight} 
-\setlist[itemize,5]{label=\tiny\faAngleRight} 
-\setlist[itemize,6]{label=\tiny\faAngleDoubleRight} 
-
-\setlist[itemize]{leftmargin={$listmargin$}}
-
+\setlist[itemize]{leftmargin={2em}}
 \providecommand{\tightlist}{%
-\setlength{\itemsep}{$itemsep$}\setlength{\parskip}{$itemskip$}\setlength{\itemindent}{$itemindent$}}
-
+\setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
 
 
 % =======================
@@ -132,54 +133,54 @@ $endif$
 
 $if(numbersections)$
 \titleformat{\section}[hang]
-  {\$H1$\bfseries\sffamily}
+  {\Large\bfseries\sffamily}
   {\thesection}
   {1em}
   {}
 \titleformat{\subsection}[hang]
-  {\$H2$\bfseries\sffamily}
+  {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\$H3$\bfseries\sffamily}
+  {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
   {}
 \titleformat{\paragraph}[hang]
-  {\$H4$\bfseries\sffamily}
+  {\normalsize\bfseries\sffamily}
   {\theparagraph}
   {1em}
   {}
 \titleformat{\subparagraph}[hang]
-  {\$H5$\bfseries\sffamily}
+  {\normalsize\bfseries\sffamily}
   {\thesubparagraph}
   {1em}
   {}
 
 $else$
   \titleformat{\section}
-  {\$H1$\bfseries\sffamily}
+  {\Large\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\subsection}
-  {\$H2$\bfseries\sffamily}
+  {\large\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\subsubsection}
-  {\$H3$\bfseries\sffamily}
+  {\normalsize\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\paragraph}
-  {\$H4$\bfseries\sffamily}
+  {\normalsize\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\subparagraph}
-  {\$H5$\bfseries\sffamily}
+  {\normalsize\bfseries\sffamily}
   {}
   {0em}
   {}
@@ -203,15 +204,17 @@ $endif$
 \setlength{\droptitle}{-2cm}
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
-\huge\titlefont{$title$}: \\
-\bf\huge\titlefont{$subtitle$} \\
+\LARGE\titlefont{$title$} \\
+\bf\Large\titlefont{$subtitle$} \\
 \vspace{0.5em}
+$if(author)$
 \rmfamily\normalsize{$author$} \\
 \normalsize{$affiliation$} \\
+$endif$
 
 }
 \title{\titling}
-\posttitle{\end{flushleft}\vspace{-4em}}
+\posttitle{\end{flushleft}\vspace{-3em}}
 \date{}
 
 % ============
@@ -240,7 +243,7 @@ $endif$
 
 $if(colorlinks)$
 \usepackage[unicode=true]{hyperref}
-\hypersetup{colorlinks=true, linkcolor=$linkcolor$, citecolor=$citecolor$, urlcolor=$urlcolor$,}
+\hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
 $endif$
 
 

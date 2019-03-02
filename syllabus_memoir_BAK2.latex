@@ -98,8 +98,8 @@
 % = Sections =
 % ============
 
-\setcounter{secnumdepth}{2}
-\setcounter{maxsecnumdepth}{2}
+\setcounter{secnumdepth}{$secnumdepth$}
+\setcounter{maxsecnumdepth}{$secnumdepth$}
 \chapterstyle{color}
 
 % = No Break Before Chapter Heading =
@@ -124,26 +124,25 @@
 \pagestyle{mystyle}
 \chapterstyle{color}
 
-% H2 - Unit Title
+% H2 - Unit Title 
 \setsecheadstyle{\large\bfseries\sffamily}
-\setbeforesecskip{1em}
+\setbeforesecskip{0em}
 \setaftersecskip{0.5em}
 
-% H3 - Unit Subsection
-\setsubsecheadstyle{\normalsize\bfseries\sffamily}
-\setbeforesubsecskip{1em}
-\setaftersubsecskip{0.5em}
+% H3 - Unit Sub-Section
+\setsubsecheadstyle{\normalsize\sffamily}
+\setbeforesubsecskip{0em}
+\setaftersubsecskip{0.25em}
 
-% H4 - Class Date
-\setsubsubsecheadstyle{\normalsize\rmfamily\itshape}
-\setbeforesubsubsecskip{0em}
-\setsubsubsecindent{0em}
+% H4 - Assignment Type (Reading, Problem, Etc.)
+\setsubsubsecheadstyle{\normalsize\bfseries\sffamily}
+\setbeforesubsubsecskip{1.5em}
 \setaftersubsubsecskip{0.5em}
 
-% H5 - Information Subhead
+% H5 - Assignment Dates
 \setparaheadstyle{\normalsize\rmfamily\itshape}
-\setbeforeparaskip{1.5em}
-\setafterparaskip{0.5em}
+\setbeforeparaskip{0em}
+\setafterparaskip{0.2em}
 
 % H6 - Professor & Meeting Information 
 \setsubparaheadstyle{\footnotesize\rmfamily}
@@ -171,7 +170,7 @@
 
 \usepackage{enumitem}
 \setlistdepth{6}
-\setlist[itemize]{leftmargin=2em, labelsep=0.3em, itemsep={0em}, topsep=0em, parsep=0.2em, partopsep={0\onelineskip}}
+\setlist[itemize]{leftmargin=2em, labelsep=0.3em, itemsep={0em}, topsep=0em, parsep=0.2em, partopsep={1\onelineskip}}
 
 % \providecommand{\tightlist}{\setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
 
@@ -179,10 +178,10 @@
 % = Quotes =
 % ==========
 
-\usepackage[csdisplay=true]{csquotes}
+\usepackage{csquotes}
 
 \AtBeginEnvironment{quote}
-  {\itshape\tiny\list{}{\topsep=-0.5em \rightmargin=-3em \leftmargin=-3em }\item}{\endlist}
+  {\itshape\small\list{}{\topsep=-0.5em \rightmargin=-1em \leftmargin=-1em}\item\relax}{\endlist}
 
 % ===============
 % = Color Links =

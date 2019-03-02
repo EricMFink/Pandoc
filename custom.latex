@@ -1,13 +1,12 @@
-%%% syllabus.latex
-%%% Course syllabus template for Pandoc using LaTeX article class
+%%% default_article.latex
+%%% Default Pandoc template using LaTeX article class
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
 \documentclass[$fontsize$,$paper$,$sides$]{article}
 \usepackage[english]{babel}  
-\usepackage[us, nodayofweek]{datetime}
-\newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
+\usepackage[ddmmyyyy]{datetime}
 \usepackage{currfile}
 
 
@@ -27,35 +26,43 @@
 \setsansfont{$sansfont$}[Mapping=tex-text]
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
 
-\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
 
+
+% ===================
+% = Page Dimensions =
+% ===================
+
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+
+\raggedbottom
 
 % ===========
 % = Spacing =
 % ===========
 
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-\raggedbottom
-
 \usepackage[$for(setspace)$$setspace$$sep$,$endfor$]{setspace}
 
+$if(RaggedRightParindent)$
 \usepackage{ragged2e}
-\setlength{\RaggedRightParindent}{0em}
+\setlength{\RaggedRightParindent}{2em}
 \RaggedRight
 \usepackage[none]{hyphenat}
+$endif$
 
 \usepackage{parskip}
-\setlength{\parindent}{0em}
-\setlength{\parskip}{0.6em plus 0.2em minus 0.1em}
-
+\setlength{\parindent}{$parindent$}
+\setlength{\parskip}{$parskip$}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
 \usepackage[hang,flushmargin]{footmisc} 
 
 
+
 % =========
 % = Lists =
 % =========
+
 
 \usepackage{fontawesome}
 \newfontfamily{\FA}{[FontAwesome.otf]}
@@ -64,10 +71,9 @@
 % \renewlist{itemize}{itemize}{6}
 
 
-
+\setlist[itemize]{leftmargin={$leftmargin$}}
 \providecommand{\tightlist}{%
-\setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
-
+\setlength{\itemsep}{$itemsep$}\setlength{\parskip}{$itemskip$}\setlength{\itemindent}{$itemindent$}}
 
 
 % =======================
@@ -76,17 +82,28 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyfoot{}
+
+$if(footer)$
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt{$path$ Revised: \mydate\today}}
+\fancyfoot[R]{\footnotesize\texttt{\today}}
 \fancyfoot[L]{}
+$else$
+\fancyfoot{}
+$endif$
+
+$if(header)$
+\fancyhead[C]{\textsc{$title$}}
+\fancyhead[L]{\textsc{$author$}}
+\fancyhead[R]{\textsc{\thepage}}
 \fancyhead[CE]{\textsc{$title$}}
-\fancyhead[CO]{\textsc{$affiliation$}}
+\fancyhead[CO]{\textsc{$subtitle$}}
 \fancyhead[LE]{\textsc{\thepage}}
 \fancyhead[LO]{\textsc{$author$}}
 \fancyhead[RE]{\textsc{$date$}}
 \fancyhead[RO]{\textsc{\thepage}}
-
+$else$ 
+\fancyhead{}
+$endif$
 
 % =====================
 % = Section Numbering =
@@ -101,43 +118,68 @@
 
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\section}{0em}{2em}{0em}
-\titlespacing*{\subsection}{0em}{1.5em}{0em}
-\titlespacing*{\subsubsection}{0em}{0.5em}{0em}
-\titlespacing*{\paragraph}{0em}{0.5em}{0em}
-\titlespacing*{\subparagraph}{1.5em}{0em}{0em}
+\titlespacing*{\section}{0em}{2em}{0.5em}
+\titlespacing*{\subsection}{0em}{1em}{0.2em}
+\titlespacing*{\subsubsection}{0em}{1em}{0.2em}
+\titlespacing*{\paragraph}{0em}{1em}{0.2em}
+\titlespacing*{\subparagraph}{0em}{1em}{0.2em}
 
-
+$if(numbersections)$
 \titleformat{\section}[hang]
-  {\Large\titlefont}
-  {}
-  {0pt}
-  {}
-\titleformat{\subsection}[block]
-  {\large\bfseries\sffamily}
-  {}
+  {\Large\bfseries\sffamily}
+  {\thesection}
   {1em}
   {}
-\titleformat{\subsubsection}[block]
+\titleformat{\subsection}[hang]
+  {\large\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
   {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
   {}
-\titleformat{\paragraph}[block]
-  {\normalsize\rmfamily\itshape}
-  {\thesubparagraph}
-  {1em}
-  {}
-\titleformat{\subparagraph}[block]
-  {\normalsize\bfseries\rmfamily}
+\titleformat{\paragraph}[hang]
+  {\normalsize\bfseries\sffamily}
   {\theparagraph}
   {1em}
   {}
+\titleformat{\subparagraph}[hang]
+  {\normalsize\bfseries\sffamily}
+  {\thesubparagraph}
+  {1em}
+  {}
 
+$else$
+  \titleformat{\section}
+  {\Large\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subsection}
+  {\large\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\paragraph}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subparagraph}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
 
-% Remove section references from subsections
-\renewcommand{\thesection}{}
-\renewcommand{\thesubsection}{\arabic{subsection}}
+$endif$ 
+
 
 
 % ==========
@@ -145,10 +187,28 @@
 % ==========
 
 \usepackage{csquotes}
+\AtBeginEnvironment{quote}{\itshape}  
 
-\AtBeginEnvironment{quote}
-  {\itshape\small\list{}{\rightmargin=-1em \leftmargin=-1em}\item\relax}{\endlist}
+% ================
+% = Title Layout =
+% ================
 
+\usepackage{titling}
+\setlength{\droptitle}{-2cm}
+\pretitle{\begin{flushleft}}
+\DeclareRobustCommand{\titling}{
+\LARGE\titlefont{$title$} \\
+\bf\Large\titlefont{$subtitle$} \\
+\vspace{0.5em}
+$if(author)$
+\rmfamily\normalsize{$author$} \\
+\normalsize{$affiliation$} \\
+$endif$
+
+}
+\title{\titling}
+\posttitle{\end{flushleft}\vspace{-4em}}
+\date{}
 
 % ============
 % = Graphics =
@@ -169,35 +229,16 @@ $if(graphics)$
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 $endif$
 
+
 % ==============
 % = Hyperlinks =
 % ==============
 
+$if(colorlinks)$
 \usepackage[unicode=true]{hyperref}
-\hypersetup{colorlinks=true, linkcolor=mydarkblue, citecolor=mydarkblue, urlcolor=mydarkblue,}
+\hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
+$endif$
 
-% ================
-% = Title Layout =
-% ================
-\usepackage{titling}
-\setlength{\droptitle}{-2cm}
-\pretitle{\begin{flushleft}}
-\DeclareRobustCommand{\titling}{
-\Huge\bfseries{\titlefont{$title$}} \\
-\vspace{1em}
-\footnotesize{$author$}  \\
-\footnotesize\texttt{\href{mailto:{$email$}}{$email$}}  \\
-\footnotesize{$phone$}  \\
-\footnotesize{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} \\
-\vspace{1em}
-\footnotesize{$affiliation$}  \\
-\footnotesize{$term$}  \\
-\footnotesize{$days$}  \\
-\footnotesize{$room$} 
-}
-\title{\titling}
-\posttitle{\end{flushleft}}
-\date{}
 
 
 % ==============================================================================
@@ -207,7 +248,6 @@ $endif$
 \begin{document}\thispagestyle{empty}
 
 \maketitle
-\vspace{-1cm}
 
 $body$
 
