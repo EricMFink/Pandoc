@@ -26,7 +26,7 @@
 \setsansfont{$sansfont$}[Mapping=tex-text]
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
 
-\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
+\newfontface\titlefont{$titlefont$}$if(titlecolor)$[Colour=$titlecolor$]$endif$
 
 
 % ===================
@@ -211,10 +211,14 @@ $if(author)$
 \rmfamily\normalsize{$author$} \\
 \normalsize{$affiliation$} \\
 $endif$
+$if(date)$
+\rmfamily\normalsize{$date$} \\
+$endif$
 
 }
 \title{\titling}
 \posttitle{\end{flushleft}\vspace{-3em}}
+
 \date{}
 
 % ============

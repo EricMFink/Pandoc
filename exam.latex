@@ -1,5 +1,5 @@
-%%% article.latex
-%%% Academic article template for pandoc with legal-style section headings (1, 1.1, 1.1.1, etc.)
+%%% exam.latex
+%%% Exam template for pandoc
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 

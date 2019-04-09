@@ -1,4 +1,4 @@
-%%% article.latex
+%%% LawReviewArticle.latex
 %%% Template for academic article using law review style section headings (I, A, 1, a, i)
 %%% For Pandoc conversion from .md with YAML frontmatter 
 %%% Created by Eric M. Fink

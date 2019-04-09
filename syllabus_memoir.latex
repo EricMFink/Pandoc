@@ -98,13 +98,11 @@
 % = Sections =
 % ============
 
-\setcounter{secnumdepth}{2}
-\setcounter{maxsecnumdepth}{2}
+
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$2$endif$}
 \chapterstyle{color}
 
 % = No Break Before Chapter Heading =
-
-
 
 % H1 - Main Division Heads
 \makechapterstyle{color}{%
@@ -136,12 +134,12 @@
 
 % H4 - Class Date
 \setsubsubsecheadstyle{\normalsize\rmfamily\itshape}
-\setbeforesubsubsecskip{0em}
+\setbeforesubsubsecskip{1em}
 \setsubsubsecindent{0em}
 \setaftersubsubsecskip{0.5em}
 
 % H5 - Information Subhead
-\setparaheadstyle{\normalsize\rmfamily\itshape}
+\setparaheadstyle{\normalsize\sffamily}
 \setbeforeparaskip{1.5em}
 \setafterparaskip{0.5em}
 
@@ -162,7 +160,9 @@
 % = Footnotes =
 % =============
 
-\usepackage[symbol,hang,flushmargin]{footmisc} 
+\usepackage[hang,flushmargin]{footmisc} 
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
 
 
 % =========
@@ -182,14 +182,21 @@
 \usepackage[csdisplay=true]{csquotes}
 
 \AtBeginEnvironment{quote}
-  {\itshape\tiny\list{}{\topsep=-0.5em \rightmargin=-3em \leftmargin=-3em }\item}{\endlist}
+  {\itshape\small\list{}{\topsep=-0.5em \rightmargin=-1em \leftmargin=-1em}\item\relax}{\endlist}
+
 
 % ===============
 % = Color Links =
 % ===============
 
 \usepackage[unicode=true]{hyperref}
-\hypersetup{colorlinks=true, allcolors=mydarkblue,}
+\hypersetup{
+    colorlinks=true,	% false: boxed links; true: colored links
+    linkcolor=myblack,	% color of internal links (change box color with linkbordercolor)
+    citecolor=green,	% color of links to bibliography
+    filecolor=red,	% color of file links
+    urlcolor=mydarkblue	% color of external links
+}
 
 
 % ==================
@@ -205,16 +212,19 @@
 \noindent
 \begin{flushleft}
 \Huge{\titlefont\bfseries{$title$}} \\
+\vspace{0.5em}
+\large{$affiliation$} \\
+\large{$term$} \\
 \vspace{1em}
+$if(days)$
+\footnotesize{$days$} \\
+\footnotesize{$room$}  \\
+\vspace{1em}
+$endif$
 \footnotesize{$author$} \\
 \footnotesize\texttt{\href{mailto:{$email$}}{$email$}} \\
 \footnotesize{$phone$} \\
 \footnotesize{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} \\
-\vspace{1em}
-\footnotesize{$affiliation$} \\
-\footnotesize{$term$} \\
-\footnotesize{$days$} \\
-\footnotesize{$room$} 
 \end{flushleft}
 
 % ===============
