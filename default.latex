@@ -1,10 +1,24 @@
-%%% default_article.latex
+%%% default.latex
 %%% Default Pandoc template using LaTeX article class
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
+% ===============
+% = Page Layout =
+% ===============
+
+$if(custom)$
 \documentclass[$fontsize$,letterpaper,$sides$]{article}
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+
+
+$else$
+\documentclass[11pt,letterpaper,twoside]{article}
+\usepackage[top=1.25in,bottom=1in,left=1.25in,right=1.25in]{geometry}
+$endif$
+\raggedbottom
+$endif$
 \usepackage[english]{babel}  
 \usepackage[ddmmyyyy]{datetime}
 \usepackage{currfile}
@@ -22,26 +36,39 @@
 \definecolor{mylightblue}{HTML}{3498DB} 
 
 \usepackage{fontspec}
+$if(mainfont)$
 \setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+$else$
+\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+$endif$
+
+$if(sansfont)$
 \setsansfont{$sansfont$}[Mapping=tex-text]
+$else$
+\setsansfont{Proza Libre}[Mapping=tex-text]
+$endif$
+
+$if(monofont)$
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+$else$
+\setmonofont{Cousine}[Mapping=tex-text,Scale=1.0]
+$endif$
 
-\newfontface\titlefont{$titlefont$}$if(titlecolor)$[Colour=$titlecolor$]$endif$
-
-
-% ===================
-% = Page Dimensions =
-% ===================
-
-
-\usepackage[top=1.25in,bottom=1in,left=1.25in,right=1.25in]{geometry}
-\raggedbottom
+$if(titlefont)$
+\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+$else$
+\newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
+$endif$
 
 % ===========
 % = Spacing =
 % ===========
+$if(doublespacing)$
+\usepackage[doublespacing]{setspace}
+$else$
+\usepackage[singlespacing]{setspace}
+$endif$
 
-\usepackage[$for(setspace)$$setspace$$sep$,$endfor$]{setspace}
 
 $if(RaggedRightParindent)$
 \usepackage{ragged2e}
@@ -49,8 +76,6 @@ $if(RaggedRightParindent)$
 \RaggedRight
 \usepackage[none]{hyphenat}
 $endif$
-
-
 
 \usepackage{parskip}
 
@@ -63,7 +88,6 @@ $else$
 \setlength{\parskip}{0.5em}
 $endif$
 
-
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
 \usepackage[hang,flushmargin]{footmisc} 
@@ -75,7 +99,11 @@ $endif$
 \usepackage{fontawesome}
 \newfontfamily{\FA}{[FontAwesome.otf]}
 \usepackage{enumitem}
+$if(listdepth)$
 \setlistdepth{$listdepth$}
+$else$
+\setlistdepth{6}
+$endif$
 % \renewlist{itemize}{itemize}{6}
 
 \setlist[itemize]{leftmargin={2em}}
@@ -116,7 +144,7 @@ $endif$
 % = Section Numbering =
 % =====================
 
-\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+\setcounter{secnumdepth}{$if(numbersections)$6$else$0$endif$}
 
 
 % ============
@@ -205,11 +233,15 @@ $endif$
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
 \LARGE\titlefont{$title$} \\
+$if(subtitle)$
 \bf\Large\titlefont{$subtitle$} \\
+$endif$
 \vspace{0.5em}
 $if(author)$
 \rmfamily\normalsize{$author$} \\
+$if(affiliation)$
 \normalsize{$affiliation$} \\
+$endif$
 $endif$
 $if(date)$
 \rmfamily\normalsize{$date$} \\
@@ -249,8 +281,6 @@ $if(colorlinks)$
 \usepackage[unicode=true]{hyperref}
 \hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
 $endif$
-
-
 
 % ==============================================================================
 % =============================== BEGIN DOCUMENT =============================== 
