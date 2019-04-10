@@ -8,9 +8,16 @@ author: Eric M. Fink
 affiliation: Elon Law School 
 
 indent: true
-header: true
-footer: true
-colorlinks: true
+# delete for no paragraph indent 
+
+raggedright: true 
+#delete for justified paragraphs
+
+numbersections: true
+#delete for unnumbered headings 
+
+linkcolors: true
+# delete for no colored links 
 
 output: 
   pdf_document:

@@ -7,55 +7,61 @@ subtitle: Subtitle
 author: Eric M. Fink
 affiliation: Elon Law School 
 
-mainfont: 'Cormorant Garamond'
-scfont: 'Cormorant SC'
-sansfont: 'Proza Libre'
-monofont: Inconsolata
-titlefont: 'Proza Libre Bold'
-titlecolor: mydarkred
-fontsize: 11pt
-
-header: true
-footer: false
-
+custom: true
 geometry: hmarginratio=1:1,top=1in,bottom=1in,left=1.25in,right=1.25in
-paper: letterpaper
-sides: twoside
-setspace: singlespacing
+sides: oneside
+# delete for default page layout
 
-indent: true
-RaggedRightParindent: 2em
-parindent: 0em
-parskip: 0.2em 
+doublespacing: true
+#delete for singlespacing
 
-listdepth: 6
-listmargin: 2em
-itemsep: 0em
-itemskip: 0em
-itemindent: 0em
+mainfont: 'Minion Pro'
+scfont: 'Minion RegularSC'
+sansfont: 'Lato'
+monofont: Inconsolata
+titlefont: 'Lato Bold'
+titlecolor: mydarkred
+# delete for default fonts
 
+fontsize: 11pt
 titlesize: LARGE
 authorsize: normalsize 
 contactsize: small 
 datesize: normalsize 
-
 H1: Large 
 H2: large 
 H3: normalsize
 H4: normalsize
 H5: normalsize
+# delete for default sizes
 
-numbersections: false 
-secnumdepth: 0
+nohead: true
+# delete to include header 
+
+nofoot: true
+# delete to include footer
+
+indent: true 
+# delete for no indent
+
+raggedright: true 
+# delete for justified text
+
+listdepth: 4
+#delete for default (6)
+
+numbersections: true
+#delete for unnumbered headings 
 
 colorlinks: true
 linkcolor: mylightblue
 citecolor: mylightblue
 urlcolor: mylightblue
+#delete for no colored links
 
 output: 
   pdf_document:
     latex_engine: xelatex
-    template: custom.latex
+    template: default.latex
     
 ---

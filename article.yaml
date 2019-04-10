@@ -22,15 +22,11 @@ epigraph:
     from: 'TITLE (YEAR)'
     content: 'QUOTATION.'
 
-mainfont: 'Minion Pro'
-scfont: 'Minion RegularSC'
-sansfont: 'Gill Sans MT'
-monofont: 'Cousine'
-draftfont: 'Cousine'
-titlefont: 'Minion RegularSC'
-titlecolor: 'b03a2e'
-
 draft: true 
+# delete for non-draft formatting & fonts
+
+lawreview: true
+# delete for legal style heading numbers (1, 1.1, etc.)
 
 bibliography: '../../Bibliography/bibtex/Juris-M.yaml'
 csl: '../../Bibliography/CSL-styles/us-law-review.csl'

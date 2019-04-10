@@ -4,23 +4,55 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-% ===============
-% = Page Layout =
-% ===============
+% =========================
+% = Page Layout & Spacing =
+% =========================
 
 $if(custom)$
 \documentclass[$fontsize$,letterpaper,$sides$]{article}
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-
-
 $else$
 \documentclass[11pt,letterpaper,twoside]{article}
 \usepackage[top=1.25in,bottom=1in,left=1.25in,right=1.25in]{geometry}
 $endif$
+
 \raggedbottom
+
+$if(doublespacing)$
+\usepackage[doublespacing]{setspace}
+$else$
+\usepackage[singlespacing]{setspace}
 $endif$
+
+$if(RaggedRight)$
+\usepackage{ragged2e}
+\setlength{\RaggedRightParindent}{2em}
+\RaggedRight
+\usepackage[none]{hyphenat}
+$endif$
+
+\usepackage{parskip}
+
+$if(indent)$
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.2em}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+$else$
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+$endif$
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\usepackage[hang,flushmargin]{footmisc} 
+
+% ==========================
+% = Language & Date Format =
+% ==========================
+
 \usepackage[english]{babel}  
-\usepackage[ddmmyyyy]{datetime}
+\usepackage[us, nodayofweek]{datetime}
+\newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
 \usepackage{currfile}
 
 
@@ -60,38 +92,6 @@ $else$
 \newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
 $endif$
 
-% ===========
-% = Spacing =
-% ===========
-$if(doublespacing)$
-\usepackage[doublespacing]{setspace}
-$else$
-\usepackage[singlespacing]{setspace}
-$endif$
-
-
-$if(RaggedRightParindent)$
-\usepackage{ragged2e}
-\setlength{\RaggedRightParindent}{2em}
-\RaggedRight
-\usepackage[none]{hyphenat}
-$endif$
-
-\usepackage{parskip}
-
-$if(indent)$
-\setlength{\parindent}{1em}
-\setlength{\parskip}{0.2em}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-$else$
-\setlength{\parindent}{0em}
-\setlength{\parskip}{0.5em}
-$endif$
-
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-
-\usepackage[hang,flushmargin]{footmisc} 
-
 % =========
 % = Lists =
 % =========
@@ -104,7 +104,6 @@ $if(listdepth)$
 $else$
 \setlistdepth{6}
 $endif$
-% \renewlist{itemize}{itemize}{6}
 
 \setlist[itemize]{leftmargin={2em}}
 \providecommand{\tightlist}{%
@@ -118,15 +117,17 @@ $endif$
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
-$if(footer)$
-\fancyfoot[C]{}
-\fancyfoot[R]{\footnotesize\texttt{\today}}
-\fancyfoot[L]{}
-$else$
+$if(nofoot)$
 \fancyfoot{}
+$else$
+\fancyfoot[C]{}
+\fancyfoot[R]{\footnotesize\texttt{$path$ Revised: \today}}
+\fancyfoot[L]{}
 $endif$
 
-$if(header)$
+$if(nohead)$
+\fancyhead{}
+$else$ 
 \fancyhead[C]{\textsc{$title$}}
 \fancyhead[L]{\textsc{$author$}}
 \fancyhead[R]{\textsc{\thepage}}
@@ -136,16 +137,7 @@ $if(header)$
 \fancyhead[LO]{\textsc{$author$}}
 \fancyhead[RE]{\textsc{$date$}}
 \fancyhead[RO]{\textsc{\thepage}}
-$else$ 
-\fancyhead{}
 $endif$
-
-% =====================
-% = Section Numbering =
-% =====================
-
-\setcounter{secnumdepth}{$if(numbersections)$6$else$0$endif$}
-
 
 % ============
 % = Headings =
@@ -160,6 +152,7 @@ $endif$
 \titlespacing*{\subparagraph}{0em}{1em}{0.2em}
 
 $if(numbersections)$
+\setcounter{secnumdepth}{5}
 \titleformat{\section}[hang]
   {\Large\bfseries\sffamily}
   {\thesection}
@@ -187,7 +180,8 @@ $if(numbersections)$
   {}
 
 $else$
-  \titleformat{\section}
+\setcounter{secnumdepth}{0}
+\titleformat{\section}
   {\Large\bfseries\sffamily}
   {}
   {0em}
@@ -212,7 +206,6 @@ $else$
   {}
   {0em}
   {}
-
 $endif$ 
 
 
@@ -239,14 +232,13 @@ $endif$
 \vspace{0.5em}
 $if(author)$
 \rmfamily\normalsize{$author$} \\
+$endif$
 $if(affiliation)$
 \normalsize{$affiliation$} \\
-$endif$
 $endif$
 $if(date)$
 \rmfamily\normalsize{$date$} \\
 $endif$
-
 }
 \title{\titling}
 \posttitle{\end{flushleft}\vspace{-3em}}
@@ -277,9 +269,12 @@ $endif$
 % = Hyperlinks =
 % ==============
 
-$if(colorlinks)$
+
 \usepackage[unicode=true]{hyperref}
+$if(linkcolors)$
 \hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
+$else$
+\hypersetup{colorlinks=false}
 $endif$
 
 % ==============================================================================

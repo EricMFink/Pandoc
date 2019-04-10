@@ -4,7 +4,35 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-\documentclass[$fontsize$,$paper$,$sides$]{article}
+
+% ====================
+% = Layout & Spacing =
+% ====================
+
+\documentclass[11pt,letterpaper,twoside]{article}
+
+\usepackage[hmarginratio=1:1,top=1.25in,bottom=1in,left=1.5in,right=1.5in]{geometry}
+\raggedbottom
+
+\usepackage[singlespacing]{setspace}
+
+\usepackage{ragged2e}
+\setlength{\RaggedRightParindent}{0em}
+\RaggedRight
+\usepackage[none]{hyphenat}
+
+\usepackage{parskip}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.6em plus 0.2em minus 0.1em}
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\usepackage[hang,flushmargin]{footmisc} 
+
+% ==========================
+% = Language & Date Format =
+% ==========================
+
 \usepackage[english]{babel}  
 \usepackage[us, nodayofweek]{datetime}
 \newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
@@ -22,35 +50,31 @@
 \definecolor{mydarkblue}{HTML}{154360}
 \definecolor{mylightblue}{HTML}{3498DB} 
 
+
 \usepackage{fontspec}
+$if(mainfont)$
 \setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+$else$
+\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+$endif$
+
+$if(sansfont)$
 \setsansfont{$sansfont$}[Mapping=tex-text]
+$else$
+\setsansfont{Proza Libre}[Mapping=tex-text]
+$endif$
+
+$if(monofont)$
 \setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+$else$
+\setmonofont{Cousine}[Mapping=tex-text,Scale=1.0]
+$endif$
 
+$if(titlefont)$
 \newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
-
-
-% ===========
-% = Spacing =
-% ===========
-
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-\raggedbottom
-
-\usepackage[$for(setspace)$$setspace$$sep$,$endfor$]{setspace}
-
-\usepackage{ragged2e}
-\setlength{\RaggedRightParindent}{0em}
-\RaggedRight
-\usepackage[none]{hyphenat}
-
-\usepackage{parskip}
-\setlength{\parindent}{0em}
-\setlength{\parskip}{0.6em plus 0.2em minus 0.1em}
-
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-
-\usepackage[hang,flushmargin]{footmisc} 
+$else$
+\newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
+$endif$
 
 
 % =========
@@ -60,10 +84,8 @@
 \usepackage{fontawesome}
 \newfontfamily{\FA}{[FontAwesome.otf]}
 \usepackage{enumitem}
-\setlistdepth{$listdepth$}
+\setlistdepth{6}
 % \renewlist{itemize}{itemize}{6}
-
-
 
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
@@ -92,7 +114,7 @@
 % = Section Numbering =
 % =====================
 
-\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+\setcounter{secnumdepth}{5}
 
 
 % ============
