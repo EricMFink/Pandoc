@@ -106,7 +106,7 @@ $endif$
 \fancyhead[CO]{\textsc{$affiliation$}}
 \fancyhead[LE]{\textsc{\thepage}}
 \fancyhead[LO]{\textsc{$author$}}
-\fancyhead[RE]{\textsc{$date$}}
+\fancyhead[RE]{\textsc{$term$}}
 \fancyhead[RO]{\textsc{\thepage}}
 
 
@@ -146,7 +146,7 @@ $endif$
   {1em}
   {}
 \titleformat{\paragraph}[block]
-  {\normalsize\rmfamily\itshape}
+  {\large\rmfamily\itshape}
   {}
   {0em}
   {}
@@ -214,8 +214,12 @@ $endif$
 \vspace{1em}
 \footnotesize{$affiliation$}  \\
 \footnotesize{$term$}  \\
+$if(days)$
 \footnotesize{$days$}  \\
+$endif$
+$if(room)$
 \footnotesize{$room$} 
+$endif$
 }
 \title{\titling}
 \posttitle{\end{flushleft}}
