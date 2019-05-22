@@ -107,8 +107,8 @@ $else$
 
 \fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[RO]{\tiny\texttt{$path$}}
-\fancyfoot[LE]{\tiny\texttt{$path$}}
+\fancyfoot[R]{\tiny\texttt{Revised: {\mydate\today}}}
+\fancyfoot[L]{\tiny\texttt{$path$}}
 \fancyhead{}
 \fancyhead[C]{\small\textsc{$header$}}
 \fancyhead[RO]{\small{\thepage}}
@@ -212,27 +212,16 @@ $endif$
 $if(draft)$
 % = Uncomment next line to reduce spacing of Title from top of page =
 % \setlength{\droptitle}{-1cm}
-\title{$for(title)$\large{$title$}$if(subtitle)$:\\ {$subtitle$} $endif$ $endfor$}
+\title{$for(title)$\Large\textbf{$title$}$if(subtitle)$:\\ \textbf{$subtitle$} $endif$ $endfor$}
 % = Uncomment next line to adjust spacing between Title and Author = 
 % \vspace{0.5em}
 \author{$for(author)$\normalsize{$author.name$}\\ \footnotesize{$author.affiliation$}\\ \footnotesize{$author.address$}$endfor$}
-\date{}
+\date{\footnotesize{Draft: \mydate\today}}
 
 $else$
-$if(lawreview)$
 \setlength{\droptitle}{-3cm}
 \title{\Large\textbf{{$title$}$if(subtitle)$:\\ $subtitle$}$endif$}
 \author{$for(author)$\normalsize{$author.name$}\thanks{$author.position$, $author.affiliation$, $author.address$. $author.email$. $author.thanks$} $sep$ \and $endfor$}
-\date{\small\textit{Draft: \today}}
-$else$
-% = Uncomment next line to reduce spacing of Title from top of page =
-% \setlength{\droptitle}{-1cm}
-\title{$for(title)$\Large{$title$}$if(subtitle)$:\\ {$subtitle$} $endif$ $endfor$}
-% = Uncomment next line to adjust spacing between Title and Author = 
-% \vspace{0.5em}
-% = Alternative format for Author & Affiliation with no footnote = 
-% \author{$for(author)$\normalsize{$author.name$}\\ \footnotesize{$author.affiliation$}\\ \footnotesize{$author.address$}$endfor$}
-\author{$for(author)$\large{$author.name$}\thanks{$author.position$, $author.affiliation$, $author.address$. $author.thanks$} $sep$ \and $endfor$}
 \date{}
 $endif$
 
@@ -311,6 +300,8 @@ $endif$
 % ==============================
 
 $if(draft)$
+
+\vspace{4em}
 
 $else$
 
