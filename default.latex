@@ -13,7 +13,7 @@ $if(custom)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
 \documentclass[11pt,letterpaper,twoside]{article}
-\usepackage[top=1.25in,bottom=1in,left=1.25in,right=1.25in]{geometry}
+\usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
 $endif$
 
 \raggedbottom
@@ -24,12 +24,9 @@ $else$
 \usepackage[singlespacing]{setspace}
 $endif$
 
-$if(RaggedRight)$
 \usepackage{ragged2e}
-\setlength{\RaggedRightParindent}{2em}
-\RaggedRight
 \usepackage[none]{hyphenat}
-$endif$
+
 
 \usepackage{parskip}
 
@@ -145,9 +142,9 @@ $endif$
 
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\section}{0em}{2em}{0.5em}
-\titlespacing*{\subsection}{0em}{1em}{0.2em}
-\titlespacing*{\subsubsection}{0em}{1em}{0.2em}
+\titlespacing*{\section}{0em}{2em}{1.5em}
+\titlespacing*{\subsection}{0em}{1.5em}{1em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{1em}
 \titlespacing*{\paragraph}{0em}{1em}{0.2em}
 \titlespacing*{\subparagraph}{0em}{1em}{0.2em}
 
@@ -182,22 +179,22 @@ $if(numbersections)$
 $else$
 \setcounter{secnumdepth}{0}
 \titleformat{\section}
-  {\Large\bfseries\sffamily}
+  {\LARGE\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\subsection}
-  {\large\bfseries\sffamily}
+  {\Large\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\subsubsection}
-  {\normalsize\bfseries\sffamily}
+  {\large\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\paragraph}
-  {\normalsize\bfseries\sffamily}
+  {\normalsize\bfseries\rmfamily}
   {}
   {0em}
   {}
@@ -285,6 +282,8 @@ $endif$
 
 \maketitle
 
+
+\RaggedRight
 $body$
 
 \end{document}
