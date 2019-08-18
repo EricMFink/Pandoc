@@ -130,32 +130,36 @@ $endif$
 \titlespacing*{\subparagraph}{0em}{0em}{0em}
 
 
+% H1
 \titleformat{\section}[hang]
   {\Large\titlefont}
   {}
   {0pt}
   {}
+% H2
 \titleformat{\subsection}[block]
   {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
   {}
+% H3
 \titleformat{\subsubsection}[block]
   {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
   {}
+% H4
 \titleformat{\paragraph}[block]
   {\large\rmfamily\itshape}
   {}
   {0em}
   {}
+% H5
 \titleformat{\subparagraph}[block]
   {\normalsize\bfseries\rmfamily}
   {}
   {0em}
   {}
-
 
 % Remove section references from subsections
 \renewcommand{\thesection}{}
