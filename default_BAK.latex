@@ -8,42 +8,45 @@
 % = Page Layout & Spacing =
 % =========================
 
-$if(fontsize)$
-\documentclass[letterpaper,$fontsize$,twoside]{article}
-$else$
-\documentclass[letterpaper,11pt,twoside]{article}
-$endif$
 
-$if(geometry)$
+$if(custom)$
+\documentclass[letterpaper,$fontsize$,$sides$]{article}
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
+\documentclass[letterpaper,11pt,twoside]{article}
 \usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
 $endif$
 
+
 \raggedbottom
 
+$if(doublespacing)$
+\usepackage[doublespacing]{setspace}
+$else$
+\usepackage[singlespacing]{setspace}
+$endif$
 
-\usepackage[defaultlines=4,all]{nowidow}
+$if(baselinestretch)$
+\renewcommand{\baselinestretch}{$baselinestretch$}
+$endif$ 
 
-\usepackage{setspace}
 
+$if(raggedright)$
 \usepackage{ragged2e}
 \usepackage[none]{hyphenat}
+$endif$ 
+
+
 
 $if(parindent)$
 \setlength{\parindent}{$parindent$}
 $else$
 \setlength{\parindent}{0em}
 $endif$
-
 $if(parskip)$
 \setlength{\parskip}{$parskip$}
 $else$
-$if(classnotes)$
-\setlength{\parskip}{0.5em}
-$else$
 \setlength{\parskip}{1em}
-$endif$
 $endif$
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
@@ -109,16 +112,7 @@ $else$
 \setlistdepth{6}
 $endif$
 
-\setlist{nosep}
-
-\setlist[itemize,1]{label=\textbullet}
-\setlist[itemize,2]{label=\textopenbullet}
-\setlist[itemize,3]{label=\textbullet}
-\setlist[itemize,4]{label=\textopenbullet}
-\setlist[itemize,5]{label=\textbullet}
-\setlist[itemize,6]{label=\textopenbullet}
-
-\setlist[itemize]{leftmargin={1.5em}}
+\setlist[itemize]{leftmargin={2em}}
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
 
@@ -162,19 +156,12 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
-$if(classnotes)$
-\titlespacing*{\section}{0em}{1.75em}{.5em}
-\titlespacing*{\subsection}{0em}{1em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{0.5em}{0.5em}
-\titlespacing*{\paragraph}{0em}{1.5em}{0em}
-\titlespacing*{\subparagraph}{0em}{0.5em}{0em}
-$else$
-$if(headings)$
-\titlespacing*{\section}{0em}{$headings.h1bef$}{$headings.h1aft$}
-\titlespacing*{\subsection}{0em}{$headings.h2h3bef$}{$headings.h2h3aft$}
-\titlespacing*{\subsubsection}{0em}{$headings.h2h3bef$}{$headings.h2h3aft$}
-\titlespacing*{\paragraph}{0em}{$headings.h4h5bef$}{$headings.h4h5aft$}
-\titlespacing*{\subparagraph}{0em}{$headings.h4h5bef$}{$headings.h4h5aft$}
+$if(tightsections)$
+\titlespacing*{\section}{0em}{1em}{.2em}
+\titlespacing*{\subsection}{0em}{1em}{.2em}
+\titlespacing*{\subsubsection}{0em}{1em}{.2em}
+\titlespacing*{\paragraph}{0em}{1em}{0.2em}
+\titlespacing*{\subparagraph}{0em}{1em}{0.2em}
 $else$
 \titlespacing*{\section}{0em}{2em}{1.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{1em}
@@ -182,52 +169,22 @@ $else$
 \titlespacing*{\paragraph}{0em}{1em}{0.2em}
 \titlespacing*{\subparagraph}{0em}{1em}{0.2em}
 $endif$ 
-$endif$ 
 
 
-$if(classnotes)$
+$if(numbersections)$
 \setcounter{secnumdepth}{5}
 \titleformat{\section}[hang]
-  {\LARGE\bfseries\sffamily}
+  {\Large\bfseries\sffamily}
   {\thesection}
   {1em}
   {}
 \titleformat{\subsection}[hang]
-  {\Large\bfseries\sffamily}
+  {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\sffamily}
-  {\thesubsubsection}
-  {1em}
-  {}
-\titleformat{\paragraph}[hang]
-  {\Large\bfseries\rmfamily}
-  {}
-  {0em}
-  {}
-\titleformat{\subparagraph}[hang]
-  {\normalsize\bfseries\rmfamily}
-  {}
-  {0em}
-  {}
-
-$else$
-$if(numberedsections)$
-\setcounter{secnumdepth}{5}
-\titleformat{\section}[hang]
-  {\LARGE\bfseries\sffamily}
-  {\thesection}
-  {1em}
-  {}
-\titleformat{\subsection}[hang]
-  {\Large\bfseries\sffamily}
-  {\thesubsection}
-  {1em}
-  {}
-\titleformat{\subsubsection}[hang]
-  {\large\bfseries\sffamily}
+  {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
   {}
@@ -270,7 +227,7 @@ $else$
   {0em}
   {}
 $endif$ 
-$endif$ 
+
 
 
 % ==========
@@ -285,21 +242,43 @@ $endif$
 % ================
 
 \usepackage{titling}
-
 \setlength{\droptitle}{-2cm}
-
 \pretitle{\begin{flushleft}}
-\title{$for(title)$\titlefont\huge{$title$} $if(subtitle)$:\\ {$subtitle$}$endif$ $endfor$}
-\posttitle{\end{flushleft}}
-\preauthor{\begin{flushleft}}
-\author{$for(author)$ \rmfamily\normalsize{$author$}\\ $if(affiliation)${$affiliation$}\\$endif$ $if(address)${$address$}\\$endif$ $if(phone)${$phone$}\\$endif$ $if(email)${$email$}\\$endif$  {$date$} $endfor$}
-\postauthor{\end{flushleft}}
-\predate{\begin{flushleft}}
+\DeclareRobustCommand{\titling}{
+$if(titlesize)$
+
+\$titlesize$\titlefont{$title$} \\
+$else$
+\LARGE\titlefont{$title$} \\
+$endif$
+
+\vspace{0.5em}
+$if(author)$
+\rmfamily\normalsize{$author$} \\
+$endif$
+
+$if(affiliation)$
+\normalsize{$affiliation$} \\
+$endif$
+
+$if(date)$
+\rmfamily\normalsize{$date$} \\ 
+$endif$
+\vspace{2em}
+
+$if(subtitle)$
+$if(subtitlesize)$
+\bf\$subtitlesize$\titlefont{$subtitle$} \\
+$else$
+\bf\Large\titlefont{$subtitle$} \\
+$endif$
+$endif$
+
+}
+\title{\titling}
+\posttitle{\end{flushleft}\vspace{-8em}}
+
 \date{}
-\postdate{\end{flushleft}}
-
-
-
 
 % ============
 % = Graphics =
@@ -325,6 +304,7 @@ $endif$
 % = Hyperlinks =
 % ==============
 
+
 \usepackage[unicode=true]{hyperref}
 $if(linkcolors)$
 \hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
@@ -332,26 +312,15 @@ $else$
 \hypersetup{colorlinks=false}
 $endif$
 
-% =============================================================================
-% ============================== BEGIN DOCUMENT =============================== 
-% =============================================================================
+% ==============================================================================
+% =============================== BEGIN DOCUMENT =============================== 
+% ==============================================================================
 
 \begin{document}\thispagestyle{empty}
 \maketitle
-\vspace{-.75in}
-
+$if(raggedright)$
 \RaggedRight
-
-$if(onehalfspacing)$
-\onehalfspacing
 $endif$
-
-$if(doublespacing)$
-\doublespacing
-$else$
-\singlespacing
-$endif$
-
 $body$
 
 \end{document}

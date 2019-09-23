@@ -12,6 +12,7 @@
 \documentclass[11pt,letterpaper,twoside]{article}
 
 \usepackage[hmarginratio=1:1,top=1.25in,bottom=1in,left=1.5in,right=1.5in]{geometry}
+\usepackage[defaultlines=4,all]{nowidow}
 \raggedbottom
 
 \usepackage[singlespacing]{setspace}
@@ -28,6 +29,8 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
 \usepackage[hang,flushmargin]{footmisc} 
+
+\usepackage{needspace}% http://ctan.org/pkg/needspace
 
 % ==========================
 % = Language & Date Format =
@@ -53,21 +56,21 @@
 
 \usepackage{fontspec}
 $if(mainfont)$
-\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+\setmainfont{$mainfont$}[Colour=myblack,Mapping={tex-text},SmallCapsFont={$scfont$}]
 $else$
-\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+\setmainfont{Cormorant Garamond}[Colour=myblack,Mapping={tex-text},SmallCapsFont={Cormorant SC}]
 $endif$
 
 $if(sansfont)$
-\setsansfont{$sansfont$}[Mapping=tex-text]
+\setsansfont{$sansfont$}[Colour=myblack,Mapping=tex-text]
 $else$
-\setsansfont{Proza Libre}[Mapping=tex-text]
+\setsansfont{Proza Libre}[Colour=myblack,Mapping=tex-text]
 $endif$
 
 $if(monofont)$
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+\setmonofont{$monofont$}[Colour=myblack,Mapping=tex-text,Scale=1.0]
 $else$
-\setmonofont{Cousine}[Mapping=tex-text,Scale=1.0]
+\setmonofont{Cousine}[Colour=myblack,Mapping=tex-text,Scale=1.0]
 $endif$
 
 $if(titlefont)$
@@ -126,8 +129,8 @@ $endif$
 \titlespacing*{\section}{0em}{2em}{0em}
 \titlespacing*{\subsection}{0em}{1.5em}{0em}
 \titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{0.5em}{2em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
+\titlespacing*{\paragraph}{0em}{0.5em}{0em}
+\titlespacing*{\subparagraph}{0em}{1em}{2em}
 
 
 % H1
@@ -150,13 +153,13 @@ $endif$
   {}
 % H4
 \titleformat{\paragraph}[block]
-  {\large\rmfamily\itshape}
+  {\large\bfseries\sffamily}
   {}
   {0em}
   {}
 % H5
 \titleformat{\subparagraph}[block]
-  {\normalsize\bfseries\rmfamily}
+  {\large\rmfamily\itshape}
   {}
   {0em}
   {}
@@ -173,7 +176,7 @@ $endif$
 \usepackage{csquotes}
 
 \AtBeginEnvironment{quote}
-  {\itshape\small\list{}{\rightmargin=-1em \leftmargin=-1em}\item\relax}{\endlist}
+  {\itshape\small\list{}{\rightmargin=-1.5em \leftmargin=-1.5em}\item\relax}{\endlist}
 
 
 % ============
@@ -209,12 +212,7 @@ $endif$
 \setlength{\droptitle}{-2cm}
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
-\Huge\bfseries{\titlefont{$title$}} \\
-\vspace{1em}
-\footnotesize{$author$}  \\
-\footnotesize\texttt{\href{mailto:{$email$}}{$email$}}  \\
-\footnotesize{$phone$}  \\
-\footnotesize{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} \\
+\Huge\bfseries{\titlefont{$course$}} \\
 \vspace{1em}
 \footnotesize{$affiliation$}  \\
 \footnotesize{$term$}  \\
@@ -222,8 +220,13 @@ $if(days)$
 \footnotesize{$days$}  \\
 $endif$
 $if(room)$
-\footnotesize{$room$} 
+\footnotesize{$room$} \\ 
 $endif$
+\vspace{1em}
+\footnotesize{$author$}  \\
+\footnotesize\texttt{\href{mailto:{$email$}}{$email$}}  \\
+\footnotesize{$phone$}  \\
+\footnotesize{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
 }
 \title{\titling}
 \posttitle{\end{flushleft}}
@@ -237,7 +240,9 @@ $endif$
 \begin{document}\thispagestyle{empty}
 
 \maketitle
-\vspace{-1cm}
+\vspace{-2cm}
+
+\needspace{3em}% Controls page break before headings 
 
 $body$
 

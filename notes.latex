@@ -3,7 +3,12 @@
 %%% Created by Eric M. Fink
 %%% 
 
+$if(fontsize)$
 \documentclass[$fontsize$,letterpaper,twoside]{article}
+$else$
+\documentclass[10pt,letterpaper,twoside]{article}
+$endif$
+
 % \usepackage[english]{babel} 
 \usepackage[none]{hyphenat} 
 \usepackage[us, nodayofweek]{datetime}
@@ -22,40 +27,58 @@
 \definecolor{mydarkred}{HTML}{b03a2e} 
 \definecolor{mydarkblue}{HTML}{154360}
 \definecolor{mylightblue}{HTML}{3498DB} 
-\definecolor{mylightgray}{gray}{0.9}
 
 \usepackage{fontspec}
-\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
-\setromanfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
-\setsansfont{$sansfont$}[Mapping=tex-text]
-\setmonofont{$monofont$}[Mapping=tex-text,Scale={1.0}]
+$if(mainfont)$
+\setmainfont{$mainfont$}[Colour=myblack,Mapping={tex-text},SmallCapsFont={$scfont$}]
+$else$
+\setmainfont{Cormorant Garamond}[Colour=myblack,Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+$endif$
 
-\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
+$if(sansfont)$
+\setsansfont{$sansfont$}[Colour=myblack,Mapping=tex-text]
+$else$
+\setsansfont{Proza Libre}[Colour=myblack,Mapping=tex-text]
+$endif$
 
-\usepackage{fontawesome}
-\newfontfamily{\FA}{[FontAwesome.otf]}
+$if(monofont)$
+\setmonofont{$monofont$}[Colour=myblack,Mapping=tex-text,Scale=1.0]
+$else$
+\setmonofont{Cousine}[Colour=myblack,Mapping=tex-text,Scale=1.0]
+$endif$
 
-% ===========
-% = Spacing =
-% ===========
+$if(titlefont)$
+\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+$else$
+\newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
+$endif$
 
-\usepackage[hmarginratio=1:1,top=1.25in,bottom=1in,left=1.5in,right=1.5in]{geometry}
+
+% =========================
+% = Page Layout & Spacing =
+% =========================
+
+
+\usepackage[top=.75in,bottom=.75in,left=1.25in,right=1.25in]{geometry}
+
+\usepackage[defaultlines=4,all]{nowidow}
+
 \raggedbottom
 
 \usepackage[singlespacing]{setspace}
 
 \usepackage{ragged2e}
+\usepackage[none]{hyphenat}
 
 \usepackage{parskip}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{1em plus 0.4em minus 0.2em}
-
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
-
 \usepackage[hang,flushmargin]{footmisc} 
 
+\usepackage{needspace}% http://ctan.org/pkg/needspace
 
 % =======================
 % = Headers and Footers = 
@@ -83,73 +106,98 @@
 
 \usepackage[]{titlesec}
 
+%\titlespacing*{\LEVEL}{LEFT}{BEFORE}{AFTER}
+\titlespacing*{\section}{0em}{1.75em}{.5em}
+\titlespacing*{\subsection}{0em}{1em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1em}{0.5em}
+\titlespacing*{\paragraph}{0em}{.5em}{0.5em}
+\titlespacing*{\subparagraph}{0em}{0.5em}{0.5em}
+
+
+$if(plainhead)$
+\setcounter{secnumdepth}{0}
+\titleformat{\section}
+  {\LARGE\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subsection}
+  {\Large\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subsubsection}
+  {\large\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+\titleformat{\paragraph}
+  {\normalsize\bfseries\rmfamily}
+  {}
+  {0em}
+  {}
+\titleformat{\subparagraph}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+
+$else$
 \setcounter{secnumdepth}{3}
 
-%\titlespacing*{\LEVEL}{LEFT}{BEFORE}{AFTER}
-\titlespacing*{\section}{0em}{2em}{0em}
-\titlespacing*{\subsection}{0em}{1.5em}{0em}
-\titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{0em}{0em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
-
 \titleformat{\section}[hang]
-  {\Large\bf\sffamily}
+  {\LARGE\bf\sffamily}
   {\thesection}
   {1em}
   {}
 
 \titleformat{\subsection}[hang]
-  {\large\bf\sffamily}
+  {\Large\bf\sffamily}
   {\thesubsection}
   {1em}
   {}
 
 \titleformat{\subsubsection}[hang]
-  {\normalsize\bf\sffamily}
+  {\large\bf\sffamily}
   {\thesubsubsection}
   {1em}
   {}
 
 \titleformat{\paragraph}
-  {\normalsize\bf\rmfamily}
-  {\theparagraph}
-  {1em}
+  {\normalsize\bf\sffamily}
+  {}
+  {0em}
   {}
 
 \titleformat{\subparagraph}
-  {\normalsize\bf\rmfamily}
-  {\thesubparagraph}
-  {1em}
+  {\normalsize\rmfamily\itshape}
+  {}
+  {0em}
   {}
 
-
+$endif$ 
 
 % =========
 % = Lists =
 % =========
 
 \usepackage{enumitem}
-\setlistdepth{8}
+\setlistdepth{9}
 
-\renewlist{itemize}{itemize}{8}
-% customize levels
-\renewlist{itemize}{itemize}{8}
-% initially, use dots for all levels
-\setlist[itemize]{label=\tiny\faCircle}
-% customize levels
-\setlist[itemize,1]{label=\tiny\faCircle}
-\setlist[itemize,2]{label=\tiny\faCircleO}
-\setlist[itemize,3]{label=\tiny\faChevronRight}
-\setlist[itemize,4]{label=\tiny\faCaretRight} 
-\setlist[itemize,5]{label=\tiny\faAngleRight} 
-\setlist[itemize,6]{label=\tiny\faAngleDoubleRight} 
-\setlist[itemize]{label={},leftmargin={2em},rightmargin={0em}}
-\setlist[enumerate]{label={},nosep}
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=\textbullet}
+\setlist[itemize,3]{label=\textbullet}
+\setlist[itemize,4]{label=\textbullet}
+\setlist[itemize,5]{label=\textbullet}
+\setlist[itemize,6]{label=\textbullet}
+\setlist[itemize,7]{label=\textbullet}
+\setlist[itemize,8]{label=\textbullet}
+\setlist[itemize,9]{label=\textbullet}
 
+\renewlist{itemize}{itemize}{9}
 
-\providecommand{\tightlist}{\setlength{\itemsep}{0.25em}\setlength{\parsep}{0em}\setlength{\parskip}{0.25em}\setlength{\itemindent}{0em}}
-
-
+\setlist[itemize]{leftmargin={2em}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
 
 
 % ==========
@@ -159,7 +207,7 @@
 
 \usepackage{csquotes}
 
-\AtBeginEnvironment{quote}{\color{blue}\itshape\small\list{}{\rightmargin=1em \leftmargin=-0.3em}\item\relax}{\endlist}
+\AtBeginEnvironment{quote}{\itshape\list{}{\rightmargin=0em \leftmargin=-1em}\item\relax}{\endlist}
 
 
 % ================
@@ -170,16 +218,17 @@
 \setlength{\droptitle}{-2cm}
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
-\huge\titlefont{$title$}: \\
-\bf\huge\titlefont{$subtitle$} \\
-\vspace{0.5em}
+\Large\titlefont{$title$} \\
+\vspace{0.3em}
 \rmfamily\normalsize{$author$} \\
 \normalsize{$affiliation$} \\
-\normalsize{$term$} \\
+\normalsize{$date$} \\
 
+\vspace{2em}
+\bf\LARGE\titlefont{$subtitle$} \\
 }
 \title{\titling}
-\posttitle{\end{flushleft}\vspace{-4em}}
+\posttitle{\end{flushleft}\vspace{-5em}}
 \date{}
 
 
@@ -219,6 +268,9 @@ $endif$
 \begin{document}
 
 \maketitle
+
+\RaggedRight
+\needspace{6em}% Controls page break before headings 
 
 $body$
 

@@ -1,15 +1,10 @@
-%%% emf-vita.latex
-%%% Template for Pandoc conversion of .md file with YAML frontmatter 
+%%% vita2.latex
+%%% Template for Pandoc conversion of .md file with YAML frontmatter. Variant for Fulbright application. 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD)
 %%% Based on kjh-vita by Kieran Healy (http://kjhealy.github.com/kjh-vita)
 %%% 
 
-$if(fontsize)$
-\documentclass[$fontsize$,letterpaper,oneside]{article}
-$else$
-\documentclass[11pt,letterpaper,oneside]{article}
-$endif$
-
+\documentclass[$fontsize$,letterpaper,onseside]{article}
 \usepackage[english]{babel}  
 \usepackage[us, nodayofweek]{datetime}
 \newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
@@ -28,31 +23,12 @@ $endif$
 \definecolor{mydarkblue}{HTML}{154360}
 \definecolor{mylightblue}{HTML}{3498DB} 
 
-
 \usepackage{fontspec}
-$if(mainfont)$
-\setmainfont{$mainfont$}[Colour=myblack,Mapping={tex-text},SmallCapsFont={$scfont$}]
-$else$
-\setmainfont{Cormorant Garamond}[Colour=myblack,Mapping={tex-text},SmallCapsFont={Cormorant SC}]
-$endif$
-
-$if(sansfont)$
+\setmainfont{$mainfont$}[Colour=myblack,Mapping={tex-text},SmallCapsFont={$scfont$},Numbers={OldStyle},Ligatures={Common}]
 \setsansfont{$sansfont$}[Colour=myblack,Mapping=tex-text]
-$else$
-\setsansfont{Proza Libre}[Colour=myblack,Mapping=tex-text]
-$endif$
-
-$if(monofont)$
 \setmonofont{$monofont$}[Colour=myblack,Mapping=tex-text,Scale=1.0]
-$else$
-\setmonofont{Cousine}[Colour=myblack,Mapping=tex-text,Scale=1.0]
-$endif$
 
-$if(titlefont)$
-\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
-$else$
-\newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
-$endif$
+\newfontface\titlefont{$titlefont$}[Colour=myblack]
 
 \usepackage{fontawesome}
 \newfontfamily{\FA}{[FontAwesome.otf]}
@@ -61,17 +37,14 @@ $endif$
 % = Spacing =
 % ===========
 
-\usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
-
-\usepackage[defaultlines=4,all]{nowidow}
-
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
 \raggedbottom
 
 \usepackage[singlespacing]{setspace}
 
 \usepackage{parskip}
 \setlength{\parindent}{0em}
-\setlength{\parskip}{0.5em}
+\setlength{\parskip}{0.4em}
 
 \usepackage{enumitem}
 
@@ -101,13 +74,14 @@ $endif$
 \pagestyle{fancy}
 \fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt{Revised: \mydate\today}}
-\fancyfoot[L]{}
+\fancyfoot[R]{\footnotesize {$author$} | Page {\thepage}}
+\fancyfoot[L]{\tiny\texttt{Revised: \mydate\today}}
 \fancyhead{}
 \fancyhead[C]{}
-\fancyhead[R]{\small {$author$} | Page {\thepage}}
+\fancyhead[R]{}
 \fancyhead[L]{}
 \renewcommand{\headrulewidth}{0pt}
+
 
 
 % ============
@@ -117,25 +91,25 @@ $endif$
 \usepackage[largestsep]{titlesec}  
 
 % \titlespacing*{\LEVEL}{LEFT}{BEFORE}{AFTER}
-\titlespacing*{\section}{0em}{2em}{0em}
-\titlespacing*{\subsection}{0em}{1em}{0em}
-\titlespacing*{\subsubsection}{0em}{0.5em}{-0.3em}
-\titlespacing*{\paragraph}{0em}{-0.3em}{-0.3em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
+\titlespacing*{\section}{0em}{.75em}{.5em}
+\titlespacing*{\subsection}{0em}{.5em}{0em}
+\titlespacing*{\subsubsection}{0em}{0em}{0em}
+\titlespacing*{\paragraph}{0em}{0em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0.1em}
 
 \titleformat{\section}
-  {\LARGE\titlefont\raggedright}
+  {\large\titlefont\raggedright}
   {}{0em}
   {}
   [\titlerule]
 
 \titleformat{\subsection}
-  {\Large\rmfamily\bfseries\raggedright}
+  {\normalsize\rmfamily\bfseries\raggedright}
   {}{0em}
   {}
 
 \titleformat{\subsubsection}
-  {\large\rmfamily\bfseries\raggedright}
+  {\normalsize\rmfamily\bfseries\raggedright}
   {}{0em}
   {}
 
@@ -152,12 +126,14 @@ $endif$
 \date{}
 
 
+
+
 % ==============
 % = Hyperlinks =
 % ==============
 
 \usepackage{hyperref}
-\hypersetup{colorlinks=true,allcolors=mydarkblue}
+\hypersetup{colorlinks=true,allcolors=myblack}
 
 
 
@@ -167,30 +143,10 @@ $endif$
 
 \begin{document}\thispagestyle{empty}
 
-\begin{minipage}[t]{3.5in} 
-  \flushright 
-  \footnotesize {$affiliation$} \\
-  \footnotesize {$address1$} \\
-  \footnotesize {$address2$} 
-\end{minipage}
-\hfill     
-%\begin{minipage}[t]{0.0in}
-% dummy (needed here)
-%\end{minipage}
-\hfill
-\begin{minipage}[t]{2in}
-  \flushright 
-  \footnotesize {$phone$} \, \faPhone \\
-  {\footnotesize {\href{mailto:$email$}{$email$}} \, \faEnvelope} \\
-  {\footnotesize {\href{http://$url$}{$web$}} \, \faGlobe}
-\end{minipage}
-
-\vspace{3em}
-
-\noindent{\Huge{$author$}}
-\reversemarginpar
-
-\vspace{1em}
+\noindent{\Large\bfseries{$author$}}\vspace{2mm} \\
+\normalsize {$address1$} \\
+\normalsize {$address2$} \\
+\normalsize {$phone$} | \normalsize {$email$} \\
 
 $body$
 	

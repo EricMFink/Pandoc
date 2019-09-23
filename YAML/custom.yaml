@@ -23,17 +23,18 @@ titlefont: 'Lato Bold'
 titlecolor: mydarkred
 # delete for default fonts
 
-fontsize: 11pt
-titlesize: LARGE
-authorsize: normalsize 
-contactsize: small 
-datesize: normalsize 
-H1: Large 
-H2: large 
-H3: normalsize
-H4: normalsize
-H5: normalsize
-# delete for default sizes
+sizes: # delete for default sizes
+  - font: 11pt
+    title: LARGE
+    author: normalsize 
+    contact: small 
+    dates: normalsize 
+    H1: Large 
+    H2: large 
+    H3: normalsize
+    H4: normalsize
+    H5: normalsize
+
 
 nohead: true
 # delete to include header 
