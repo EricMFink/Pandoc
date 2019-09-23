@@ -1,64 +1,73 @@
 ---
-date: 2018-02-06
+date: 2019-09-23
+
+path: 
+# delete to omit path from footer 
 
 title: Title
 subtitle: Subtitle
 
-author: Eric M. Fink
-affiliation: Elon Law School 
+copyright: Creative Commons license or copyright
+# delete for no copyright notice 
 
-custom: true
-geometry: hmarginratio=1:1,top=1in,bottom=1in,left=1.25in,right=1.25in
-sides: oneside
-# delete for default page layout
+author:
+  - name: Eric M. Fink
+    position: Associate Professor of Law
+    affiliation: Elon Law School 
+    address: Greensboro, North Carolina
+    email: efink@elon.edu
+    phone: '+1 336.278.9334'
 
-doublespacing: true
-#delete for singlespacing
+fontsize: 10pt 
+# delete for default (11pt)
+
+geometry: top=1in,bottom=1in,left=1in,right=1in
+# delete for default (1in, 1in, 1.25in, 1.25in)
 
 mainfont: 'Minion Pro'
+# delete for default (Cormorant Garamond)
 scfont: 'Minion RegularSC'
+# delete for default (Cormorant SC)
 sansfont: 'Lato'
-monofont: Inconsolata
+# delete for default (Proza Libre)
+monofont: 'Inconsolata'
+# delete for default (Cousine)
 titlefont: 'Lato Bold'
-titlecolor: mydarkred
-# delete for default fonts
+# delete for default (Proza Libre Bold)
+titlecolor: mydarkblue
+# delete for default (mydarkred)
 
-sizes: # delete for default sizes
-  - font: 11pt
-    title: LARGE
-    author: normalsize 
-    contact: small 
-    dates: normalsize 
-    H1: Large 
-    H2: large 
-    H3: normalsize
-    H4: normalsize
-    H5: normalsize
+nohead: true 
+#delete to include default header 
 
+nofoot: true 
+#delete to include default footer
 
-nohead: true
-# delete to include header 
+spacing: doublespacing OR onehalfspacing
+# delete for singlespacing 
 
-nofoot: true
-# delete to include footer
+parindent: true 
+# delete for no indent 
 
-indent: true 
-# delete for no indent
-
-raggedright: true 
-# delete for justified text
+parskip: 0.25em 
+# delete for default (1em)
 
 listdepth: 4
-#delete for default (6)
+# delete for default (6)
 
-numbersections: true
-#delete for unnumbered headings 
+numberedsections: true 
+# all heading levels numbered; delete for unnumbered headings
 
-colorlinks: true
-linkcolor: mylightblue
-citecolor: mylightblue
-urlcolor: mylightblue
-#delete for no colored links
+headings: 
+  - h1bef: 1em #default = 
+    h1aft:  1em #default = 
+    h2h3bef: 1em #default = 
+    h2h3aft:  1em #default = 
+    h4h5bef: 0.5em #default = 
+    h4h5aft: 0.5em  #default = 
+    
+linkcolors: true
+# delete for no colored links 
 
 output: 
   pdf_document:

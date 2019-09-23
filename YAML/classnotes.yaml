@@ -7,12 +7,12 @@ subtitle: Unit Title
 author: Eric M. Fink
 affiliation: Elon Law School 
 
-plainhead: true 
+classnotes: true 
 # unnumbered headings; delete for default (h1, h2, h3 numbered)
 
 output: 
   pdf_document:
     latex_engine: xelatex
-    template: notes.latex
+    template: default.latex
     
 ---
