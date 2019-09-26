@@ -1,23 +1,19 @@
 ---
 date: 2018-02-06
 
+path: # delete for no path in footer 
+
 title: Title
 subtitle: Subtitle
 
 author: Eric M. Fink
 affiliation: Elon Law School 
 
-indent: true
-# delete for no paragraph indent 
-
-raggedright: true 
-#delete for justified paragraphs
-
-numbersections: true
-#delete for unnumbered headings 
-
-linkcolors: true
-# delete for no colored links 
+# options 
+indent: true # delete for no indent 
+secnumdepth: 3 # delete for unnumbered headings
+spacing: doublespacing # onehalfspacing; delete for singlespacing 
+colorlinks: true # delete for no colored links 
 
 output: 
   pdf_document:

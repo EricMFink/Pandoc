@@ -1,73 +1,63 @@
 ---
 date: 2019-09-23
 
-path: 
-# delete to omit path from footer 
+path: # delete for no path in footer 
 
 title: Title
 subtitle: Subtitle
 
-copyright: Creative Commons license or copyright
-# delete for no copyright notice 
+copyright: Creative Commons license or copyright # delete for no copyright notice 
 
-author:
-  - name: Eric M. Fink
-    position: Associate Professor of Law
-    affiliation: Elon Law School 
-    address: Greensboro, North Carolina
-    email: efink@elon.edu
-    phone: '+1 336.278.9334'
+author: Eric M. Fink
+position: Associate Professor of Law
+affiliation: Elon Law School 
+address: Greensboro, North Carolina
+email: efink@elon.edu
+phone: '+1 336.278.9334'
 
-fontsize: 10pt 
-# delete for default (11pt)
+fontsize: 10pt # delete for default (11pt)
 
-geometry: top=1in,bottom=1in,left=1in,right=1in
-# delete for default (1in, 1in, 1.25in, 1.25in)
+geometry: top=1in,bottom=1in,left=1in,right=1in # delete for default (1in, 1in, 1.25in, 1.25in)
 
-mainfont: 'Minion Pro'
-# delete for default (Cormorant Garamond)
-scfont: 'Minion RegularSC'
-# delete for default (Cormorant SC)
-sansfont: 'Lato'
-# delete for default (Proza Libre)
-monofont: 'Inconsolata'
-# delete for default (Cousine)
-titlefont: 'Lato Bold'
-# delete for default (Proza Libre Bold)
-titlecolor: mydarkblue
-# delete for default (mydarkred)
+columns: 2  # delete for single column
 
-nohead: true 
-#delete to include default header 
+mainfont: 'Minion Pro' # delete for default (Cormorant Garamond)
+scfont: 'Minion RegularSC' # delete for default (Cormorant SC)
+sansfont: 'Lato' # delete for default (Proza Libre)
+monofont: 'Inconsolata' # delete for default (Cousine)
+titlefont: 'Lato Bold' # delete for default (Proza Libre Bold)
+titlecolor: mydarkblue # delete for default (mydarkred)
 
-nofoot: true 
-#delete to include default footer
+nohead: true #delete for default header
 
-spacing: doublespacing OR onehalfspacing
-# delete for singlespacing 
+nofoot: true #delete for default footer
 
-parindent: true 
-# delete for no indent 
+spacing: doublespacing # onehalfspacing; delete for singlespacing 
 
-parskip: 0.25em 
-# delete for default (1em)
+parindent: true # delete for no indent 
 
-listdepth: 4
-# delete for default (6)
+parskip: 0.5em  # delete for default (1em)
 
-numberedsections: true 
-# all heading levels numbered; delete for unnumbered headings
+listdepth: 4 # delete for default (6)
 
-headings: 
-  - h1bef: 1em #default = 
-    h1aft:  1em #default = 
-    h2h3bef: 1em #default = 
-    h2h3aft:  1em #default = 
-    h4h5bef: 0.5em #default = 
-    h4h5aft: 0.5em  #default = 
+secnumdepth: 5 # delete for unnumbered headings
+
+# delete for default heading font sizes
+h1: Hugh 
+h2: huge 
+h3: LARGE 
+h4: Large 
+h5: large 
+
+# delete for default heading format
+h1bef: 1em 
+h1aft:  1em 
+h2h3bef: 1em 
+h2h3aft:  1em 
+h4h5bef: 0.5em 
+h4h5aft: 0.5em  
     
-linkcolors: true
-# delete for no colored links 
+linkcolors: true # delete for no colored links 
 
 output: 
   pdf_document:

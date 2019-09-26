@@ -1,0 +1,266 @@
+%%% default_memoir.latex
+%%% Default Pandoc template using LaTeX memoir class
+%%% For creating PDF from .md file with YAML frontmatter 
+%%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
+%%% Based on xelatex.template by Kieran J. Healy https://github.com/kjhealy/pandoc-templates
+%%% 
+
+\documentclass[$paper$,$sides$,$fontsize$]{memoir}
+\openright
+
+\usepackage[osf]{mathpazo}
+\usepackage[mathcal,mathbf]{euler}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx,sidecap,tikz}
+% \usepackage{siunitx} % automatic number formatting, decimal point alignment
+
+$if(multicol)$
+\usepackage{multicol}
+\setlength{\columnsep}{$columnsep$}
+$endif$
+
+
+
+% =======================
+% = Stock and Typeblock =
+% =======================
+
+\setstocksize{11in}{8.5in}
+\settrimmedsize{11in}{8.5in}{*}
+\settypeblocksize{8.75in}{5.5in}{*} % {height}{width}{ratio}
+\setlrmargins{*}{*}{1} % {inside margin}{outside margin}{ratio}
+\setulmargins{*}{*}{0.8} % {top margin}{bottom margin}{ratio}
+
+\setheadfoot{0.2in}{2\onelineskip} % headheight and footskip
+\setheaderspaces{*}{*}{0.5} % headdrop, headsep, and ratio
+
+
+\checkandfixthelayout[lines]
+
+% ===========
+% = Spacing =
+% ===========
+
+
+
+\usepackage{parskip}
+\setlength{\parindent}{$parindent$}
+\setlength{\parskip}{$parskip$}
+
+\SingleSpacing
+
+% =========
+% = Lists =
+% =========
+
+\usepackage{enumitem}
+\setlistdepth{$listdepth$}
+
+$if(CustomBullets)$
+\usepackage{fontawesome}
+\newfontfamily{\FA}{[FontAwesome.otf]}
+\renewlist{itemize}{itemize}{$listdepth$}
+% initially, use dots for all levels
+\setlist[itemize]{label=\tiny\faCircle}
+% customize levels
+\setlist[itemize,1]{label=\tiny\faCircle}
+\setlist[itemize,2]{label=\tiny\faCircleO}
+\setlist[itemize,3]{label=\tiny\faChevronRight}
+\setlist[itemize,4]{label=\tiny\faCaretRight} 
+\setlist[itemize,5]{label=\tiny\faAngleRight} 
+\setlist[itemize,6]{label=\tiny\faAngleDoubleRight} 
+\setlist[itemize]{label={},leftmargin={$listmargin$},rightmargin={$listmargin$}}
+\setlist[enumerate]{label={},nosep}
+$endif$
+
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{$itemsep$}\setlength{\parskip}{$itemskip$}\setlength{\itemindent}{$itemindent$}}
+
+% =======================
+% = Headers and Footers = 
+% =======================
+
+\nouppercaseheads
+\makepagestyle{stylish}
+\copypagestyle{stylish}{headings}
+\makerunningwidth{stylish}{$typeblockwidth$}
+\makeheadposition{stylish}{flushleft}{flushright}{}{}
+\pagestyle{stylish}
+
+\makeevenhead{stylish}{$EvenHeadLeft$}{$EvenHeadMiddle$}{$EvenHeadRight$}
+\makeoddhead{stylish}{$OddHeadLeft$}{$OddHeadMiddle$}{$OddHeadRight$}
+\makeevenfoot{stylish}{$EvenFootLeft$}{$EvenFootMiddle$}{$EvenFootRight$}
+\makeoddfoot{stylish}{$OddFootLeft$}{$OddFootMiddle$}{$OddFootRight$}
+
+% ==================
+% = Colors & Fonts =
+% ==================
+
+\usepackage{xcolor}
+\definecolor{myblack}{HTML}{231F20} 
+\definecolor{mybrightred}{HTML}{EC1F27} 
+\definecolor{mydarkred}{HTML}{b03a2e} 
+\definecolor{mydarkblue}{HTML}{154360}
+\definecolor{mylightblue}{HTML}{3498DB} 
+
+\usepackage{fontspec}
+$if(scfont)$
+\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+\setromanfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+$else$
+\setmainfont{$mainfont$}[Mapping={tex-text}]
+\setromanfont{$mainfont$}[Mapping={tex-text}]
+$endif$
+\setsansfont{$sansfont$}[Mapping=tex-text]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale={$monofontscale$}]
+
+\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+\newfontface\subtitlefont{$titlefont$}[Colour=$titlecolor$]
+
+
+% ============
+% = Listings =
+% ============
+
+$if(listings)$
+\usepackage{listings}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=r,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(tables)$
+\usepackage{longtable}
+$endif$
+
+% =====================
+% = Section Numbering =
+% =====================
+
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+
+
+% ==========
+% = Quotes =
+% ==========
+
+\usepackage{csquotes}
+
+\AtBeginEnvironment{quote}
+  {\itshape\small\list{}{\rightmargin=-1em \leftmargin=-1em}\item\relax}{\endlist}
+
+
+
+% ============
+% = Graphics =
+% ============
+
+$if(graphics)$
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+$endif$
+
+
+
+% ================
+% = Title Format =
+% ================
+
+$if(title)$
+\title{\bigskip \bigskip $title$}
+$endif$ 
+
+%\author{$for(author)$$author$$sep$\\$endfor$}
+
+\author{$for(author)$\Large $author.name$\vspace{0.05in} \newline\normalsize\emph{$author.affiliation$} \newline\footnotesize \url{$author.email$}\vspace*{0.2in}\newline \footnotesize \url{$author.phone$}\vspace*{0.2in}\newline \footnotesize{Office Hours: }\href{https://$author.appointments$}{\texttt{$author.appointments$}}\vspace*{0.2in}\newline \newline \footnotesize \url{$author.email$}\vspace*{0.2in}\newline  $sep$ \and $endfor$}
+
+%\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
+
+\date{}
+
+
+% ===============
+% = Color Links =
+% ===============
+
+$if(title)$
+\usepackage[hidelinks]{hyperref}
+
+$else$
+\hypersetup{colorlinks=false,pdfpagelayout=TwoPageRight}
+
+$endif$ 
+
+
+% ==================
+% = Begin Document =
+% ==================
+
+\begin{document}  
+\setkeys{Gin}{width=1\textwidth} 
+\chapterstyle{article-4} 
+
+$if(title)$
+\maketitle
+$endif$
+
+
+
+% ================
+% = Front Matter =
+% ================
+
+% = Table of Contents =
+
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+
+% = Abstract =
+
+$if(abstract)$
+
+\begin{abstract}
+
+\noindent $abstract$
+
+\end{abstract}
+
+$endif$
+
+
+% ===============
+% = Main Matter =
+% ===============
+
+$body$
+
+
+% ===============
+% = Back Matter =
+% ===============
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}

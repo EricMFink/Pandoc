@@ -157,7 +157,7 @@ $endif$
 % H3
 \newfontface\subsectionfont{$subsectionfont$}[Colour=$subsectioncolor$] 
 % H4
-\newfontface\subsubsectionfont{$subsubsectionfont$}[Colour=$subsubsectioncolor$] 
+\newfontface\subsubsectionfont{$subsubsectionfont$}[Colour=$subsubsectioncolor$]
 % H5
 \newfontface\parafont{$parafont$}[Colour=$paracolor$] 
 % H6

@@ -4,12 +4,17 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-% =========================
-% = Page Layout & Spacing =
-% =========================
+
+% ===============
+% = Page Layout =
+% ===============
 
 $if(fontsize)$
+$if(sides)$
+\documentclass[letterpaper,$fontsize$,$sides$]{article}
+$else$
 \documentclass[letterpaper,$fontsize$,twoside]{article}
+$endif$
 $else$
 \documentclass[letterpaper,11pt,twoside]{article}
 $endif$
@@ -20,44 +25,17 @@ $else$
 \usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
 $endif$
 
-\raggedbottom
+\usepackage{multicol}
 
+\raggedbottom
 
 \usepackage[defaultlines=4,all]{nowidow}
 
-\usepackage{setspace}
-
-\usepackage{ragged2e}
-\usepackage[none]{hyphenat}
-
-$if(parindent)$
-\setlength{\parindent}{$parindent$}
-$else$
-\setlength{\parindent}{0em}
-$endif$
-
-$if(parskip)$
-\setlength{\parskip}{$parskip$}
-$else$
-$if(classnotes)$
-\setlength{\parskip}{0.5em}
-$else$
-\setlength{\parskip}{1em}
-$endif$
-$endif$
-
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-
-\usepackage[hang,flushmargin]{footmisc} 
-
-% ==========================
-% = Language & Date Format =
-% ==========================
+% ============
+% = Language =
+% ============
 
 \usepackage[english]{babel}  
-\usepackage[us, nodayofweek]{datetime}
-\newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
-\usepackage{currfile}
 
 
 % ==================
@@ -73,59 +51,83 @@ $endif$
 
 \usepackage{fontspec}
 $if(mainfont)$
-\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$},Colour=myblack]
 $else$
-\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC},Colour=myblack]
 $endif$
 
 $if(sansfont)$
-\setsansfont{$sansfont$}[Mapping=tex-text]
+\setsansfont{$sansfont$}[Mapping=tex-text,Colour=myblack]
 $else$
-\setsansfont{Proza Libre}[Mapping=tex-text]
+\setsansfont{Proza Libre}[Mapping=tex-text,Colour=myblack]
 $endif$
 
 $if(monofont)$
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0,Colour=myblack]
 $else$
-\setmonofont{Cousine}[Mapping=tex-text,Scale=1.0]
+\setmonofont{Cousine}[Mapping=tex-text,Scale=1.0,Colour=myblack]
 $endif$
 
 $if(titlefont)$
-\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
+$if(plain)$
+\newfontface\titlefont{$titlefont$}[Colour=myblack]
+$else$
+\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
+$endif$
+$else$
+$if(plain)$
+\newfontface\titlefont{$titlefont$}[Colour=myblack]
 $else$
 \newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
 $endif$
-
-% =========
-% = Lists =
-% =========
-
-\usepackage{fontawesome}
-\newfontfamily{\FA}{[FontAwesome.otf]}
-\usepackage{enumitem}
-$if(listdepth)$
-\setlistdepth{$listdepth$}
-$else$
-\setlistdepth{6}
 $endif$
 
-\setlist{nosep}
+\usepackage{textcomp}
+\usepackage{fontawesome}
+\newfontfamily{\FA}{[FontAwesome.otf]}
 
-\setlist[itemize,1]{label=\textbullet}
-\setlist[itemize,2]{label=\textopenbullet}
-\setlist[itemize,3]{label=\textbullet}
-\setlist[itemize,4]{label=\textopenbullet}
-\setlist[itemize,5]{label=\textbullet}
-\setlist[itemize,6]{label=\textopenbullet}
 
-\setlist[itemize]{leftmargin={1.5em}}
-\providecommand{\tightlist}{%
-\setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
+% ===========
+% = Spacing =
+% ===========
 
+\usepackage{setspace}
+
+\usepackage{ragged2e}
+$if(justified)$
+\justifying
+$else$
+\usepackage[none]{hyphenat}
+$endif$
+
+
+$if(parindent)$
+\setlength{\parindent}{$parindent$}
+$else$
+\setlength{\parindent}{0em}
+$endif$
+
+$if(parskip)$
+\setlength{\parskip}{$parskip$}
+$else$
+$if(notes)$
+\setlength{\parskip}{0.5em}
+$else$
+\setlength{\parskip}{1em}
+$endif$
+$endif$
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\usepackage[hang,flushmargin]{footmisc} 
 
 % =======================
 % = Headers and Footers = 
 % =======================
+
+%custom date format
+\usepackage[us, nodayofweek]{datetime}
+\newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -162,31 +164,90 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
-$if(classnotes)$
-\titlespacing*{\section}{0em}{1.75em}{.5em}
-\titlespacing*{\subsection}{0em}{1em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{0.5em}{0.5em}
-\titlespacing*{\paragraph}{0em}{1.5em}{0em}
-\titlespacing*{\subparagraph}{0em}{0.5em}{0em}
-$else$
-$if(headings)$
+$if(h1bef)$
 \titlespacing*{\section}{0em}{$headings.h1bef$}{$headings.h1aft$}
 \titlespacing*{\subsection}{0em}{$headings.h2h3bef$}{$headings.h2h3aft$}
 \titlespacing*{\subsubsection}{0em}{$headings.h2h3bef$}{$headings.h2h3aft$}
 \titlespacing*{\paragraph}{0em}{$headings.h4h5bef$}{$headings.h4h5aft$}
 \titlespacing*{\subparagraph}{0em}{$headings.h4h5bef$}{$headings.h4h5aft$}
 $else$
-\titlespacing*{\section}{0em}{2em}{1.5em}
-\titlespacing*{\subsection}{0em}{1.5em}{1em}
-\titlespacing*{\subsubsection}{0em}{1.5em}{1em}
-\titlespacing*{\paragraph}{0em}{1em}{0.2em}
-\titlespacing*{\subparagraph}{0em}{1em}{0.2em}
-$endif$ 
+\titlespacing*{\section}{0em}{3em}{.5em}
+\titlespacing*{\subsection}{0em}{2em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\paragraph}{0em}{1em}{0em}
+\titlespacing*{\subparagraph}{0em}{0.5em}{0em}
 $endif$ 
 
+$if(notes)$
+\setcounter{secnumdepth}{3}
+$else$
+$if(secnumdepth)$
+\setcounter{secnumdepth}{$secnumdepth$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+$endif$
 
-$if(classnotes)$
-\setcounter{secnumdepth}{5}
+
+% Custom Headings
+$if(h1)$
+\titleformat{\section}[hang]
+  {\$h1$\bfseries\sffamily}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\$h2$\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\$h3$\bfseries\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\$h4$\bfseries\rmfamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\$h5$\bfseries\rmfamily}
+  {\thesubparagraph}
+  {1em}
+  {}
+$else$
+
+% Classnotes Headings 
+$if(notes)$
+\titleformat{\section}[hang]
+  {\Large\bfseries\sffamily}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\large\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\normalsize\bfseries\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\large\bfseries\rmfamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\normalsize\bfseries\rmfamily}
+  {\thesubparagraph}
+  {1em}
+  {}
+
+$else$
+% DefaultHeadings
 \titleformat{\section}[hang]
   {\LARGE\bfseries\sffamily}
   {\thesection}
@@ -204,73 +265,48 @@ $if(classnotes)$
   {}
 \titleformat{\paragraph}[hang]
   {\Large\bfseries\rmfamily}
-  {}
-  {0em}
-  {}
-\titleformat{\subparagraph}[hang]
-  {\normalsize\bfseries\rmfamily}
-  {}
-  {0em}
-  {}
-
-$else$
-$if(numberedsections)$
-\setcounter{secnumdepth}{5}
-\titleformat{\section}[hang]
-  {\LARGE\bfseries\sffamily}
-  {\thesection}
-  {1em}
-  {}
-\titleformat{\subsection}[hang]
-  {\Large\bfseries\sffamily}
-  {\thesubsection}
-  {1em}
-  {}
-\titleformat{\subsubsection}[hang]
-  {\large\bfseries\sffamily}
-  {\thesubsubsection}
-  {1em}
-  {}
-\titleformat{\paragraph}[hang]
-  {\normalsize\bfseries\sffamily}
   {\theparagraph}
   {1em}
   {}
 \titleformat{\subparagraph}[hang]
-  {\normalsize\bfseries\sffamily}
+  {\normalsize\bfseries\rmfamily}
   {\thesubparagraph}
   {1em}
   {}
+$endif$
+$endif$
 
+
+
+% =========
+% = Lists =
+% =========
+
+\usepackage{enumitem}
+$if(listdepth)$
+\setlistdepth{$listdepth$}
 $else$
-\setcounter{secnumdepth}{0}
-\titleformat{\section}
-  {\LARGE\bfseries\sffamily}
-  {}
-  {0em}
-  {}
-\titleformat{\subsection}
-  {\Large\bfseries\sffamily}
-  {}
-  {0em}
-  {}
-\titleformat{\subsubsection}
-  {\large\bfseries\sffamily}
-  {}
-  {0em}
-  {}
-\titleformat{\paragraph}
-  {\normalsize\bfseries\rmfamily}
-  {}
-  {0em}
-  {}
-\titleformat{\subparagraph}
-  {\normalsize\bfseries\sffamily}
-  {}
-  {0em}
-  {}
-$endif$ 
-$endif$ 
+\setlistdepth{6}
+$endif$
+
+
+
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=\textopenbullet}
+\setlist[itemize,3]{label=\textperiodcentered}
+\setlist[itemize,4]{label=\textendash}
+\setlist[itemize,5]{label=\diamond}
+\setlist[itemize,6]{label=\textopenbullet}
+
+\setlist{nosep}
+
+\setlist[itemize]{labelindent={1.25em}, leftmargin={2.5em},  labelsep={*}, align={left}}
+
+\setlist[enumerate]{labelindent={!}, leftmargin={1.25em},  labelsep={*}, align={left}}
+
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0.1em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
+
 
 
 % ==========
@@ -280,24 +316,43 @@ $endif$
 \usepackage{csquotes}
 \AtBeginEnvironment{quote}{\itshape}  
 
+
 % ================
 % = Title Layout =
 % ================
 
 \usepackage{titling}
 
+
+$if(notes)$
+\setlength{\droptitle}{-1.25in}
+\pretitle{\begin{flushleft}}
+\DeclareRobustCommand{\titling}{
+\titlefont\small{$title$}\\ 
+\vspace{.2em}
+\rmfamily\footnotesize{$author$}  \\
+\rmfamily\footnotesize{$affiliation$}  \\
+\rmfamily\footnotesize{$date$} \\
+\vspace{2em}
+\titlefont\LARGE{$subtitle$} \\
+}
+\title{\titling}
+\posttitle{\end{flushleft}}
+\date{}
+
+$else$
 \setlength{\droptitle}{-2cm}
 
 \pretitle{\begin{flushleft}}
 \title{$for(title)$\titlefont\huge{$title$} $if(subtitle)$:\\ {$subtitle$}$endif$ $endfor$}
 \posttitle{\end{flushleft}}
 \preauthor{\begin{flushleft}}
-\author{$for(author)$ \rmfamily\normalsize{$author$}\\ $if(affiliation)${$affiliation$}\\$endif$ $if(address)${$address$}\\$endif$ $if(phone)${$phone$}\\$endif$ $if(email)${$email$}\\$endif$  {$date$} $endfor$}
+\author{$for(author)$ \rmfamily\normalsize{$author$}\\ $if(position)${$position$}\\$endif$ $if(affiliation)${$affiliation$}\\$endif$ $if(address)${$address$}\\$endif$ $if(phone)${$phone$}\\$endif$ $if(email)${$email$}\\$endif$  {$date$} $endfor$}
 \postauthor{\end{flushleft}}
 \predate{\begin{flushleft}}
 \date{}
 \postdate{\end{flushleft}}
-
+$endif$
 
 
 
@@ -326,7 +381,7 @@ $endif$
 % ==============
 
 \usepackage[unicode=true]{hyperref}
-$if(linkcolors)$
+$if(colorlinks)$
 \hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
 $else$
 \hypersetup{colorlinks=false}
@@ -338,20 +393,36 @@ $endif$
 
 \begin{document}\thispagestyle{empty}
 \maketitle
-\vspace{-.75in}
-
-\RaggedRight
-
-$if(onehalfspacing)$
-\onehalfspacing
+$if(notes)$
+\vspace{-1.25in}
+$else$
+\vspace{-.5in}
 $endif$
 
-$if(doublespacing)$
-\doublespacing
+
+$if(justified)$
+\justifying
+$else$
+\RaggedRight
+
+$endif$
+
+$if(spacing)$
+\$spacing$
 $else$
 \singlespacing
 $endif$
 
+
+$if(columns)$
+\setlength{\columnsep}{3em}
+\begin{multicols}{$columns$}
 $body$
+\end{multicols}
+$else$
+$body$
+$endif$
+
+
 
 \end{document}
