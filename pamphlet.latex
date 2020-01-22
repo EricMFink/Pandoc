@@ -1,4 +1,4 @@
-%%% default.latex
+%%% pamphlet.latex
 %%% Pandoc template using LaTeX article class
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
@@ -10,19 +10,12 @@
 % ===============
 
 
-$if(oneside)$
-$if(fontsize)$
-\documentclass[letterpaper,$fontsize$,oneside]{article}
-$else$
-\documentclass[letterpaper,11pt,oneside]{article}
-$endif$
-$else$
 $if(fontsize)$
 \documentclass[letterpaper,$fontsize$,twoside]{article}
 $else$
 \documentclass[letterpaper,11pt,twoside]{article}
 $endif$
-$endif$
+
 
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
@@ -44,6 +37,7 @@ $endif$
 
 \usepackage[english]{babel}  
 
+
 % ==================
 % = Colors & Fonts =
 % ==================
@@ -57,32 +51,41 @@ $endif$
 
 \usepackage{fontspec}
 $if(mainfont)$
-\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
+\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$},Colour=myblack]
 $else$
-\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC},Colour=myblack]
 $endif$
 
 $if(sansfont)$
-\setsansfont{$sansfont$}[Mapping=tex-text]
+\setsansfont{$sansfont$}[Mapping=tex-text,Colour=myblack]
 $else$
-\setsansfont{Proza Libre}[Mapping=tex-text]
+\setsansfont{Proza Libre}[Mapping=tex-text,Colour=myblack]
 $endif$
 
 $if(monofont)$
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=0.8]
+\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0,Colour=myblack]
 $else$
-\setmonofont{Cousine}[Mapping=tex-text,Scale=0.8]
+\setmonofont{Cousine}[Mapping=tex-text,Scale=1.0,Colour=myblack]
 $endif$
 
 $if(titlefont)$
+$if(plain)$
+\newfontface\titlefont{$titlefont$}[Colour=myblack]
+$else$
 \newfontface\titlefont{$titlefont$}[Colour=mydarkred]
+$endif$
+$else$
+$if(plain)$
+\newfontface\titlefont{$titlefont$}[Colour=myblack]
 $else$
 \newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
+$endif$
 $endif$
 
 \usepackage{textcomp}
 \usepackage{fontawesome}
 \newfontfamily{\FA}{[FontAwesome.otf]}
+
 
 % ===========
 % = Spacing =
@@ -91,11 +94,8 @@ $endif$
 \usepackage{setspace}
 
 \usepackage{ragged2e}
-$if(justified)$
-\justifying
-$else$
 \usepackage[none]{hyphenat}
-$endif$
+
 
 $if(parindent)$
 \setlength{\parindent}{$parindent$}
@@ -111,6 +111,8 @@ $endif$
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
+\usepackage[hang,flushmargin]{footmisc} 
+
 % =======================
 % = Headers and Footers = 
 % =======================
@@ -122,16 +124,13 @@ $endif$
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
+
 $if(nohead)$
+\fancyfoot[C]{\textsc{\thepage}}
+\fancyfoot[R]{\tiny\texttt{$path$ Revised: \today}}
+\fancyfoot[L]{}
 \renewcommand{\headrulewidth}{0em}
 \fancyhead{}
-$if(nofoot)$
-\fancyfoot{}
-$else$
-\fancyfoot[C]{\thepage}
-\fancyfoot[R]{}
-\fancyfoot[L]{}
-$endif$
 
 $else$ 
 $if(nofoot)$
@@ -142,28 +141,22 @@ $else$
 \fancyfoot[L]{}
 $endif$
 
-$if(oneside)$
-\fancyhead[L]{\textsc{$date$}}
-\fancyhead[R]{\textsc{\thepage}}
-\fancyhead[C]{\textsc{$title$}}
 
-$else$
+\fancyhead[LE]{\textsc{\thepage}}
+\fancyhead[LO]{\textsc{$author$}}
+\fancyhead[RE]{\textsc{$date$}}
+\fancyhead[RO]{\textsc{\thepage}}
+
 $if(subtitle)$
 \fancyhead[CE]{\textsc{$title$}}
 \fancyhead[CO]{\textsc{$subtitle$}}
-\fancyhead[LE]{\textsc{\thepage}}
-\fancyhead[LO]{\textsc{$date$}}
-\fancyhead[RE]{\textsc{$author$}}
-\fancyhead[RO]{\textsc{\thepage}}
 $else$
 \fancyhead[C]{\textsc{$title$}}
-\fancyhead[LE]{\textsc{\thepage}}
-\fancyhead[LO]{\textsc{$date$}}
-\fancyhead[RE]{\textsc{$author$}}
-\fancyhead[RO]{\textsc{\thepage}}
 $endif$
+
 $endif$
-$endif$
+
+
 
 % ============
 % = Headings =
@@ -172,12 +165,83 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
+$if(largehead)$
+\titlespacing*{\section}{0em}{3em}{.5em}
+\titlespacing*{\subsection}{0em}{2em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\paragraph}{0em}{1em}{0em}
+\titlespacing*{\subparagraph}{0em}{0.5em}{0em}
+$else$
 \titlespacing*{\section}{0em}{2em}{0.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{0.5em}
 \titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
 \titlespacing*{\paragraph}{0em}{1em}{0em}
 \titlespacing*{\subparagraph}{0em}{0.5em}{0em}
+$endif$ 
 
+$if(secnumdepth)$
+\setcounter{secnumdepth}{$secnumdepth$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+
+$if(colorhead)$
+\titleformat{\section}[hang]
+  {\LARGE\titlefont}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\Large\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\large\bfseries\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\normalsize\bfseries\sffamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\footnotesize\itshape\sffamily}
+  {\thesubparagraph}
+  {1em}
+  {}
+
+$else$
+$if(largehead)$
+\titleformat{\section}[hang]
+  {\LARGE\bfseries\sffamily}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\Large\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\large\bfseries\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\normalsize\bfseries\sffamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\footnotesize\itshape\sffamily}
+  {\thesubparagraph}
+  {1em}
+  {}
+
+$else$
 \titleformat{\section}[hang]
   {\Large\bfseries\sffamily}
   {\thesection}
@@ -194,22 +258,24 @@ $endif$
   {1em}
   {}
 \titleformat{\paragraph}[hang]
-  {\large\bfseries\rmfamily}
+  {\small\bfseries\sffamily}
   {\theparagraph}
   {1em}
   {}
 \titleformat{\subparagraph}[hang]
-  {\normalsize\itshape\rmfamily}
+  {\footnotesize\itshape\sffamily}
   {\thesubparagraph}
   {1em}
   {}
+$endif$
+$endif$
+
 
 % =========
 % = Lists =
 % =========
 
 \usepackage{enumitem}
-
 $if(listdepth)$
 \setlistdepth{$listdepth$}
 $else$
@@ -225,22 +291,41 @@ $endif$
 
 %\setlist{nosep}
 
+$if(flushlist)$
+\setlist[itemize]{labelindent=1.25em,leftmargin=2.5em,labelsep=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
+\setlist[enumerate]{wide,labelindent=0pt,labelwidth=!,labelsep=1em,topsep=.2em,itemsep=.2em,partopsep=0.2em,parsep=0.2em,align=left}
+$else$
 \setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
 \setlist[enumerate]{leftmargin=*,itemindent=*,topsep=.2em,itemsep=.2em,partopsep=0.2em,parsep=0.2em,align=left}
 \setlist[1]{labelindent=1em} % Only the level 1
+$endif$
 
 % \providecommand{\tightlist}{%
 % \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
 \def\tightlist{}
+
 
 % ==========
 % = Quotes =
 % ==========
 
 \usepackage{csquotes}
-
+$if(quoteflushlist)$
+\AtBeginEnvironment{quote}{\small\setlist{wide}}
+$else$
 \AtBeginEnvironment{quote}{\small\itshape} 
+$endif$
 
+$if(quoteindent)$
+\renewenvironment{quote}{%
+   \list{}{%
+     \$quoteindent$   % this is the adjusting screw
+     \rightmargin\leftmargin\parsep 0.5em }
+   \item\relax
+}
+{\endlist}
+
+$else$
 \renewenvironment{quote}{%
    \list{}{%
      \leftmargin2em   % this is the adjusting screw
@@ -248,13 +333,18 @@ $endif$
    \item\relax
 }
 {\endlist}
+$endif$
+
+
 
 % ================
 % = Title Layout =
 % ================
 
+
 \usepackage{titling}
 \setlength{\droptitle}{-2.5cm}
+
 
 % ==============
 % = Blank Page =
@@ -268,12 +358,14 @@ $endif$
     \addtocounter{page}{-2}%
     \newpage}
 
+
 % ==========
 % = Tables =
 % ==========
 
 \usepackage{longtable}
-\usepackage{supertabular,booktabs}
+\usepackage{booktabs}
+
 $if(norule)$
 \setlength\heavyrulewidth{$norule$}
 \setlength\lightrulewidth{$norule$}
@@ -283,104 +375,70 @@ $endif$
 % = Graphics =
 % ============
 
-\usepackage[justification=centering,font={scriptsize,sf},skip=1em]{caption}
-% Sizes: scriptsize, footnotesize, small, normalsize, large, Large
-\captionsetup[figure]{labelformat=empty,width=.7\linewidth}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
 
-\usepackage{float}
-\let\origfigure\figure
-\let\endorigfigure\endfigure
-\renewenvironment{figure}[1][2] {
-    \expandafter\origfigure\expandafter[H]
-} {
-    \endorigfigure
-}
-
-\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
-\let\oldincludegraphics\includegraphics
-\renewcommand{\includegraphics}[2][]{%
-  \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
-
-% \usepackage{graphicx,grffile}
-% \makeatletter
-% \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-% \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-% \makeatother
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
-% \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-
-
-% =============
-% = Footnotes = 
-% =============
-
-\usepackage[hang,flushmargin]{footmisc} 
-
-$if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
 
 
 % ==============
 % = Hyperlinks =
 % ==============
 
-$if(linkcolor)$
-\definecolor{mylinks}{HTML}{$linkcolor$}
-$else$
-\definecolor{mylinks}{HTML}{3498DB} 
-$endif$
-
-$if(citecolor)$
-\definecolor{mycites}{HTML}{$linkcolor$}
-$else$
-\definecolor{mycites}{HTML}{3498DB} 
-$endif$
-
-$if(urlcolor)$
-\definecolor{myurls}{HTML}{$linkcolor$}
-$else$
-\definecolor{myurls}{HTML}{3498DB} 
-$endif$
-
 \usepackage[unicode=true]{hyperref}
-$if(plainlinks)$
-\hypersetup{colorlinks=false}
+$if(colorlinks)$
+\hypersetup{colorlinks=true, linkcolor=mylightblue, citecolor=mylightblue, urlcolor=mylightblue,}
 $else$
-\hypersetup{colorlinks=true, linkcolor=mylinks, citecolor=mycites, urlcolor=myurls,}
+\hypersetup{colorlinks=false}
 $endif$
 
 % =============================================================================
 % ============================== BEGIN DOCUMENT =============================== 
 % =============================================================================
 
-\color{myblack}
 \begin{document}\thispagestyle{empty}
 
-$if(notitle)$
 
+$if(customtitle)$
+
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{KnowYourRights.jpg}
+  \caption{}
+  \label{}
+\end{figure}
+
+\newpage 
 
 $else$
+$if(largetitle)$
 \begin{flushleft}
-$if(title)$\titlefont\normalsize{$title$} \\ 
-\vspace{.2cm}$endif$
-$if(author)$\rmfamily\footnotesize{$author$} \\$endif$
-$if(affiliation)$\rmfamily\footnotesize{$affiliation$}  \\$endif$
-$if(date)$\rmfamily\footnotesize{$date$} \\$endif$
-$if(subtitle)$
+\titlefont\huge{$title$} $if(subtitle)$:\\ {$subtitle$}$endif$\\
 \vspace{.6cm}
-\titlefont\LARGE{$subtitle$} 
-$endif$
-
+$if(author)$\rmfamily\normalsize{$author$}\\$endif$  
+$if(position)${\vspace{.2cm}$position$}\\$endif$ 
+$if(affiliation)${$affiliation$}\\$endif$ 
+$if(address)$\vspace{.2cm}{$address$}\\$endif$ 
+$if(phone)$\vspace{.2cm}{$phone$}\\$endif$ 
+$if(email)$\vspace{.2cm}{$email$}\\$endif$  
+\vspace{.2cm}
+{$date$} 
 \end{flushleft}
 
+
 $endif$
 
-$if(justified)$
-\justifying
-$else$
+
 \RaggedRight
-$endif$
 
 $if(spacing)$
 \$spacing$
@@ -391,11 +449,10 @@ $endif$
 \needspace{2\baselineskip}
 
 $if(columns)$
-\setlength{\columnsep}{5em}
+\setlength{\columnsep}{3em}
 \begin{multicols}{$columns$}
 $body$
 \end{multicols}
-
 $else$
 $body$
 $endif$

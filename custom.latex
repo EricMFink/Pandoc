@@ -1,14 +1,13 @@
-%%% default.latex
+%%% custom.latex
 %%% Pandoc template using LaTeX article class
+%%% With options for custom formatting
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-
 % ===============
 % = Page Layout =
 % ===============
-
 
 $if(oneside)$
 $if(fontsize)$
@@ -75,9 +74,17 @@ $else$
 $endif$
 
 $if(titlefont)$
+$if(plain)$
+\newfontface\titlefont{$titlefont$}
+$else$
 \newfontface\titlefont{$titlefont$}[Colour=mydarkred]
+$endif$
+$else$
+$if(plain)$
+\newfontface\titlefont{$titlefont$}
 $else$
 \newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
+$endif$
 $endif$
 
 \usepackage{textcomp}
@@ -96,6 +103,7 @@ $if(justified)$
 $else$
 \usepackage[none]{hyphenat}
 $endif$
+
 
 $if(parindent)$
 \setlength{\parindent}{$parindent$}
@@ -172,12 +180,83 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
+$if(largehead)$
+\titlespacing*{\section}{0em}{3em}{.5em}
+\titlespacing*{\subsection}{0em}{2em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\paragraph}{0em}{1em}{0em}
+\titlespacing*{\subparagraph}{0em}{0.5em}{0em}
+$else$
 \titlespacing*{\section}{0em}{2em}{0.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{0.5em}
 \titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
 \titlespacing*{\paragraph}{0em}{1em}{0em}
 \titlespacing*{\subparagraph}{0em}{0.5em}{0em}
+$endif$ 
 
+$if(secnumdepth)$
+\setcounter{secnumdepth}{$secnumdepth$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+
+$if(colorhead)$
+\titleformat{\section}[hang]
+  {\LARGE\titlefont}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\Large\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\large\bfseries\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\normalsize\bfseries\sffamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\footnotesize\itshape\sffamily}
+  {\thesubparagraph}
+  {1em}
+  {}
+
+$else$
+$if(largehead)$
+\titleformat{\section}[hang]
+  {\LARGE\bfseries\sffamily}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\Large\bfseries\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\large\bfseries\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\normalsize\bfseries\sffamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\footnotesize\itshape\sffamily}
+  {\thesubparagraph}
+  {1em}
+  {}
+
+$else$
 \titleformat{\section}[hang]
   {\Large\bfseries\sffamily}
   {\thesection}
@@ -203,13 +282,14 @@ $endif$
   {\thesubparagraph}
   {1em}
   {}
+$endif$
+$endif$
 
 % =========
 % = Lists =
 % =========
 
 \usepackage{enumitem}
-
 $if(listdepth)$
 \setlistdepth{$listdepth$}
 $else$
@@ -225,9 +305,14 @@ $endif$
 
 %\setlist{nosep}
 
+$if(flushlist)$
+\setlist[itemize]{labelindent=1.25em,leftmargin=2.5em,labelsep=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
+\setlist[enumerate]{wide,labelindent=0pt,labelwidth=!,labelsep=1em,topsep=.2em,itemsep=.2em,partopsep=0.2em,parsep=0.2em,align=left}
+$else$
 \setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
 \setlist[enumerate]{leftmargin=*,itemindent=*,topsep=.2em,itemsep=.2em,partopsep=0.2em,parsep=0.2em,align=left}
 \setlist[1]{labelindent=1em} % Only the level 1
+$endif$
 
 % \providecommand{\tightlist}{%
 % \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
@@ -238,9 +323,22 @@ $endif$
 % ==========
 
 \usepackage{csquotes}
-
+$if(quoteflushlist)$
+\AtBeginEnvironment{quote}{\small\setlist{wide}}
+$else$
 \AtBeginEnvironment{quote}{\small\itshape} 
+$endif$
 
+$if(quoteindent)$
+\renewenvironment{quote}{%
+   \list{}{%
+     \$quoteindent$   % this is the adjusting screw
+     \rightmargin\leftmargin\parsep 0.5em }
+   \item\relax
+}
+{\endlist}
+
+$else$
 \renewenvironment{quote}{%
    \list{}{%
      \leftmargin2em   % this is the adjusting screw
@@ -248,6 +346,7 @@ $endif$
    \item\relax
 }
 {\endlist}
+$endif$
 
 % ================
 % = Title Layout =
@@ -311,7 +410,6 @@ $endif$
 % using explicit options in \includegraphics[width, height, ...]{}
 % \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 
-
 % =============
 % = Footnotes = 
 % =============
@@ -319,7 +417,6 @@ $endif$
 \usepackage[hang,flushmargin]{footmisc} 
 
 $if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
-
 
 % ==============
 % = Hyperlinks =
@@ -357,8 +454,36 @@ $endif$
 \color{myblack}
 \begin{document}\thispagestyle{empty}
 
-$if(notitle)$
 
+$if(custom)$
+% Define custom title here
+\begin{flushleft}
+\rmfamily\huge{\itshape{$publication$}}\\
+\vspace{.5cm}
+\rmfamily\normalsize{$date$}\\
+\vspace{.5cm}
+\large\bfseries\sffamily{$title$}: {$subtitle$}\\
+\vspace{.5cm}
+\rmfamily\large{By {$author$}} 
+\end{flushleft}
+
+$else$
+$if(largetitle)$
+\begin{flushleft}
+\titlefont\huge{$title$} $if(subtitle)$:\\ {$subtitle$}$endif$\\
+\vspace{.6cm}
+$if(author)$\rmfamily\normalsize{$author$}\\$endif$  
+$if(position)${\vspace{.2cm}$position$}\\$endif$ 
+$if(affiliation)${$affiliation$}\\$endif$ 
+$if(address)$\vspace{.2cm}{$address$}\\$endif$ 
+$if(phone)$\vspace{.2cm}{$phone$}\\$endif$ 
+$if(email)$\vspace{.2cm}{$email$}\\$endif$  
+\vspace{.2cm}
+{$date$} 
+\end{flushleft}
+
+$else$
+$if(notitle)$
 
 $else$
 \begin{flushleft}
@@ -375,6 +500,9 @@ $endif$
 \end{flushleft}
 
 $endif$
+$endif$
+$endif$
+
 
 $if(justified)$
 \justifying
@@ -399,5 +527,7 @@ $body$
 $else$
 $body$
 $endif$
+
+
 
 \end{document}

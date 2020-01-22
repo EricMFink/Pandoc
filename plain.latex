@@ -1,5 +1,5 @@
-%%% default_plain.latex
-%%% Default Pandoc template with plain styling using LaTeX article class
+%%% plain.latex
+%%% Pandoc template with plain styling using LaTeX article class
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
@@ -8,7 +8,6 @@
 % =========================
 % = Page Layout & Spacing =
 % =========================
-
 
 $if(custom)$
 \documentclass[letterpaper,$fontsize$,$sides$]{article}

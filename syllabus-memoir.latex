@@ -1,5 +1,5 @@
-%%% syllabus.latex
-%%% Course syllabus template for Pandoc using LaTeX article class
+%%% syllabus-memoir.latex
+%%% Pandoc template using LaTeX memoir class
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 

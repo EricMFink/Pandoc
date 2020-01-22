@@ -9,11 +9,15 @@ subtitle: Subtitle
 author: Eric M. Fink
 affiliation: Elon Law School 
 
-# options 
-indent: true # delete for no indent 
-secnumdepth: 3 # delete for unnumbered headings
-spacing: doublespacing # onehalfspacing; delete for singlespacing 
-colorlinks: true # delete for no colored links 
+# options: delete for defaults
+fontsize: 10pt # default is 11pt
+notes: true
+exam: true
+largetitle: true
+indent: true 
+secnumdepth: 3 # default is 0
+spacing: doublespacing # onehalfspacing; default is singlespacing=
+colorlinks: true 
 
 output: 
   pdf_document:
