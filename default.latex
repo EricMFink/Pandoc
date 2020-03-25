@@ -189,27 +189,27 @@ $endif$
   {\Large\bfseries\sffamily}
   {\thesection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsection}[hang]
   {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsubsection}[hang]
   {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\paragraph}[hang]
   {\large\bfseries\rmfamily}
   {\theparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subparagraph}[hang]
   {\normalsize\itshape\rmfamily}
   {\thesubparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 
 % =========
 % = Lists =

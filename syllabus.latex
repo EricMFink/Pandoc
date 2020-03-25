@@ -29,7 +29,7 @@
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
-\usepackage[hang,flushmargin]{footmisc} 
+
 
 \usepackage{needspace}
 
@@ -139,14 +139,14 @@ $endif$
   {}
 % H2
 \titleformat{\subsection}[hang]
-  {\large\bfseries\sffamily}
+  {\large\titlefont}
   {\thesubsection}
   {1em}
   {}
 % H3
 \titleformat{\subsubsection}[hang]
   {\normalsize\bfseries\sffamily}
-  {\thesubsubsection}
+  {}
   {1em}
   {}
 % H4
@@ -225,6 +225,60 @@ $endif$
 \title{\titling}
 \posttitle{\end{flushleft}}
 \date{}
+
+% ==========
+% = Tables =
+% ==========
+
+\usepackage{longtable}
+\usepackage{supertabular,booktabs}
+$if(norule)$
+\setlength\heavyrulewidth{$norule$}
+\setlength\lightrulewidth{$norule$}
+$endif$
+
+
+
+% ============
+% = Graphics =
+% ============
+
+\usepackage[justification=centering,font={scriptsize},skip=1em]{caption}
+% Sizes: scriptsize, footnotesize, small, normalsize, large, Large
+\captionsetup[figure]{labelformat=empty,width=.8\linewidth}
+
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
+
+% \usepackage{graphicx,grffile}
+% \makeatletter
+% \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+% \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+% \makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+% \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+
+% =============
+% = Footnotes = 
+% =============
+
+\usepackage[hang,flushmargin]{footmisc} 
+
+$if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
 
 % ==============
 % = Hyperlinks =

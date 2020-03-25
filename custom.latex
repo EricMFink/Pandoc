@@ -35,7 +35,7 @@ $endif$
 
 \usepackage{needspace}
 
-\usepackage[defaultlines=4,all]{nowidow}
+\usepackage[defaultlines=5,all]{nowidow}
 
 % ============
 % = Language =
@@ -206,27 +206,27 @@ $if(colorhead)$
   {\LARGE\titlefont}
   {\thesection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsection}[hang]
   {\Large\bfseries\sffamily}
   {\thesubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsubsection}[hang]
   {\large\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\paragraph}[hang]
   {\normalsize\bfseries\sffamily}
   {\theparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subparagraph}[hang]
   {\footnotesize\itshape\sffamily}
   {\thesubparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 
 $else$
 $if(largehead)$
@@ -234,54 +234,83 @@ $if(largehead)$
   {\LARGE\bfseries\sffamily}
   {\thesection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsection}[hang]
   {\Large\bfseries\sffamily}
   {\thesubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsubsection}[hang]
   {\large\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\paragraph}[hang]
   {\normalsize\bfseries\sffamily}
   {\theparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subparagraph}[hang]
   {\footnotesize\itshape\sffamily}
   {\thesubparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
+
+$else$
+$if(centerhead)$
+\titleformat{\section}[hang]
+  {\LARGE\bfseries\sffamily\filcenter}
+  {\thesection}
+  {1em}
+  {\needspace{1\baselineskip}}
+\titleformat{\subsection}[hang]
+  {\Large\bfseries\sffamily\filcenter}
+  {\thesubsection}
+  {1em}
+  {\needspace{1\baselineskip}}
+\titleformat{\subsubsection}[hang]
+  {\large\bfseries\sffamily\filcenter}
+  {\thesubsubsection}
+  {1em}
+  {\needspace{1\baselineskip}}
+\titleformat{\paragraph}[hang]
+  {\normalsize\bfseries\sffamily\filcenter}
+  {\theparagraph}
+  {1em}
+  {\needspace{1\baselineskip}}
+\titleformat{\subparagraph}[hang]
+  {\footnotesize\itshape\sffamily\filcenter}
+  {\thesubparagraph}
+  {1em}
+  {\needspace{1\baselineskip}}
 
 $else$
 \titleformat{\section}[hang]
   {\Large\bfseries\sffamily}
   {\thesection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsection}[hang]
   {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subsubsection}[hang]
   {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\paragraph}[hang]
   {\large\bfseries\rmfamily}
   {\theparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
 \titleformat{\subparagraph}[hang]
   {\normalsize\itshape\rmfamily}
   {\thesubparagraph}
   {1em}
-  {}
+  {\needspace{1\baselineskip}}
+$endif$
 $endif$
 $endif$
 
