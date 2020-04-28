@@ -4,7 +4,7 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-\documentclass[10pt,letterpaper,twoside]{article}
+\documentclass[11pt,letterpaper,twoside]{article}
 \usepackage[english]{babel}  
 \usepackage[ddmmyyyy]{datetime}
 \usepackage{currfile}
@@ -38,7 +38,7 @@
 % = Spacing =
 % ===========
 
-\usepackage[landscape,top=1in,bottom=.5in,left=.5in,right=.5in]{geometry}
+\usepackage[top=1.5in,bottom=.5in,left=1.5in,right=1.5in]{geometry}
 \raggedbottom
 
 \usepackage[bottom]{footmisc}
@@ -140,12 +140,15 @@
 \setlength{\droptitle}{-3cm}
 \pretitle{\begin{flushleft}}
 \DeclareRobustCommand{\titling}{
-\Large\titlefont{$title$} \\
+\LARGE\titlefont{$title$} \\
 $if(source)$
 \vspace{.5em}
 \footnotesize\texttt{$source$} \\
 $endif$
-\vspace{1em}
+\vspace{1.5em}
+
+
+
 }
 \title{\titling}
 \posttitle{\end{flushleft}\vspace{-4em}}
@@ -227,10 +230,8 @@ $endif$
 
 % \needspace{2\baselineskip}
 
-\setlength{\columnsep}{1in}
-\begin{multicols*}{2}
 $body$
-\end{multicols*}
+
 
 
 \end{document}
