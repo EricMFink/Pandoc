@@ -3,7 +3,7 @@
 %%% 
 
 
-\documentclass[letterpaper,twoside,$fontsize$]{memoir}
+\documentclass[letterpaper,twoside,11pt]{memoir}
 
 \usepackage[osf]{mathpazo}
 \usepackage[mathcal,mathbf]{euler}
@@ -30,11 +30,14 @@
 \definecolor{mylightblue}{HTML}{3498DB} 
 
 \usepackage{fontspec}
-\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$},Numbers={OldStyle},Ligatures={Common},Colour=myblack]
-\setsansfont{$sansfont$}[Mapping=tex-text,Colour=myblack]
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=1.0]
+\setmainfont{Alegreya}[Mapping={tex-text},SmallCapsFont={Alegreya SC},Numbers={OldStyle},Ligatures={Common},Colour=myblack]
+\setsansfont{Alegreya Sans}[Mapping=tex-text,Colour=myblack]
+\setmonofont{Inconsolata}[Mapping=tex-text,Scale=1.0]
 
-\newfontface\titlefont{$titlefont$}[Colour=mybrightred]
+\newfontface\titlefont{Alegreya SC}[Colour=mybrightred]
+\newfontface\subtitlefont{Alegreya Italic}[Colour=myblack]
+
+
 
 
 % ===========
@@ -45,7 +48,7 @@
 \setlength{\parskip}{0.6em plus 0.1em minus 0.1em}
 
 % Extra line spacing (leading)
-\setSingleSpace{1.2}
+\setSingleSpace{1.1}
 \SingleSpacing
 
 % Adjust spacing and font for block quote

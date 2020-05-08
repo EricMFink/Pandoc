@@ -1,0 +1,237 @@
+%%% Template for Songbook
+%%% Created by Eric M. Fink (https://github.com/LuckyJimJD)
+%%% 
+
+
+\documentclass[letterpaper,oneside,10pt]{article}
+
+\usepackage[osf]{mathpazo}
+\usepackage[mathcal,mathbf]{euler}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx,sidecap,tikz}
+\usepackage{siunitx} % automatic number formatting, decimal point alignment
+
+\usepackage[top=1.25in,bottom=.5in,left=1.5in,right=1.5in]{geometry}
+
+\usepackage{multicol}
+
+\raggedbottom
+
+
+% ==================
+% = Colors & Fonts =
+% ==================
+
+\usepackage{xcolor}
+\definecolor{myblack}{HTML}{231F20} 
+\definecolor{mybrightred}{HTML}{EC1F27} 
+\definecolor{mydarkred}{HTML}{b03a2e} 
+\definecolor{mydarkblue}{HTML}{154360}
+\definecolor{mylightblue}{HTML}{3498DB} 
+
+\usepackage{fontspec}
+\setmainfont{Alegreya}[Mapping={tex-text},SmallCapsFont={Alegreya SC},Numbers={OldStyle},Ligatures={Common},Colour=myblack]
+\setsansfont{Alegreya Sans}[Mapping=tex-text,Colour=myblack]
+\setmonofont{Inconsolata}[Mapping=tex-text,Scale=1.0]
+
+\newfontface\titlefont{Alegreya SC}[Colour=mybrightred]
+\newfontface\subtitlefont{Alegreya Italic}[Colour=myblack]
+
+
+% ===========
+% = Spacing =
+% ===========
+
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage[none]{hyphenat}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.6em plus 0.1em minus 0.1em}
+
+
+% Adjust spacing and font for block quote
+\renewenvironment{quote}{%
+   \list{}{%
+     \leftmargin=1em   % this is the adjusting screw
+     \rightmargin=0in
+     \topsep=0em
+     \itshape
+   }
+   \item\relax
+}
+{\endlist}
+
+% Adjust spacing for lists
+\usepackage{enumitem}
+\setlist[itemize]{label={},leftmargin=1em,rightmargin=0.5in,topsep=0em,itemsep=0em,partopsep=0em,parsep=0em,}
+\setlist[enumerate]{label={},nosep}
+
+% \providecommand{\tightlist}{%
+% \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
+\def\tightlist{}
+
+
+
+% =======================
+% = Headers and Footers = 
+% =======================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{}
+\fancyfoot[R]{}
+
+
+\renewcommand{\headrulewidth}{0em}
+\fancyhead[]{}
+
+
+% ============
+% = Headings =
+% ============
+
+
+\usepackage[compact]{titlesec}  
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+
+\titlespacing*{\section}{0em}{2em}{0em}
+\titlespacing*{\subsection}{0em}{0em}{.5em}
+\titlespacing*{\subsubsection}{0em}{0em}{.5em}
+\titlespacing*{\paragraph}{0em}{0.5em}{.5em}
+\titlespacing*{\subparagraph}{1em}{0em}{0em}
+
+\setcounter{secnumdepth}{0}
+
+\titleformat{\section}[hang]
+  {\large\titlefont}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\normalsize\itshape\rmfamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\normalsize\itshape\rmfamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\normalsize\bfseries\sffamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\normalsize\rmfamily}
+  {\thesubparagraph}
+  {1em}
+  {}
+
+
+% ============
+% = Graphics =
+% ============
+
+\graphicspath{ {/Images/} }
+
+\usepackage[justification=centering,font={scriptsize},skip=1em]{caption}
+% Sizes: scriptsize, footnotesize, small, normalsize, large, Large
+\captionsetup[figure]{labelformat=empty,1\linewidth}
+
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \oldincludegraphics[#1,max width=\textwidth]{#2}}
+
+
+\usepackage[labelformat=empty]{caption}
+
+
+% ==============
+% = Blank Page =
+% ==============
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-2}%
+    \newpage}
+
+% ==============
+% = Hyperlinks =
+% ==============
+
+$if(linkcolor)$
+\definecolor{mylinks}{HTML}{$linkcolor$}
+$else$
+\definecolor{mylinks}{HTML}{3498DB} 
+$endif$
+
+$if(citecolor)$
+\definecolor{mycites}{HTML}{$linkcolor$}
+$else$
+\definecolor{mycites}{HTML}{3498DB} 
+$endif$
+
+$if(urlcolor)$
+\definecolor{myurls}{HTML}{$linkcolor$}
+$else$
+\definecolor{myurls}{HTML}{3498DB} 
+$endif$
+
+\usepackage[unicode=true]{hyperref}
+$if(plainlinks)$
+\hypersetup{colorlinks=false}
+$else$
+\hypersetup{colorlinks=true, linkcolor=mylinks, citecolor=mycites, urlcolor=myurls,}
+$endif$
+
+
+% ==============================================================================
+% =============================== BEGIN DOCUMENT =============================== 
+% ==============================================================================
+
+\begin{document}\thispagestyle{empty}
+
+\paragraph{Acknowledgments}
+
+\subparagraph{Socialist Songbook (YPSL, ca. 1965)}
+\subparagraph{The Little Red Songbook: Songs to Fan the Flames of Discontent (IWW, 19th ed. 1923)}
+\subparagraph{The Bosses’ Songbook: Songs to Stifle the Flames of Discontent (Dave Van Ronk and Richard Ellington, 1959)}
+
+\paragraph{Designed and Edited by Eric M. Fink}
+\paragraph{Typeset in Alegreya and Alegreya Sans}
+\paragraph{Distributed by Greensboro DSA, May 2020}
+
+\addtocounter{page}{-1}
+
+\newgeometry{top=.75in,bottom=1in,left=1in,right=.75in}
+
+\setlength{\columnsep}{.5cm}
+\raggedcolumns
+\begin{multicols*}{2}
+\thispagestyle{empty}
+$body$
+\end{multicols*}
+
+\restoregeometry
+
+
+\end{document}
