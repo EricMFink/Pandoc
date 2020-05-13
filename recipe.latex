@@ -38,7 +38,7 @@
 % = Spacing =
 % ===========
 
-\usepackage[landscape,top=1in,bottom=.5in,left=.5in,right=.5in]{geometry}
+\usepackage[landscape,top=.3in,bottom=.3in,left=.5in,right=.5in]{geometry}
 \raggedbottom
 
 \usepackage[bottom]{footmisc}
@@ -89,9 +89,10 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhead[C]{\textsc{$title$}}
-\fancyhead[L]{\textsc{}}
-\fancyhead[R]{\textsc{}}
+\fancyhead[]{}
+% \fancyhead[C]{\textsc{$title$}}
+% \fancyhead[L]{\textsc{}}
+% \fancyhead[R]{\textsc{}}
 
 % ============
 % = Headings =
@@ -99,34 +100,34 @@
 
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\section}{0em}{1em}{0.5em}
-\titlespacing*{\subsection}{0em}{1em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{.5em}{0.5em}
-\titlespacing*{\subparagraph}{0em}{0em}{0.5em}
+\titlespacing*{\section}{0em}{0em}{1em}
+\titlespacing*{\subsection}{0em}{1em}{0em}
+\titlespacing*{\subsubsection}{0em}{0.5em}{0em}
+\titlespacing*{\paragraph}{0em}{.5em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0em}
 
 \titleformat{\section}
-  {\large\bfseries\sffamily}
+  {\Large\titlefont}
   {}
   {0em}
   {}
 \titleformat{\subsection}
-  {\large\bfseries\rmfamily}
+  {\normalsize\bfseries\sffamily}
   {}
   {0em}
   {}
 \titleformat{\subsubsection}
-  {\large\itshape\rmfamily}
+  {\normalsize\itshape\rmfamily}
   {}
   {0em}
   {}
 \titleformat{\paragraph}
-  {\large\itshape\rmfamily}
+  {\small\rmfamily}
   {}
   {0em}
   {}
 \titleformat{\subparagraph}
-  {\normalsize\itshape\rmfamily}
+  {\footnotesize\itshape\rmfamily}
   {}
   {0em}
   {}
@@ -136,20 +137,20 @@
 % = Title Layout =
 % ================
 
-\usepackage{titling}
-\setlength{\droptitle}{-3cm}
-\pretitle{\begin{flushleft}}
-\DeclareRobustCommand{\titling}{
-\Large\titlefont{$title$} \\
-$if(source)$
-\vspace{.5em}
-\footnotesize\texttt{$source$} \\
-$endif$
-\vspace{1em}
-}
-\title{\titling}
-\posttitle{\end{flushleft}\vspace{-4em}}
-\date{}
+% \usepackage{titling}
+% \setlength{\droptitle}{-3cm}
+% \pretitle{\begin{flushleft}}
+% \DeclareRobustCommand{\titling}{
+% \Large\titlefont{$title$} \\
+% $if(source)$
+% \vspace{.5em}
+% \footnotesize\texttt{$source$} \\
+% $endif$
+% \vspace{1em}
+% }
+% \title{\titling}
+% \posttitle{\end{flushleft}\vspace{-4em}}
+% \date{}
 
 % ==========
 % = Tables =
@@ -221,7 +222,7 @@ $endif$
 
 \begin{document}\thispagestyle{empty}
 
-\maketitle
+% \maketitle
 
 \thispagestyle{empty}
 

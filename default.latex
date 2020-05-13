@@ -364,24 +364,29 @@ $endif$
 \color{myblack}
 \begin{document}\thispagestyle{empty}
 
-$if(notitle)$
-
-
-$else$
 \begin{flushleft}
-$if(title)$\titlefont\normalsize{$title$} \\ 
-\vspace{.2cm}$endif$
-$if(author)$\rmfamily\footnotesize{$author$} \\$endif$
-$if(affiliation)$\rmfamily\footnotesize{$affiliation$}  \\$endif$
-$if(date)$\rmfamily\footnotesize{$date$} \\$endif$
+$if(title)$
+\titlefont\LARGE{$title$} \\ 
 $if(subtitle)$
-\vspace{.6cm}
-\titlefont\LARGE{$subtitle$} 
+\vspace{.2cm}
+\titlefont\Large{$subtitle$} \\
 $endif$
+\vspace{.4cm}
+$endif$
+$if(author)$
+\rmfamily\Large{$author$} \\
+$endif$
+$if(affiliation)$
+\rmfamily\Large{$affiliation$}  \\
+$endif$
+$if(date)$
+\vspace{.2cm}
+\rmfamily\normalsize{$date$} \\
+$endif$
+\vspace{-.5cm}
 
 \end{flushleft}
 
-$endif$
 
 $if(justified)$
 \justifying

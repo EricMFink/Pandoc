@@ -99,19 +99,19 @@
 
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\section}{0em}{1em}{0.5em}
+\titlespacing*{\section}{0em}{1em}{2em}
 \titlespacing*{\subsection}{0em}{1em}{0.5em}
 \titlespacing*{\subsubsection}{0em}{1em}{0em}
 \titlespacing*{\paragraph}{0em}{.5em}{0.5em}
 \titlespacing*{\subparagraph}{0em}{0em}{0.5em}
 
 \titleformat{\section}
-  {\large\bfseries\sffamily}
+  {\Large\titlefont}
   {}
   {0em}
   {}
 \titleformat{\subsection}
-  {\large\bfseries\rmfamily}
+  {\large\bfseries\sffamily}
   {}
   {0em}
   {}
@@ -206,7 +206,7 @@ $endif$
 \usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][]{%
-  \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
+  \oldincludegraphics[#1,max width=1\linewidth]{#2}}
 
 % ==============
 % = Hyperlinks =
@@ -224,7 +224,7 @@ $endif$
 
 \begin{document}\thispagestyle{empty}
 
-\maketitle
+% \maketitle
 
 \thispagestyle{empty}
 
