@@ -1,17 +1,11 @@
 ---
-date: 2019-04-10T13:42:43-04:00
+date: 
 
 title: 'Title'
-subtitle: 'Subtitle'
-
-author: 'Prof. Fink'
-affiliation: 'Elon Law School'
-
-numbersections: true
 
 output:
   pdf_document:
     latex_engine: xelatex
-    template: default.latex
+    template: recipe.latex
 
 ---
