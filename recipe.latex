@@ -101,10 +101,10 @@
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{0em}{1em}
-\titlespacing*{\subsection}{0em}{1em}{0em}
-\titlespacing*{\subsubsection}{0em}{0.5em}{0em}
+\titlespacing*{\subsection}{0em}{1em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{0.5em}{0.25em}
 \titlespacing*{\paragraph}{0em}{.5em}{0em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0.5em}
 
 \titleformat{\section}
   {\Large\titlefont}
@@ -117,7 +117,7 @@
   {0em}
   {}
 \titleformat{\subsubsection}
-  {\normalsize\itshape\rmfamily}
+  {\small\sffamily}
   {}
   {0em}
   {}
@@ -127,7 +127,7 @@
   {0em}
   {}
 \titleformat{\subparagraph}
-  {\footnotesize\itshape\rmfamily}
+  {\small\itshape\rmfamily}
   {}
   {0em}
   {}
@@ -190,7 +190,7 @@ $endif$
 
 \usepackage[justification=centering,font={scriptsize},skip=1em]{caption}
 % Sizes: scriptsize, footnotesize, small, normalsize, large, Large
-\captionsetup[figure]{labelformat=empty,width=.8\linewidth}
+\captionsetup[figure]{labelformat=empty,width=.5\linewidth}
 
 \usepackage{float}
 \let\origfigure\figure
@@ -204,7 +204,7 @@ $endif$
 \usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][]{%
-  \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
+  \oldincludegraphics[#1,max width=.5\linewidth]{#2}}
 
 % ==============
 % = Hyperlinks =
