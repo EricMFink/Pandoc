@@ -10,6 +10,11 @@
 % ===============
 
 
+
+$if(notes)$
+\documentclass[letterpaper,10pt,twoside]{article}
+$else$
+
 $if(oneside)$
 $if(fontsize)$
 \documentclass[letterpaper,$fontsize$,oneside]{article}
@@ -17,10 +22,12 @@ $else$
 \documentclass[letterpaper,11pt,oneside]{article}
 $endif$
 $else$
+
 $if(fontsize)$
 \documentclass[letterpaper,$fontsize$,twoside]{article}
 $else$
 \documentclass[letterpaper,11pt,twoside]{article}
+$endif$
 $endif$
 $endif$
 
@@ -82,8 +89,8 @@ $else$
 $endif$
 
 \usepackage{textcomp}
-\usepackage{fontawesome}
-\newfontfamily{\FA}{[FontAwesome.otf]}
+% \usepackage{fontawesome}
+% \newfontfamily{\FA}{[FontAwesome.otf]}
 
 % ===========
 % = Spacing =
@@ -173,43 +180,56 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
+$if(notes)$
+\titlespacing*{\section}{0em}{2em}{.5em}
+\titlespacing*{\subsection}{0em}{1.5em}{0em}
+\titlespacing*{\subsubsection}{0em}{.5em}{0em}
+\titlespacing*{\paragraph}{0em}{1em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0em}
+
+$else$
 \titlespacing*{\section}{0em}{2em}{.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{.5em}
 \titlespacing*{\subsubsection}{0em}{1em}{.5em}
 \titlespacing*{\paragraph}{0em}{0.5em}{.5em}
 \titlespacing*{\subparagraph}{0em}{0em}{.5em}
+$endif$
 
+$if(notes)$
+\setcounter{secnumdepth}{2}
+$else$
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
 $else$
 \setcounter{secnumdepth}{0}
+$endif$
 $endif$
 
 \titleformat{\section}[hang]
   {\Large\bfseries\sffamily}
   {\thesection}
   {1em}
-  {\needspace{1\baselineskip}}
+  {}
 \titleformat{\subsection}[hang]
   {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
-  {\needspace{1\baselineskip}}
+  {}
 \titleformat{\subsubsection}[hang]
   {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
-  {\needspace{1\baselineskip}}
+  {}
 \titleformat{\paragraph}[hang]
   {\large\bfseries\rmfamily}
   {\theparagraph}
   {1em}
-  {\needspace{1\baselineskip}}
+  {}
 \titleformat{\subparagraph}[hang]
   {\normalsize\itshape\rmfamily}
   {\thesubparagraph}
   {1em}
-  {\needspace{1\baselineskip}}
+  {}
 
 % =========
 % = Lists =
@@ -234,7 +254,7 @@ $endif$
 
 \setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
 \setlist[enumerate]{leftmargin=*,itemindent=*,topsep=.2em,itemsep=.2em,partopsep=0.2em,parsep=0.2em,align=left}
-\setlist[1]{labelindent=1em} % Only the level 1
+\setlist[1]{labelindent=.5em} % Only the level 1
 
 % \providecommand{\tightlist}{%
 % \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
@@ -256,12 +276,6 @@ $endif$
 }
 {\endlist}
 
-% ================
-% = Title Layout =
-% ================
-
-\usepackage{titling}
-\setlength{\droptitle}{-2.5cm}
 
 % ==============
 % = Blank Page =
@@ -364,6 +378,33 @@ $endif$
 \color{myblack}
 \begin{document}\thispagestyle{empty}
 
+$if(notitle)$
+
+
+$else$
+$if(notes)$
+\begin{flushleft}
+$if(title)$
+\titlefont\normalsize{$title$} \\ 
+\vspace{.2cm}
+$endif$
+$if(author)$
+\rmfamily\footnotesize{$author$} \\
+$endif$
+$if(affiliation)$
+\rmfamily\footnotesize{$affiliation$}  \\
+$endif$
+$if(date)$
+\rmfamily\footnotesize{$date$} \\
+$endif$
+$if(subtitle)$
+\vspace{.6cm}
+\titlefont\LARGE{$subtitle$} 
+$endif$
+\end{flushleft}
+\vspace{-1.5cm}
+
+$else$
 \begin{flushleft}
 $if(title)$
 \titlefont\LARGE{$title$} \\ 
@@ -383,9 +424,12 @@ $if(date)$
 \vspace{.2cm}
 \rmfamily\normalsize{$date$} \\
 $endif$
+\end{flushleft}
 \vspace{-.5cm}
 
-\end{flushleft}
+$endif$
+$endif$
+
 
 
 $if(justified)$
