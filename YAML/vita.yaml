@@ -25,6 +25,6 @@ numbersections: false
 output: 
   pdf_document:
     latex_engine: xelatex
-    template: vita.latex
+    template: vita.tex
   
 ---

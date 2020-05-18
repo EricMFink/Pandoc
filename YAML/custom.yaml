@@ -64,6 +64,6 @@ linkcolors: true # delete for no colored links
 output: 
   pdf_document:
     latex_engine: xelatex
-    template: default.latex
+    template: default.tex
     
 ---

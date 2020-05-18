@@ -94,6 +94,6 @@ CustomBullets:
 output:
   pdf_document:
     latex_engine: xelatex
-    template: default_memoir.latex
+    template: default_memoir.tex
 
 ---

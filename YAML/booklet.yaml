@@ -80,6 +80,6 @@ urlcolor: mylightblue
 output:
   pdf_document:
     latex_engine: xelatex
-    template: booklet.latex
+    template: booklet.tex
     
 ---

@@ -12,6 +12,6 @@ numbersections: true
 output:
   pdf_document:
     latex_engine: xelatex
-    template: exam.latex
+    template: exam.tex
 
 ---

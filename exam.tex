@@ -1,4 +1,4 @@
-%%% default.latex
+%%% exam.tex
 %%% Pandoc template using LaTeX article class
 %%% For creating PDF from .md file with YAML frontmatter 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
@@ -10,34 +10,9 @@
 % ===============
 
 
-
-$if(notes)$
-\documentclass[letterpaper,10pt,twoside]{article}
-$else$
-
-$if(oneside)$
-$if(fontsize)$
-\documentclass[letterpaper,$fontsize$,oneside]{article}
-$else$
-\documentclass[letterpaper,11pt,oneside]{article}
-$endif$
-$else$
-
-$if(fontsize)$
-\documentclass[letterpaper,$fontsize$,twoside]{article}
-$else$
 \documentclass[letterpaper,11pt,twoside]{article}
-$endif$
-$endif$
-$endif$
 
-$if(geometry)$
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-$else$
 \usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
-$endif$
-
-\usepackage{multicol}
 
 \raggedbottom
 
@@ -55,13 +30,13 @@ $endif$
 % = Colors & Fonts =
 % ==================
 
-\usepackage[table]{xcolor}
+\usepackage{xcolor}
 \definecolor{myblack}{HTML}{231F20} 
 \definecolor{mybrightred}{HTML}{EC1F27} 
 \definecolor{mydarkred}{HTML}{b03a2e} 
 \definecolor{mydarkblue}{HTML}{154360}
 \definecolor{mylightblue}{HTML}{3498DB} 
-\definecolor{lightgrey}{HTML}{DCDCDC}
+
 
 \usepackage{fontspec}
 $if(mainfont)$
@@ -89,8 +64,8 @@ $else$
 $endif$
 
 \usepackage{textcomp}
-% \usepackage{fontawesome}
-% \newfontfamily{\FA}{[FontAwesome.otf]}
+\usepackage{fontawesome}
+\newfontfamily{\FA}{[FontAwesome.otf]}
 
 % ===========
 % = Spacing =
@@ -99,23 +74,12 @@ $endif$
 \usepackage{setspace}
 
 \usepackage{ragged2e}
-$if(justified)$
-\justifying
-$else$
+
 \usepackage[none]{hyphenat}
-$endif$
 
-$if(parindent)$
-\setlength{\parindent}{$parindent$}
-$else$
 \setlength{\parindent}{0em}
-$endif$
 
-$if(parskip)$
-\setlength{\parskip}{$parskip$}
-$else$
 \setlength{\parskip}{1em}
-$endif$
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
@@ -130,48 +94,14 @@ $endif$
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
-$if(nohead)$
-\renewcommand{\headrulewidth}{0em}
-\fancyhead{}
-$if(nofoot)$
 \fancyfoot{}
-$else$
-\fancyfoot[C]{\thepage}
-\fancyfoot[R]{}
-\fancyfoot[L]{}
-$endif$
 
-$else$ 
-$if(nofoot)$
-\fancyfoot{}
-$else$
-\fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt{$path$ Revised: \today}}
-\fancyfoot[L]{}
-$endif$
-
-$if(oneside)$
-\fancyhead[L]{\textsc{$date$}}
-\fancyhead[R]{\textsc{\thepage}}
-\fancyhead[C]{\textsc{$title$}}
-
-$else$
-$if(subtitle)$
-\fancyhead[CE]{\textsc{$title$}}
-\fancyhead[CO]{\textsc{$subtitle$}}
+\fancyhead[CE]{\textsc{$course$}}
+\fancyhead[CO]{\textsc{$assessment$}}
 \fancyhead[LE]{\textsc{\thepage}}
 \fancyhead[LO]{\textsc{$date$}}
 \fancyhead[RE]{\textsc{$author$}}
 \fancyhead[RO]{\textsc{\thepage}}
-$else$
-\fancyhead[C]{\textsc{$title$}}
-\fancyhead[LE]{\textsc{\thepage}}
-\fancyhead[LO]{\textsc{$date$}}
-\fancyhead[RE]{\textsc{$author$}}
-\fancyhead[RO]{\textsc{\thepage}}
-$endif$
-$endif$
-$endif$
 
 % ============
 % = Headings =
@@ -180,29 +110,16 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
-$if(notes)$
-\titlespacing*{\section}{0em}{2em}{.5em}
-\titlespacing*{\subsection}{0em}{1.5em}{0em}
-\titlespacing*{\subsubsection}{0em}{.5em}{0em}
+\titlespacing*{\section}{0em}{2em}{0.5em}
+\titlespacing*{\subsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
 \titlespacing*{\paragraph}{0em}{1em}{0em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
+\titlespacing*{\subparagraph}{0em}{0.5em}{0em}
 
-$else$
-\titlespacing*{\section}{0em}{2em}{.5em}
-\titlespacing*{\subsection}{0em}{1.5em}{.5em}
-\titlespacing*{\subsubsection}{0em}{1em}{.5em}
-\titlespacing*{\paragraph}{0em}{0.5em}{.5em}
-\titlespacing*{\subparagraph}{0em}{0em}{.5em}
-$endif$
-
-$if(notes)$
-\setcounter{secnumdepth}{2}
-$else$
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
 $else$
 \setcounter{secnumdepth}{0}
-$endif$
 $endif$
 
 \titleformat{\section}[hang]
@@ -237,11 +154,7 @@ $endif$
 
 \usepackage{enumitem}
 
-$if(listdepth)$
-\setlistdepth{$listdepth$}
-$else$
 \setlistdepth{6}
-$endif$
 
 \setlist[itemize,1]{label=\textbullet}
 \setlist[itemize,2]{label=\textopenbullet}
@@ -250,23 +163,22 @@ $endif$
 \setlist[itemize,5]{label=\diamond}
 \setlist[itemize,6]{label=\textopenbullet}
 
-%\setlist{nosep}
-
-\setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
-\setlist[enumerate]{leftmargin=*,itemindent=*,topsep=.2em,itemsep=.2em,partopsep=0.2em,parsep=0.2em,align=left}
-\setlist[1]{labelindent=.5em} % Only the level 1
+\setlist[itemize]{labelindent=1.25em,leftmargin=2.5em,labelsep=*,topsep=0.5em,itemsep=0em,partopsep=0em,parsep=0em,align=left}
+\setlist[enumerate,1] {labelindent=!,leftmargin=*,labelsep=.5em,topsep=.5em,itemsep=0em,partopsep=0em,parsep=1.5em,align=left}
+\setlist[enumerate,2] {topsep=0em,partopsep=0em,itemsep=.2em,parsep=.2em}
+\setlist[enumerate,3] {itemsep=.2em,parsep=2em}
 
 % \providecommand{\tightlist}{%
 % \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
 \def\tightlist{}
+
+
 
 % ==========
 % = Quotes =
 % ==========
 
 \usepackage{csquotes}
-
-\AtBeginEnvironment{quote}{\small\itshape} 
 
 \renewenvironment{quote}{%
    \list{}{%
@@ -276,6 +188,12 @@ $endif$
 }
 {\endlist}
 
+% ================
+% = Title Layout =
+% ================
+
+\usepackage{titling}
+\setlength{\droptitle}{-2.5cm}
 
 % ==============
 % = Blank Page =
@@ -304,9 +222,9 @@ $endif$
 % = Graphics =
 % ============
 
-\usepackage[justification=centering,font={scriptsize},skip=1em]{caption}
+\usepackage[justification=centering,font={scriptsize,sf},skip=1em]{caption}
 % Sizes: scriptsize, footnotesize, small, normalsize, large, Large
-\captionsetup[figure]{labelformat=empty,width=.8\linewidth}
+\captionsetup[figure]{labelformat=empty,width=.7\linewidth}
 
 \usepackage{float}
 \let\origfigure\figure
@@ -332,7 +250,6 @@ $endif$
 % using explicit options in \includegraphics[width, height, ...]{}
 % \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 
-
 % =============
 % = Footnotes = 
 % =============
@@ -340,7 +257,6 @@ $endif$
 \usepackage[hang,flushmargin]{footmisc} 
 
 $if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
-
 
 % ==============
 % = Hyperlinks =
@@ -378,82 +294,25 @@ $endif$
 \color{myblack}
 \begin{document}\thispagestyle{empty}
 
-$if(notitle)$
-
-
-$else$
-$if(notes)$
 \begin{flushleft}
-$if(title)$
-\titlefont\normalsize{$title$} \\ 
+\titlefont\Large{$course$} \hfill\normalsize{\rmfamily\bfseries{Exam ID: }}\rule{2cm}{0.4pt}\\
 \vspace{.2cm}
-$endif$
-$if(author)$
-\rmfamily\footnotesize{$author$} \\
-$endif$
-$if(affiliation)$
-\rmfamily\footnotesize{$affiliation$}  \\
-$endif$
-$if(date)$
-\rmfamily\footnotesize{$date$} \\
-$endif$
+\rmfamily\normalsize{Professor Fink} \\
+\rmfamily\normalsize{Elon Law School}\\
+\rmfamily\normalsize{$date$}\\
 $if(subtitle)$
 \vspace{.6cm}
-\titlefont\LARGE{$subtitle$} 
+\titlefont\LARGE{$assessment$} \\
+\vspace{-.6cm}
 $endif$
 \end{flushleft}
-\vspace{-1.5cm}
 
-$else$
-\begin{flushleft}
-$if(title)$
-\titlefont\LARGE{$title$} \\ 
-$if(subtitle)$
-\vspace{.2cm}
-\titlefont\Large{$subtitle$} \\
-$endif$
-\vspace{.4cm}
-$endif$
-$if(author)$
-\rmfamily\Large{$author$} \\
-$endif$
-$if(affiliation)$
-\rmfamily\Large{$affiliation$}  \\
-$endif$
-$if(date)$
-\vspace{.2cm}
-\rmfamily\normalsize{$date$} \\
-$endif$
-\end{flushleft}
-\vspace{-.5cm}
-
-$endif$
-$endif$
-
-
-
-$if(justified)$
-\justifying
-$else$
 \RaggedRight
-$endif$
 
-$if(spacing)$
-\$spacing$
-$else$
 \singlespacing
-$endif$
 
 \needspace{2\baselineskip}
 
-$if(columns)$
-\setlength{\columnsep}{5em}
-\begin{multicols}{$columns$}
 $body$
-\end{multicols}
-
-$else$
-$body$
-$endif$
 
 \end{document}

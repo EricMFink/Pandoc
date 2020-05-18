@@ -36,6 +36,6 @@ csl: '../../../GitHub/Bibliography/CSL-styles/us-law-review.csl'
 output: 
   pdf_document:
     latex_engine: xelatex
-    template: article.latex
+    template: article.tex
 
 ---
