@@ -1,6 +1,6 @@
 %%% default.tex
 %%% Pandoc template using LaTeX article class
-%%% For creating PDF from .md file with YAML frontmatter 
+%%% With options for special document styles (notes) 
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
@@ -102,6 +102,7 @@ $endif$
 $if(justified)$
 \justifying
 $else$
+\RaggedRight
 \usepackage[none]{hyphenat}
 $endif$
 
@@ -205,28 +206,34 @@ $else$
 $endif$
 $endif$
 
+% \titleformat{hcommand}[hshape]
+%   {hformat}
+%   {hlabel}
+%   {hsep}
+%   {hbefore-code}[hafter-code]
+
 $if(notes)$
 
 \titleformat{\section}[hang]
   {\Large\bfseries\sffamily}
   {\thesection}
   {1em}
-  {}
+  {}{}
 \titleformat{\subsection}[hang]
   {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
-  {}
+  {}{}
 \titleformat{\subsubsection}[hang]
   {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
-  {}
+  {}{}
 \titleformat{\paragraph}[hang]
   {\large\bfseries\rmfamily}
   {\theparagraph}
   {1em}
-  {}
+  {}{}
 \titleformat{\subparagraph}[hang]
   {\normalsize\itshape\rmfamily}
   {\thesubparagraph}
@@ -244,22 +251,22 @@ $else$
   {\large\bfseries\sffamily}
   {\thesubsection}
   {1em}
-  {}
+  {}{}
 \titleformat{\subsubsection}[hang]
   {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
-  {}
+  {}{}
 \titleformat{\paragraph}[hang]
   {\large\bfseries\rmfamily}
   {\theparagraph}
   {1em}
-  {}
+  {}{}
 \titleformat{\subparagraph}[hang]
   {\normalsize\itshape\rmfamily}
   {\thesubparagraph}
   {1em}
-  {}
+  {}{}
   
 $endif$
 
@@ -285,8 +292,7 @@ $endif$
 %\setlist{nosep}
 
 \setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
-\setlist[enumerate]{leftmargin=*,itemindent=*,topsep=.2em,itemsep=.2em,partopsep=0.2em,parsep=0.2em,align=left}
-\setlist[1]{labelindent=.5em} % Only the level 1
+\setlist[enumerate]{topsep=0.5em,itemsep=0.5em,partopsep=0em,parsep=0em,align=left}
 
 % \providecommand{\tightlist}{%
 % \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
@@ -416,25 +422,18 @@ $if(notitle)$
 $else$
 $if(notes)$
 \begin{flushleft}
-$if(title)$
-\titlefont\normalsize{$title$} \\ 
-\vspace{.2cm}
-$endif$
-$if(author)$
-\rmfamily\footnotesize{$author$} \\
-$endif$
-$if(affiliation)$
-\rmfamily\footnotesize{$affiliation$}  \\
-$endif$
-$if(date)$
-\rmfamily\footnotesize{$date$} \\
-$endif$
+\rmfamily\small{$course$} \\ 
+\rmfamily\small{$author$} \\
+\rmfamily\small{$affiliation$}  \\
+\rmfamily\small{$term$} \\
+\vspace{4em}
+\titlefont\LARGE{$title$} \\
 $if(subtitle)$
-\vspace{.6cm}
-\titlefont\LARGE{$subtitle$} 
+\vspace{.5em}
+\titlefont\large{$subtitle$} \\
 $endif$
 \end{flushleft}
-\vspace{-1.5cm}
+
 
 $else$
 \begin{flushleft}
@@ -463,13 +462,6 @@ $endif$
 $endif$
 
 
-
-$if(justified)$
-\justifying
-$else$
-\RaggedRight
-$endif$
-
 $if(spacing)$
 \$spacing$
 $else$
@@ -480,9 +472,9 @@ $endif$
 
 $if(columns)$
 \setlength{\columnsep}{5em}
-\begin{multicols}{$columns$}
+\begin{multicols*}{2}
 $body$
-\end{multicols}
+\end{multicols*}
 
 $else$
 $body$

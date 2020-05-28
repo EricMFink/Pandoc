@@ -1,8 +1,13 @@
 ---
-date: Fall 2019
+layout: notes 
+date: Fall 2020
 
-title: Course Name
-subtitle: Unit Title
+course: Civil Procedure 
+title: Personal Jurisdiction 
+subtitle: # delete if none
+
+categories: outlines #used for permalink
+tags: personal-jurisdiction
 
 author: Eric M. Fink
 affiliation: Elon Law School 

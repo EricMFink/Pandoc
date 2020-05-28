@@ -22,16 +22,11 @@ epigraph:
     from: 'TITLE (YEAR)'
     content: 'QUOTATION.'
 
-draft: true 
-# delete for non-draft formatting & fonts
+draft: true # delete for non-draft formatting & fonts
+# lawreview: true # uncomment for law review style headings (I, A, 1, etc.)
 
-# lawreview: true
-# uncomment for law review style headings (I, A, 1, etc.)
-
-bibliography: '../../../GitHub/Bibliography/bibtex/Juris-M.yaml'
-# relative or absolute path to bibliography file
-csl: '../../../GitHub/Bibliography/CSL-styles/us-law-review.csl'
-# relative or absolute path to citation style file
+bibliography: '~/Documents/Eric/GitHub/Bibliography/bibtex/Juris-M.yaml'
+csl: '~/Documents/Eric/GitHub/Bibliography/CSL-styles/jm-indigobook-law-review.csl'
 
 output: 
   pdf_document:

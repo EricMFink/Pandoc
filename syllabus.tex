@@ -115,24 +115,24 @@
 
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\section}{0em}{2em}{0.5em}
-\titlespacing*{\subsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\section}{0em}{2em}{1em}
+\titlespacing*{\subsection}{0em}{2em}{0.5em}
 \titlespacing*{\subsubsection}{0em}{1em}{0.5em}
-\titlespacing*{\paragraph}{0em}{0.5em}{0.5em}
-\titlespacing*{\subparagraph}{0em}{1.5em}{1.5em}
+\titlespacing*{\paragraph}{0em}{1.5em}{.6em}
+\titlespacing*{\subparagraph}{0em}{2em}{2em}
 
 
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
 $else$
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{3}
 $endif$
 
 
 % H1
 \titleformat{\section}[hang]
   {\Large\titlefont}
-  {\thesection}
+  {}
   {0pt}
   {}
 % H2
@@ -143,21 +143,21 @@ $endif$
   {}
 % H3
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\rmfamily}
+  {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
   {}
 % H4
 \titleformat{\paragraph}[block]
-  {\normalsize\bfseries\rmfamily}
-  {\theparagraph}
+  {\large\itshape\rmfamily}
+  {}
   {0em}
   {}
 
 % H5
 \titleformat{\subparagraph}[block]
-  {\large\itshape\rmfamily}
-  {\thesubparagraph}
+  {\Large\bfseries\rmfamily}
+  {}
   {0em}
   {}
 

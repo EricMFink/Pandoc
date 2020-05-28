@@ -1,0 +1,277 @@
+%%% default.tex
+%%% Pandoc template using LaTeX article class
+%%% With options for special document styles (notes, exam, grading) 
+%%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
+%%% 
+
+
+% ===============
+% = Page Layout =
+% ===============
+
+\documentclass[letterpaper,10pt,twoside]{article}
+
+\usepackage[top=1in,bottom=1in,left=.5in,right=.5in]{geometry}
+
+\usepackage{multicol}
+
+\raggedbottom
+
+\usepackage{needspace}
+
+\usepackage[defaultlines=4,all]{nowidow}
+
+% ============
+% = Language =
+% ============
+
+\usepackage[english]{babel}  
+
+% ==================
+% = Colors & Fonts =
+% ==================
+
+\usepackage[table]{xcolor}
+\definecolor{myblack}{HTML}{231F20} 
+\definecolor{mybrightred}{HTML}{EC1F27} 
+\definecolor{mydarkred}{HTML}{b03a2e} 
+\definecolor{mydarkblue}{HTML}{154360}
+\definecolor{mylightblue}{HTML}{3498DB} 
+\definecolor{lightgrey}{HTML}{DCDCDC}
+
+\usepackage{fontspec}
+\setmainfont{Sabon LT}[Mapping={tex-text}]
+\setsansfont{Lato}[Mapping=tex-text,Scale=0.9]
+\setmonofont{Cousine}[Mapping=tex-text,Scale=0.8]
+\newfontface\titlefont{Sabon LT}[Colour=mydarkred]
+
+
+\usepackage{textcomp}
+% \usepackage{fontawesome}
+% \newfontfamily{\FA}{[FontAwesome.otf]}
+
+% ===========
+% = Spacing =
+% ===========
+
+\usepackage{setspace}
+
+\setlength{\parindent}{0em}
+
+\setlength{\parskip}{.5em}
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+% =======================
+% = Headers and Footers = 
+% =======================
+
+%custom date format
+\usepackage[us, nodayofweek]{datetime}
+\newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyfoot[C]{}
+\fancyfoot[R]{\tiny\texttt{$path$ Revised: \today}}
+\fancyfoot[L]{}
+
+$if(subtitle)$
+\fancyhead[CE]{\textsc{$title$}}
+\fancyhead[CO]{\textsc{$subtitle$}}
+\fancyhead[LE]{\textsc{\thepage}}
+\fancyhead[LO]{\textsc{}}
+\fancyhead[RE]{\textsc{}}
+\fancyhead[RO]{\textsc{\thepage}}
+$else$
+\fancyhead[C]{\textsc{$title$}}
+\fancyhead[LE]{\textsc{\thepage}}
+\fancyhead[LO]{\textsc{}}
+\fancyhead[RE]{\textsc{}}
+\fancyhead[RO]{\textsc{\thepage}}
+$endif$
+
+% ============
+% = Headings =
+% ============
+
+\usepackage[compact]{titlesec}  
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+
+\titlespacing*{\section}{0em}{2em}{0em}
+\titlespacing*{\subsection}{0em}{1.5em}{.5em}
+\titlespacing*{\subsubsection}{0em}{.5em}{0em}
+\titlespacing*{\paragraph}{0em}{.5em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0em}
+
+\setcounter{secnumdepth}{0}
+\newcommand{\sectionbreak}{\clearpage}
+
+\titleformat{\section}[hang]
+  {\large\bfseries\rmfamily}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}[hang]
+  {\raggedright\normalsize\bfseries\rmfamily}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}[hang]
+  {\small\bfseries\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titleformat{\paragraph}[hang]
+  {\footnotesize\itshape\sffamily}
+  {\theparagraph}
+  {1em}
+  {}
+\titleformat{\subparagraph}[hang]
+  {\footnotesize\itshape\sffamily}
+  {}
+  {}
+  {}
+
+
+% =========
+% = Lists =
+% =========
+
+\usepackage{enumitem}
+
+\setlistdepth{6}
+
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=\textopenbullet}
+\setlist[itemize,3]{label=\textperiodcentered}
+\setlist[itemize,4]{label=\textendash}
+\setlist[itemize,5]{label=\diamond}
+\setlist[itemize,6]{label=\textopenbullet}
+
+% \setlist{nosep}
+
+\setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
+% \setlist[enumerate]{wide,itemsep=.5em,topsep=0em,partopsep=0em,parsep=0em,}
+\setlist[enumerate]{topsep=0.5em,itemsep=0.5em,partopsep=0em,parsep=0em,align=left}
+% \setlist[enumerate]{leftmargin=*,itemindent=*,topsep=0.5em,itemsep=0.5em,partopsep=0em,parsep=0em,align=left}
+% \setlist[1]{itemindent=1em} % Only the level 1
+
+% \providecommand{\tightlist}{%
+% \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
+\def\tightlist{}
+
+% ==========
+% = Quotes =
+% ==========
+
+\usepackage{csquotes}
+
+\AtBeginEnvironment{quote}{\footnotesize\sffamily} 
+
+\renewenvironment{quote}{%
+   \list{}{%
+     \leftmargin0em   % this is the adjusting screw
+     \rightmargin\leftmargin\parsep 1em }
+     \setlist[enumerate]{wide,itemsep=.5em,topsep=0em,partopsep=0em,parsep=0em,}
+   \item\relax
+}
+{\endlist}
+
+
+% ==========
+% = Tables =
+% ==========
+
+\usepackage{longtable}
+\usepackage{supertabular,booktabs}
+$if(norule)$
+\setlength\heavyrulewidth{$norule$}
+\setlength\lightrulewidth{$norule$}
+$endif$
+
+% ============
+% = Graphics =
+% ============
+
+\usepackage[justification=centering,font={scriptsize},skip=1em]{caption}
+% Sizes: scriptsize, footnotesize, small, normalsize, large, Large
+\captionsetup[figure]{labelformat=empty,width=.8\linewidth}
+
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
+
+
+% =============
+% = Footnotes = 
+% =============
+
+\usepackage[hang,flushmargin]{footmisc} 
+
+$if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
+
+
+% ==============
+% = Hyperlinks =
+% ==============
+
+\definecolor{mylinks}{HTML}{3498DB} 
+\definecolor{mycites}{HTML}{3498DB} 
+\definecolor{myurls}{HTML}{3498DB} 
+
+\usepackage[unicode=true]{hyperref}
+$if(plainlinks)$
+\hypersetup{colorlinks=false}
+$else$
+\hypersetup{colorlinks=true, linkcolor=mylinks, citecolor=mycites, urlcolor=myurls,}
+$endif$
+
+% =============================================================================
+% ============================== BEGIN DOCUMENT =============================== 
+% =============================================================================
+
+\color{myblack}
+\begin{document}\thispagestyle{empty}
+
+
+\begin{flushleft}
+
+\rmfamily\normalsize{$course$} \\ 
+\vspace{1mm}
+\rmfamily\footnotesize{$affiliation$}  \\
+\rmfamily\footnotesize{$author$} \\
+\vspace{.5cm}
+\titlefont\LARGE{$title$} \\
+$if(subtitle)$
+\vspace{.2cm}
+\titlefont\Large{$subtitle$} 
+$endif$
+\end{flushleft}
+
+\singlespacing
+
+% \needspace{1\baselineskip}
+
+$if(columns)$
+\setlength{\columnsep}{5em}
+\begin{multicols*}{2}
+$body$
+\end{multicols*}
+
+$else$
+$body$
+$endif$
+
+\end{document}

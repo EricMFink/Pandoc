@@ -3,7 +3,7 @@ date: Fall 2020
 
 course: Civil Procedure 
 title: Final Exam 
-subtitle: # delete if none 
+subtitle: Grading Key 
 path: 
 categories: exams 
 
@@ -13,6 +13,6 @@ affiliation: 'Elon Law School'
 output:
   pdf_document:
     latex_engine: xelatex
-    template: exam.tex
+    template: grading.tex
 
 ---
