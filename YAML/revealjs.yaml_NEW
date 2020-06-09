@@ -1,0 +1,14 @@
+---
+title: Presentation Title 
+author: Eric M. Fink
+institution: Elon Law School 
+
+output: 
+  custom_document:
+    path: ../SHORT_TITLE.revealjs.html
+    pandoc_args: ["-t", "revealjs", "-s"]
+    theme: emf-moon
+    incremental: true
+    center: true
+    
+---
