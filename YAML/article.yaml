@@ -28,9 +28,15 @@ draft: true # delete for non-draft formatting & fonts
 bibliography: '~/Documents/Eric/GitHub/Bibliography/bibtex/Juris-M.yaml'
 csl: '~/Documents/Eric/GitHub/Bibliography/CSL-styles/jm-indigobook-law-review.csl'
 
+# For PDF output:
 output: 
   pdf_document:
     latex_engine: xelatex
     template: article.tex
+
+# For Word output:
+output:     
+  word_document:
+    reference_docx: article-draft.docx # article.docx 
 
 ---

@@ -69,8 +69,8 @@ $endif$
 $if(institution)$
   <p class="institution">$institution$</p>
 $endif$
-$if(date)$
-  <p class="date">$date$</p>
+$if(presented)$
+  <p class="date">$presented$</p>
 $endif$
 </section>
 $endif$
@@ -84,7 +84,7 @@ $body$
     </div>
   </div>
 
-  <script src="https://www.emfink.net/ElonLaw/reveal.js/js/reveal.js"></script>
+  <script src="https://www.emfink.net/Presentations/reveal.js/js/reveal.js"></script>
 
   <script>
 
