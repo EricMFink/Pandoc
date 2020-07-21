@@ -55,7 +55,7 @@ $else$
 $endif$
 
 \usepackage{fontawesome}
-\newfontfamily{\FA}{[FontAwesome.otf]}
+%\newfontfamily{\FA}{[FontAwesome.otf]}
 
 % ===========
 % = Spacing =
@@ -117,11 +117,11 @@ $endif$
 \usepackage[largestsep]{titlesec}  
 
 % \titlespacing*{\LEVEL}{LEFT}{BEFORE}{AFTER}
-\titlespacing*{\section}{0em}{2em}{0em}
-\titlespacing*{\subsection}{0em}{1em}{0em}
-\titlespacing*{\subsubsection}{0em}{0.5em}{-0.3em}
-\titlespacing*{\paragraph}{0em}{-0.3em}{-0.3em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
+\titlespacing*{\section}{0em}{2em}{0.5em}
+\titlespacing*{\subsection}{0em}{0.5em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1em}{0em}
+\titlespacing*{\paragraph}{0em}{0em}{0em}
+\titlespacing*{\subparagraph}{0em}{1em}{0.5em}
 
 \titleformat{\section}
   {\LARGE\titlefont\raggedright}
@@ -145,7 +145,7 @@ $endif$
   {} 
 
 \titleformat{\subparagraph}
-  {\normalsize\rmfamily\raggedright}
+  {\normalsize\itshape\raggedright}
   {}{0em}
   {} 
 
@@ -182,7 +182,7 @@ $endif$
   \flushright 
   \footnotesize {$phone$} \, \faPhone \\
   {\footnotesize {\href{mailto:$email$}{$email$}} \, \faEnvelope} \\
-  {\footnotesize {\href{http://$url$}{$web$}} \, \faGlobe}
+  {\footnotesize {\href{https://www.$web$}{$web$}} \, \faGlobe}
 \end{minipage}
 
 \vspace{3em}

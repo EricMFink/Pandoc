@@ -215,13 +215,13 @@ $if(draft)$
 \title{$for(title)$\Large\textbf{$title$}$if(subtitle)$:\\ \textbf{$subtitle$} $endif$ $endfor$}
 % = Uncomment next line to adjust spacing between Title and Author = 
 % \vspace{0.5em}
-\author{$for(author)$\normalsize{$author$}\\ \footnotesize{$affiliation$}\\ \footnotesize{$address$}$endfor$}
+\author{$for(author)$\normalsize{$author.name$}\\ \footnotesize{$author.affiliation$}\\ \footnotesize{$author.address$}$endfor$}
 \date{\footnotesize{Draft: \mydate\today}}
 
 $else$
 \setlength{\droptitle}{-3cm}
 \title{\Large\textbf{{$title$}$if(subtitle)$:\\ $subtitle$}$endif$}
-\author{$for(author)$\normalsize{$author$}\thanks{$position$, $affiliation$, $address$. $email$. $thanks$} $sep$ \and $endfor$}
+\author{$for(author)$\normalsize{$author.name$}\thanks{$author.position$, $author.affiliation$, $author.address$. $author.email$. $author.thanks$} $sep$ \and $endfor$}
 \date{}
 $endif$
 
@@ -305,8 +305,8 @@ $if(abstract)$
 $endif$
 
 $if(epigraph)$
-\epigraph{{$for(epigraph)$\itshape{$epigraph$}$endfor$}}%
-{$for(epigraph)${$epigraph-by$}\\ {$epigraph-source$}$endfor$}
+\epigraph{{$for(epigraph)$\itshape{$epigraph.text$}$endfor$}}%
+{$for(epigraph)${$epigraph.by$}\\ {$epigraph.source$}$endfor$}
 $endif$
 
 % =================================

@@ -1,12 +1,17 @@
 ---
-title: Attorney Advertising 
+date: 
+
+title: Presentation Title 
 author: Eric M. Fink
-course: Professional Responsibility
 institution: Elon Law School 
-date: Fall 2020
+
+slug: SHORT_TITLE
+
+revealjs-url: 'https://github.com/LuckyJimJD/reveal.js'
+
 output: 
   custom_document:
-    path: AttorneyAdvertising.revealjs.html
+    path: SHORT_TITLE.revealjs.html
     pandoc_args: ["-t", "revealjs", "-s"]
     theme: emf-moon
     incremental: true

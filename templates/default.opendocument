@@ -11,15 +11,48 @@ $for(header-includes)$
 $endfor$
 <office:body>
 <office:text>
+
 $if(title)$
-<text:p text:style-name="Title">$title$</text:p>
+<text:p text:style-name="Title">$title$$if(subtitle)$: $endif$</text:p>
+$if(subtitle)$
+<text:p text:style-name="Subtitle">$subtitle$</text:p>
 $endif$
+$endif$
+
 $for(author)$
-<text:p text:style-name="Author">$author$</text:p>
-$endfor$
-$if(date)$
-<text:p text:style-name="Date">$date$</text:p>
+<text:p text:style-name="Author">$author.name$</text:p>
+
+$if(author.affiliation)$
+<text:p text:style-name="Affiliation">$author.affiliation$</text:p>
 $endif$
+
+$if(author.email)$
+<text:p text:style-name="Affiliation">$author.email$</text:p>
+$endif$
+
+$endfor$
+
+
+
+$if(date)$
+<text:p text:style-name="Date">Draft: $date$</text:p>
+$endif$
+
+$if(abstract)$
+$for(abstract)$
+<text:p text:style-name="Heading">Abstract:</text:p>
+<text:p text:style-name="Abstract"> $abstract$</text:p>>
+$endfor$
+$endif$
+
+
+$if(epigraph)$
+$for(epigraph)$<text:p text:style-name="Epigraph">$epigraph.text$</text:p>
+<text:p text:style-name="Epigraph Author">$epigraph.by$</text:p>
+<text:p text:style-name="Epigraph Source">$epigraph.source$</text:p>
+$endfor$
+$endif$
+
 $for(include-before)$
 $include-before$
 $endfor$

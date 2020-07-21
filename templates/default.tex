@@ -338,6 +338,25 @@ $if(norule)$
 \setlength\lightrulewidth{$norule$}
 $endif$
 
+
+$if(tableflush)$
+\usepackage{floatrow}
+
+\floatsetup[table]{style=ruled,
+  objectset=raggedright,
+  margins=raggedright,
+  midcode=captionskip,
+  captionskip=10pt}
+$endif$
+
+\floatsetup[figure]{%
+  objectset=raggedright,
+  margins=raggedright,
+  midcode=captionskip,
+  captionskip=10pt}
+
+
+
 % ============
 % = Graphics =
 % ============
@@ -359,6 +378,17 @@ $endif$
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][]{%
   \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
+  
+$if(figureflush)$
+\usepackage{floatrow}
+
+\floatsetup[figure]{%
+  objectset=raggedright,
+  margins=raggedright,
+  midcode=captionskip,
+  captionskip=10pt}
+$endif$
+
 
 % \usepackage{graphicx,grffile}
 % \makeatletter
@@ -475,6 +505,7 @@ $if(columns)$
 \begin{multicols*}{2}
 $body$
 \end{multicols*}
+
 
 $else$
 $body$

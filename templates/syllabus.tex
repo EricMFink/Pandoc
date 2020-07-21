@@ -116,16 +116,16 @@
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{2em}{1em}
-\titlespacing*{\subsection}{0em}{2em}{0.5em}
+\titlespacing*{\subsection}{0em}{2em}{1em}
 \titlespacing*{\subsubsection}{0em}{1em}{0.5em}
-\titlespacing*{\paragraph}{0em}{1.5em}{.6em}
-\titlespacing*{\subparagraph}{0em}{2em}{2em}
+\titlespacing*{\paragraph}{0em}{1.5em}{.5em}
+\titlespacing*{\subparagraph}{0em}{2em}{3em}
 
 
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
 $else$
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{0}
 $endif$
 
 
@@ -137,13 +137,13 @@ $endif$
   {}
 % H2
 \titleformat{\subsection}[hang]
-  {\large\bfseries\sffamily}
+  {\large\titlefont}
   {\thesubsection}
   {1em}
   {}
 % H3
 \titleformat{\subsubsection}[hang]
-  {\normalsize\bfseries\sffamily}
+  {\normalsize\bfseries\rmfamily}
   {\thesubsubsection}
   {1em}
   {}
@@ -156,7 +156,7 @@ $endif$
 
 % H5
 \titleformat{\subparagraph}[block]
-  {\Large\bfseries\rmfamily}
+  {\large\itshape\rmfamily}
   {}
   {0em}
   {}
@@ -174,7 +174,7 @@ $endif$
 \usepackage{csquotes}
 
 \AtBeginEnvironment{quote}
-  {\itshape\small\list{}{\rightmargin=-1.5em \leftmargin=-1.5em}\item\relax}{\endlist}
+  {\scriptsize\itshape\list{}{\rightmargin=-1.5em \leftmargin=-1.5em}\item\relax}{\endlist}
 
 
 % ============
@@ -274,8 +274,6 @@ $if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
 {\huge\bfseries\titlefont{$course$}} \\
 \vspace{1em}
 
-
-\begin{minipage}[t]{3in} 
 \footnotesize{$affiliation$} \\
 \footnotesize{$term$} \\
 $if(days)$
@@ -284,18 +282,11 @@ $endif$
 $if(room)$
 \footnotesize{$room$} \\ 
 $endif$
-\end{minipage}
-\hfill     
-%\begin{minipage}[t]{0.0in}
-% dummy (needed here)
-%\end{minipage}
-\hfill
-\begin{minipage}[t]{3in}
+\vspace{1em}
 \footnotesize{$author$}  \\
 \footnotesize\texttt{\href{mailto:{$email$}}{$email$}}  \\
 \footnotesize{$phone$}  \\
 \footnotesize{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
-\end{minipage}
 
 \vspace{2em}
 

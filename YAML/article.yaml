@@ -25,8 +25,8 @@ epigraph:
 draft: true # delete for non-draft formatting & fonts
 # lawreview: true # uncomment for law review style headings (I, A, 1, etc.)
 
-bibliography: '~/Documents/Eric/GitHub/Bibliography/bibtex/Juris-M.yaml'
-csl: '~/Documents/Eric/GitHub/Bibliography/CSL-styles/jm-indigobook-law-review.csl'
+# bibliography: '~/Documents/Eric/GitHub/Bibliography/bibtex/Juris-M.yaml'
+# csl: '~/Documents/Eric/GitHub/Bibliography/CSL-styles/jm-indigobook-law-review.csl'
 
 # For PDF output:
 output: 
@@ -34,9 +34,15 @@ output:
     latex_engine: xelatex
     template: article.tex
 
+# For ODT output:
+output:
+  custom_document:
+    path: DataTrespass-Draft.odt
+
 # For Word output:
 output:     
-  word_document:
-    reference_docx: article-draft.docx # article.docx 
+  word_document 
+  
+  # n.b. ODT & Word output require reference.odt or reference.docx in ~/.pandoc folder
 
 ---
