@@ -16,15 +16,15 @@ $endif$
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="$revealjs-url$/dist/reset.css">
-  <link rel="stylesheet" href="$revealjs-url$/dist/reveal.css">
+  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/reveal.css">
   <style>
     $styles.html$
   </style>
 $if(theme)$
-  <link rel="stylesheet" href="$revealjs-url$/dist/theme/$theme$.css" id="theme">
+  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/theme/$theme$.css" id="theme">
 $else$
-  <link rel="stylesheet" href="$revealjs-url$/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/theme/black.css" id="theme">
 $endif$
 $for(css)$
   <link rel="stylesheet" href="$css$"/>
@@ -55,19 +55,19 @@ $if(title)$
 <section id="$idprefix$title-slide"$for(title-slide-attributes)$ $it.key$="$it.value$"$endfor$>
   <h1 class="title">$title$</h1>
 $if(subtitle)$
-  <p class="subtitle">$subtitle$</p>
+  <h1 class="subtitle">$subtitle$</h1>
 $endif$
 $for(author)$
-  <p class="author">$author$</p>
+  <h3 class="author">$author$</h3>
 $endfor$
 $if(course)$
-  <p class="course">$course$</p>
+  <h3 class="course">$course$</h3>
 $endif$
 $if(institution)$
-  <p class="institution">$institution$</p>
+  <h3 class="institution">$institution$</h3>
 $endif$
 $if(presented)$
-  <p class="date">$presented$</p>
+  <h4 class="date">$presented$</h4>
 $endif$
 </section>
 $endif$
@@ -81,14 +81,14 @@ $body$
     </div>
   </div>
 
-  <script src="$revealjs-url$/dist/reveal.js"></script>
+  <script src="https://www.emfink.net/Presentations/revealjs/dist/reveal.js"></script>
 
   // reveal.js plugins
-  <script src="$revealjs-url$/plugin/notes/notes.js"></script>
-  <script src="$revealjs-url$/plugin/search/search.js"></script>
-  <script src="$revealjs-url$/plugin/zoom/zoom.js"></script>
+  <script src="https://www.emfink.net/Presentations/revealjs/plugin/notes/notes.js"></script>
+  <script src="https://www.emfink.net/Presentations/revealjs/plugin/search/search.js"></script>
+  <script src="https://www.emfink.net/Presentations/revealjs/plugin/zoom/zoom.js"></script>
 $if(mathjax)$
-  <script src="$revealjs-url$/plugin/math/math.js"></script>
+  <script src="https://www.emfink.net/Presentations/revealjs/plugin/math/math.js"></script>
 $endif$
 
   <script>
