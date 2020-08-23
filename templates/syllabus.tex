@@ -137,7 +137,7 @@ $endif$
   {}
 % H2
 \titleformat{\subsection}[hang]
-  {\large\titlefont}
+  {\normalsize\titlefont}
   {\thesubsection}
   {1em}
   {}
@@ -149,14 +149,14 @@ $endif$
   {}
 % H4
 \titleformat{\paragraph}[block]
-  {\large\itshape\rmfamily}
+  {\normalsize\itshape\rmfamily}
   {}
   {0em}
   {}
 
 % H5
 \titleformat{\subparagraph}[block]
-  {\large\itshape\rmfamily}
+  {\normalsize\rmfamily}
   {}
   {0em}
   {}
@@ -173,8 +173,16 @@ $endif$
 
 \usepackage{csquotes}
 
-\AtBeginEnvironment{quote}
-  {\scriptsize\itshape\list{}{\rightmargin=-1.5em \leftmargin=-1.5em}\item\relax}{\endlist}
+\AtBeginEnvironment{quote}{\scriptsize} 
+
+\renewenvironment{quote}{%
+   \list{}{%
+     \leftmargin2em   % this is the adjusting screw
+     \rightmargin\leftmargin\parsep 1em }
+   \item\relax
+}
+{\endlist}
+
 
 
 % ============

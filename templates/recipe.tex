@@ -8,7 +8,7 @@
 \usepackage[english]{babel}  
 \usepackage[ddmmyyyy]{datetime}
 \usepackage{currfile}
-\usepackage{multicol}
+% \usepackage{multicol}
 \usepackage{needspace}
 \usepackage[defaultlines=4,all]{nowidow}
 
@@ -38,7 +38,7 @@
 % = Spacing =
 % ===========
 
-\usepackage[landscape,top=.3in,bottom=.3in,left=.5in,right=.5in]{geometry}
+\usepackage[top=.5in,bottom=.5in,left=1.25in,right=1.25in]{geometry}
 \raggedbottom
 
 \usepackage[bottom]{footmisc}
@@ -89,10 +89,10 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhead[]{}
-% \fancyhead[C]{\textsc{$title$}}
-% \fancyhead[L]{\textsc{}}
-% \fancyhead[R]{\textsc{}}
+% \fancyhead[]{}
+\fancyhf[]{}
+
+\renewcommand{\headrulewidth}{0pt}
 
 % ============
 % = Headings =
@@ -156,32 +156,32 @@
 % = Tables =
 % ==========
 
-\usepackage{longtable}
-\usepackage{supertabular,booktabs}
-$if(norule)$
-\setlength\heavyrulewidth{$norule$}
-\setlength\lightrulewidth{$norule$}
-$endif$
+% \usepackage{longtable}
+% \usepackage{supertabular,booktabs}
+% $if(norule)$
+% \setlength\heavyrulewidth{$norule$}
+% \setlength\lightrulewidth{$norule$}
+% $endif$
 
-\makeatletter
-\let\oldlt\longtable
-\let\endoldlt\endlongtable
-\def\longtable{\@ifnextchar[\longtable@i \longtable@ii}
-\def\longtable@i[#1]{\begin{figure}[t]
-\onecolumn
-\begin{minipage}{0.5\textwidth}
-\oldlt[#1]
-}
-\def\longtable@ii{\begin{figure}[t]
-\onecolumn
-\begin{minipage}{0.5\textwidth}
-\oldlt
-}
-\def\endlongtable{\endoldlt
-\end{minipage}
-\twocolumn
-\end{figure}}
-\makeatother
+% \makeatletter
+% \let\oldlt\longtable
+% \let\endoldlt\endlongtable
+% \def\longtable{\@ifnextchar[\longtable@i \longtable@ii}
+% \def\longtable@i[#1]{\begin{figure}[t]
+% \onecolumn
+% \begin{minipage}{0.5\textwidth}
+% \oldlt[#1]
+% }
+% \def\longtable@ii{\begin{figure}[t]
+% \onecolumn
+% \begin{minipage}{0.5\textwidth}
+% \oldlt
+% }
+% \def\endlongtable{\endoldlt
+% \end{minipage}
+% \twocolumn
+% \end{figure}}
+% \makeatother
 
 
 % ============
@@ -228,10 +228,6 @@ $endif$
 
 % \needspace{2\baselineskip}
 
-\setlength{\columnsep}{1in}
-\begin{multicols*}{2}
 $body$
-\end{multicols*}
-
 
 \end{document}
