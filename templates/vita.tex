@@ -55,7 +55,7 @@ $else$
 $endif$
 
 \usepackage{fontawesome}
-%\newfontfamily{\FA}{[FontAwesome.otf]}
+% \newfontfamily{\FA}{FontAwesome}
 
 % ===========
 % = Spacing =
@@ -88,7 +88,7 @@ $endif$
 
 \setlist[itemize]{leftmargin=1.2em, labelsep=0.3em, itemsep=0em, topsep=0em, parsep=0em}
 
-\providecommand{\tightlist}{\setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0em}\setlength{\parskip}{0.3em}\setlength{\itemindent}{0em}}
 
 \usepackage[hang,flushmargin]{footmisc} 
 
@@ -120,11 +120,11 @@ $endif$
 \titlespacing*{\section}{0em}{2em}{0.5em}
 \titlespacing*{\subsection}{0em}{0.5em}{0.5em}
 \titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{0em}{0em}
-\titlespacing*{\subparagraph}{0em}{1em}{0.5em}
+\titlespacing*{\paragraph}{0em}{0.5em}{0.5em}
+\titlespacing*{\subparagraph}{0em}{1.5em}{0.75em}
 
 \titleformat{\section}
-  {\LARGE\titlefont\raggedright}
+  {\Large\titlefont\raggedright}
   {}{0em}
   {}
   [\titlerule]
@@ -140,12 +140,12 @@ $endif$
   {}
 
 \titleformat{\paragraph}
-  {\normalsize\itshape\raggedright}
+  {\large\itshape\raggedright}
   {}{0em}
   {} 
 
 \titleformat{\subparagraph}
-  {\normalsize\itshape\raggedright}
+  {\large\bfseries\raggedright}
   {}{0em}
   {} 
 
@@ -187,7 +187,7 @@ $endif$
 
 \vspace{3em}
 
-\noindent{\Huge{$author$}}
+\noindent{\huge{$author$}}
 \reversemarginpar
 
 \vspace{1em}

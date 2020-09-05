@@ -16,15 +16,15 @@ $endif$
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="https://www.emfink.net/Reveal/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="https://www.emfink.net/Reveal/revealjs/dist/reveal.css">
   <style>
     $styles.html$
   </style>
 $if(theme)$
-  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/theme/$theme$.css" id="theme">
+  <link rel="stylesheet" href="https://www.emfink.net/Reveal/revealjs/dist/theme/$theme$.css" id="theme">
 $else$
-  <link rel="stylesheet" href="https://www.emfink.net/Presentations/revealjs/dist/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://www.emfink.net/Reveal/revealjs/dist/theme/moon.css" id="theme">
 $endif$
 $for(css)$
   <link rel="stylesheet" href="$css$"/>
@@ -34,7 +34,7 @@ $endfor$
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://www.emfink.net/Presentations/reveal.js/css/print/pdf.css' : 'https://www.emfink.net/Presentations/reveal.js/css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://www.emfink.net/Reveal/reveal.js/css/print/pdf.css' : 'https://www.emfink.net/Reveal/reveal.js/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
 $if(math)$
@@ -81,14 +81,14 @@ $body$
     </div>
   </div>
 
-  <script src="https://www.emfink.net/Presentations/revealjs/dist/reveal.js"></script>
+  <script src="https://www.emfink.net/Reveal/revealjs/dist/reveal.js"></script>
 
   // reveal.js plugins
-  <script src="https://www.emfink.net/Presentations/revealjs/plugin/notes/notes.js"></script>
-  <script src="https://www.emfink.net/Presentations/revealjs/plugin/search/search.js"></script>
-  <script src="https://www.emfink.net/Presentations/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="https://www.emfink.net/Reveal/revealjs/plugin/notes/notes.js"></script>
+  <script src="https://www.emfink.net/Reveal/revealjs/plugin/search/search.js"></script>
+  <script src="https://www.emfink.net/Reveal/revealjs/plugin/zoom/zoom.js"></script>
 $if(mathjax)$
-  <script src="https://www.emfink.net/Presentations/revealjs/plugin/math/math.js"></script>
+  <script src="https://www.emfink.net/Reveal/revealjs/plugin/math/math.js"></script>
 $endif$
 
   <script>
