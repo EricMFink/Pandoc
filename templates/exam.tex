@@ -12,7 +12,7 @@
 
 \documentclass[letterpaper,10pt,twoside]{article}
 
-\usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
+\usepackage[top=1in,bottom=.75in,left=1.25in,right=1.25in]{geometry}
 
 \raggedbottom
 
@@ -39,32 +39,14 @@
 
 
 \usepackage{fontspec}
-$if(mainfont)$
-\setmainfont{$mainfont$}[Mapping={tex-text},SmallCapsFont={$scfont$}]
-$else$
 \setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
-$endif$
-
-$if(sansfont)$
-\setsansfont{$sansfont$}[Mapping=tex-text]
-$else$
 \setsansfont{Proza Libre}[Mapping=tex-text]
-$endif$
-
-$if(monofont)$
-\setmonofont{$monofont$}[Mapping=tex-text,Scale=0.8]
-$else$
 \setmonofont{Cousine}[Mapping=tex-text,Scale=0.8]
-$endif$
 
-$if(titlefont)$
-\newfontface\titlefont{$titlefont$}[Colour=mydarkred]
-$else$
 \newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
-$endif$
 
 \usepackage{textcomp}
-\usepackage{fontawesome}
+% \usepackage{fontawesome}
 % \newfontfamily{\FA}{[FontAwesome.otf]}
 
 % ===========
@@ -133,7 +115,7 @@ $endif$
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\rmfamily}
+  {\large\bfseries\centering\rmfamily}
   {\thesubsubsection}
   {1em}
   {}
@@ -180,10 +162,12 @@ $endif$
 
 \usepackage{csquotes}
 
+\AtBeginEnvironment{quote}{\setlength{\parskip}{0em}} 
+
 \renewenvironment{quote}{%
    \list{}{%
      \leftmargin2em   % this is the adjusting screw
-     \rightmargin\leftmargin\parsep 0.5em }
+     \rightmargin\leftmargin\parsep .5em }
    \item\relax
 }
 {\endlist}

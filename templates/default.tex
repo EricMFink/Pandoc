@@ -34,7 +34,11 @@ $endif$
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
+$if(notes)$
+\usepackage[top=.75in,bottom=1in,left=.5in,right=.5in]{geometry}
+$else$
 \usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
+$endif$
 $endif$
 
 \usepackage{multicol}
@@ -89,7 +93,10 @@ $else$
 $endif$
 
 \usepackage{textcomp}
-\usepackage{fontawesome}
+% \usepackage{fontawesome}
+% \newfontfamily{\FAFR}{Font Awesome 5 Free Regular}
+% \newfontfamily{\FAFS}{Font Awesome 5 Free Solid}
+% \newfontfamily{\FAB}{Font Awesome 5 Brands Regular}
 % \newfontfamily{\FA}{FontAwesome}
 
 % ===========
@@ -115,7 +122,11 @@ $endif$
 $if(parskip)$
 \setlength{\parskip}{$parskip$}
 $else$
+$if(notes)$
+\setlength{\parskip}{.5em}
+$else$
 \setlength{\parskip}{1em}
+$endif$
 $endif$
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
@@ -196,14 +207,10 @@ $else$
 \titlespacing*{\subparagraph}{0em}{0em}{.5em}
 $endif$
 
-$if(notes)$
-\setcounter{secnumdepth}{2}
-$else$
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
 $else$
 \setcounter{secnumdepth}{0}
-$endif$
 $endif$
 
 % \titleformat{hcommand}[hshape]
@@ -230,7 +237,7 @@ $if(notes)$
   {1em}
   {}{}
 \titleformat{\paragraph}[hang]
-  {\large\bfseries\rmfamily}
+  {\small\bfseries\sffamily}
   {\theparagraph}
   {1em}
   {}{}
@@ -291,8 +298,14 @@ $endif$
 
 %\setlist{nosep}
 
+$if(notes)$
+\setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
+\setlist[enumerate]{leftmargin=*,topsep=0.5em,itemsep=0.5em,partopsep=0em,parsep=0em,align=left}
+$else$
 \setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
 \setlist[enumerate]{topsep=0.5em,itemsep=0.5em,partopsep=0em,parsep=0em,align=left}
+$endif$
+
 
 % \providecommand{\tightlist}{%
 % \setlength{\itemsep}{0em}\setlength{\parskip}{0em}\setlength{\itemindent}{0em}}
@@ -309,7 +322,7 @@ $endif$
 \renewenvironment{quote}{%
    \list{}{%
      \leftmargin2em   % this is the adjusting screw
-     \rightmargin\leftmargin\parsep 0.5em }
+     \rightmargin\leftmargin\parsep 0mm }
    \item\relax
 }
 {\endlist}
@@ -339,21 +352,21 @@ $if(norule)$
 $endif$
 
 
-$if(tableflush)$
-\usepackage{floatrow}
-
-\floatsetup[table]{style=ruled,
-  objectset=raggedright,
-  margins=raggedright,
-  midcode=captionskip,
-  captionskip=10pt}
-$endif$
-
-\floatsetup[figure]{%
-  objectset=raggedright,
-  margins=raggedright,
-  midcode=captionskip,
-  captionskip=10pt}
+% $if(tableflush)$
+% \usepackage{floatrow}
+% 
+% \floatsetup[table]{style=ruled,
+%   objectset=raggedright,
+%   margins=raggedright,
+%   midcode=captionskip,
+%   captionskip=10pt}
+% $endif$
+% 
+% \floatsetup[figure]{%
+%   objectset=raggedright,
+%   margins=raggedright,
+%   midcode=captionskip,
+%   captionskip=10pt}
 
 
 
@@ -379,15 +392,15 @@ $endif$
 \renewcommand{\includegraphics}[2][]{%
   \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
   
-$if(figureflush)$
-\usepackage{floatrow}
-
-\floatsetup[figure]{%
-  objectset=raggedright,
-  margins=raggedright,
-  midcode=captionskip,
-  captionskip=10pt}
-$endif$
+% $if(figureflush)$
+% \usepackage{floatrow}
+% 
+% \floatsetup[figure]{%
+%   objectset=raggedright,
+%   margins=raggedright,
+%   midcode=captionskip,
+%   captionskip=10pt}
+% $endif$
 
 
 % \usepackage{graphicx,grffile}
@@ -452,17 +465,16 @@ $if(notitle)$
 $else$
 $if(notes)$
 \begin{flushleft}
-\rmfamily\small{$course$} \\ 
-\rmfamily\small{$author$} \\
-\rmfamily\small{$affiliation$}  \\
-\rmfamily\small{$term$} \\
-\vspace{4em}
-\titlefont\LARGE{$title$} \\
+\titlefont\small{$title$} \\ 
+$if(author)$\rmfamily\small{$author$} \\$endif$
+$if(affiliation)$\rmfamily\small{$affiliation$}  \\$endif$
+$if(date)$\rmfamily\small{$date$} \\$endif$
+\vspace{2em}
 $if(subtitle)$
-\vspace{.5em}
 \titlefont\large{$subtitle$} \\
 $endif$
 \end{flushleft}
+\vspace{-.5cm}
 
 
 $else$
