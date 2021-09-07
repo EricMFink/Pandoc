@@ -66,7 +66,7 @@ $endif$
 
 \usepackage{textcomp}
 \usepackage{fontawesome}
-\newfontfamily{\FA}{[FontAwesome.otf]}
+% \newfontfamily{\FA}{[FontAwesome.otf]}
 
 
 % ===========
@@ -125,7 +125,6 @@ $if(secnumdepth)$
 $else$
 \setcounter{secnumdepth}{0}
 $endif$
-
 
 
 % H1
@@ -204,11 +203,11 @@ $endif$
 \chapterstyle{article-4} 
 
 \begin{flushleft}
-\titlefont\normalsize{$title$} \\ 
+\titlefont\normalsize{$title$} \
 \vspace{.2cm}
-\rmfamily\footnotesize{$author$} \\
-\rmfamily\footnotesize{$affiliation$}  \\
-\rmfamily\footnotesize{$date$} \\
+\rmfamily\footnotesize{$author$} \
+\rmfamily\footnotesize{$affiliation$}  \
+\rmfamily\footnotesize{$date$} \
 $if(subtitle)$
 \vspace{.6cm}
 \titlefont\LARGE{$subtitle$} 

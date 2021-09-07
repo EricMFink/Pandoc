@@ -21,38 +21,19 @@ $endif$
 % = Colors & Fonts =
 % ==================
 
-\usepackage{xcolor}
+\usepackage[dvipsnames,svgnames,x11names,hyperref]{xcolor}
 \definecolor{myblack}{HTML}{231F20} 
 \definecolor{mybrightred}{HTML}{EC1F27} 
 \definecolor{mydarkred}{HTML}{b03a2e} 
 \definecolor{mydarkblue}{HTML}{154360}
 \definecolor{mylightblue}{HTML}{3498DB} 
 
-
 \usepackage{fontspec}
-$if(mainfont)$
-\setmainfont{$mainfont$}[Colour=myblack,Mapping={tex-text},SmallCapsFont={$scfont$}]
-$else$
-\setmainfont{Cormorant Garamond}[Colour=myblack,Mapping={tex-text},SmallCapsFont={Cormorant SC}]
-$endif$
+\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+\setsansfont{Proza Libre}[Mapping=tex-text]
+\setmonofont{Cousine}[Mapping=tex-text,Scale=1.0]
 
-$if(sansfont)$
-\setsansfont{$sansfont$}[Colour=myblack,Mapping=tex-text]
-$else$
-\setsansfont{Proza Libre}[Colour=myblack,Mapping=tex-text]
-$endif$
-
-$if(monofont)$
-\setmonofont{$monofont$}[Colour=myblack,Mapping=tex-text,Scale=1.0]
-$else$
-\setmonofont{Cousine}[Colour=myblack,Mapping=tex-text,Scale=1.0]
-$endif$
-
-$if(titlefont)$
-\newfontface\titlefont{$titlefont$}[Colour=$titlecolor$]
-$else$
 \newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
-$endif$
 
 \usepackage{fontawesome}
 % \newfontfamily{\FA}{FontAwesome}
@@ -74,17 +55,6 @@ $endif$
 \setlength{\parskip}{0.5em}
 
 \usepackage{enumitem}
-
-% initially, use dots for all levels
-% \setlist[itemize]{label=\tiny\faCircle}
-
-% customize levels
-% \setlist[itemize,1]{label=\tiny\faCircle}
-% \setlist[itemize,2]{label=\tiny\faCircleO}
-% \setlist[itemize,3]{label=\tiny\faChevronRight}
-% \setlist[itemize,4]{label=\tiny\faCaretRight} 
-% \setlist[itemize,5]{label=\tiny\faAngleRight} 
-% \setlist[itemize,6]{label=\tiny\faAngleDoubleRight} 
 
 \setlist[itemize]{leftmargin=1.2em, labelsep=0.3em, itemsep=0em, topsep=0em, parsep=0em}
 
@@ -156,9 +126,7 @@ $endif$
 % = Hyperlinks =
 % ==============
 
-\usepackage{hyperref}
-\hypersetup{colorlinks=true,allcolors=mydarkblue}
-
+\usepackage[colorlinks=true,linkcolor=mydarkred,citecolor=mydarkred,urlcolor=mydarkblue]{hyperref}
 
 
 % ==============================================================================

@@ -291,10 +291,31 @@ $if(room)$
 \footnotesize{$room$} \\ 
 $endif$
 \vspace{1em}
+\vspace{0.5em}
 \footnotesize{$author$}  \\
 \footnotesize\texttt{\href{mailto:{$email$}}{$email$}}  \\
 \footnotesize{$phone$}  \\
 \footnotesize{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
+
+$if(ta)$
+\vspace{1em}
+\footnotesize{\itshape{Teaching Assistants:}}  \\
+\vspace{0.5em}
+\footnotesize{$ta$}  \\
+\footnotesize\texttt{\href{mailto:{$ta-email$}}{$ta-email$}}  \\
+$endif$
+
+$if(ta2)$
+\vspace{0.5em}
+\footnotesize{$ta2$}  \\
+\footnotesize\texttt{\href{mailto:{$ta2-email$}}{$ta2-email$}}  \\
+$endif$
+
+$if(ta3)$
+\vspace{0.5em}
+\footnotesize{$ta3$}  \\
+\footnotesize\texttt{\href{mailto:{$ta3-email$}}{$ta3-email$}}  \\
+$endif$
 
 \vspace{2em}
 
