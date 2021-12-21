@@ -14,7 +14,7 @@ $if(oneside)$
 $if(fontsize)$
 \documentclass[letterpaper,$fontsize$,oneside]{article}
 $else$
-\documentclass[letterpaper,11pt,oneside]{article}
+\documentclass[letterpaper,12pt,oneside]{article}
 $endif$
 $else$
 $if(fontsize)$
@@ -182,20 +182,11 @@ $endif$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
-$if(notes)$
-\titlespacing*{\section}{0em}{2em}{.5em}
-\titlespacing*{\subsection}{0em}{1.5em}{0em}
-\titlespacing*{\subsubsection}{0em}{.5em}{0em}
-\titlespacing*{\paragraph}{0em}{1em}{0em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
-
-$else$
 \titlespacing*{\section}{0em}{2em}{.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{.5em}
 \titlespacing*{\subsubsection}{0em}{1em}{.5em}
-\titlespacing*{\paragraph}{0em}{0.5em}{.5em}
-\titlespacing*{\subparagraph}{0em}{0em}{.5em}
-$endif$
+\titlespacing*{\paragraph}{0em}{0.5em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0em}
 
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
@@ -209,48 +200,18 @@ $endif$
 %   {hsep}
 %   {hbefore-code}[hafter-code]
 
-$if(notes)$
-
 \titleformat{\section}[hang]
-  {\Large\bfseries\sffamily}
+  {\LARGE\titlefont}
   {\thesection}
   {1em}
   {}{}
 \titleformat{\subsection}[hang]
-  {\large\bfseries\sffamily}
+  {\LARGE\titlefont}
   {\thesubsection}
   {1em}
   {}{}
 \titleformat{\subsubsection}[hang]
-  {\normalsize\bfseries\sffamily}
-  {\thesubsubsection}
-  {1em}
-  {}{}
-\titleformat{\paragraph}[hang]
-  {\small\bfseries\sffamily}
-  {\theparagraph}
-  {1em}
-  {}{}
-\titleformat{\subparagraph}[hang]
-  {\normalsize\itshape\rmfamily}
-  {\thesubparagraph}
-  {1em}
-  {}
-
-$else$
-
-\titleformat{\section}[hang]
   {\Large\bfseries\sffamily}
-  {\thesection}
-  {1em}
-  {}
-\titleformat{\subsection}[hang]
-  {\large\bfseries\sffamily}
-  {\thesubsection}
-  {1em}
-  {}{}
-\titleformat{\subsubsection}[hang]
-  {\normalsize\bfseries\sffamily}
   {\thesubsubsection}
   {1em}
   {}{}
@@ -264,8 +225,7 @@ $else$
   {\thesubparagraph}
   {1em}
   {}{}
-  
-$endif$
+
 
 % =========
 % = Lists =
@@ -453,27 +413,6 @@ $endif$
 $if(notitle)$
 
 $else$
-$if(notes)$
-\begin{flushleft}
-\titlefont\normalsize{$title$} \\ 
-\vspace{.2cm}
-$if(author)$
-\rmfamily\small{$author$} \\
-$endif$
-$if(affiliation)$
-\rmfamily\small{$affiliation$}  \\
-$endif$
-$if(date)$
-\rmfamily\small{$date$} \\
-$endif$
-\vspace{2em}
-$if(subtitle)$
-\titlefont\large{$subtitle$} \\
-$endif$
-\end{flushleft}
-\vspace{-.5cm}
-
-$else$
 \begin{flushleft}
 \titlefont\LARGE{$title$} \\ 
 \vspace{.2cm}
@@ -482,19 +421,17 @@ $if(subtitle)$
 $endif$
 $if(author)$
 \vspace{.4cm}
-\rmfamily\Large{$author$} \\
+\rmfamily\large{$author$} \\
 $endif$
 $if(affiliation)$
-\rmfamily\Large{$affiliation$}  \\
+\rmfamily\large{$affiliation$}  \\
 $endif$
 $if(date)$
-\vspace{.2cm}
-\rmfamily\normalsize{$date$} \\
+\rmfamily\large{$date$} \\
 $endif$
 \end{flushleft}
 \vspace{-.5cm}
 
-$endif$
 $endif$
 
 
