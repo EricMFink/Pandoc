@@ -121,6 +121,10 @@ $endif$
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
+\let\OldRule\rule
+\renewcommand{\rule}[2]{\OldRule{\linewidth}{#2}}
+
+
 % =======================
 % = Headers and Footers = 
 % =======================
@@ -153,24 +157,24 @@ $else$
 $endif$
 
 $if(oneside)$
-\fancyhead[L]{\textsc{$date$}}
-\fancyhead[R]{\textsc{\thepage}}
-\fancyhead[C]{\textsc{$title$}}
+\fancyhead[L]{\small{$date$}}
+\fancyhead[R]{\small{\thepage}}
+\fancyhead[C]{\small{$title$}}
 
 $else$
 $if(subtitle)$
-\fancyhead[CE]{\textsc{$title$}}
-\fancyhead[CO]{\textsc{$subtitle$}}
-\fancyhead[LE]{\textsc{\thepage}}
-\fancyhead[LO]{\textsc{$date$}}
-\fancyhead[RE]{\textsc{$author$}}
-\fancyhead[RO]{\textsc{\thepage}}
+\fancyhead[CE]{\small{$title$}}
+\fancyhead[CO]{\small{$subtitle$}}
+\fancyhead[LE]{\small{\thepage}}
+\fancyhead[LO]{\small{$date$}}
+\fancyhead[RE]{\small{$author$}}
+\fancyhead[RO]{\small{\thepage}}
 $else$
-\fancyhead[C]{\textsc{$title$}}
-\fancyhead[LE]{\textsc{\thepage}}
-\fancyhead[LO]{\textsc{$date$}}
-\fancyhead[RE]{\textsc{$author$}}
-\fancyhead[RO]{\textsc{\thepage}}
+\fancyhead[C]{\small{$title$}}
+\fancyhead[LE]{\small{\thepage}}
+\fancyhead[LO]{\small{$date$}}
+\fancyhead[RE]{\small{$author$}}
+\fancyhead[RO]{\small{\thepage}}
 $endif$
 $endif$
 $endif$
@@ -296,10 +300,11 @@ $endif$
 
 \usepackage{longtable}
 \usepackage{supertabular,booktabs}
-$if(norule)$
-\setlength\heavyrulewidth{$norule$}
-\setlength\lightrulewidth{$norule$}
-$endif$
+
+% $if(norule)$
+% \setlength\heavyrulewidth{$norule$}
+% \setlength\lightrulewidth{$norule$}
+% $endif$
 
 
 % $if(tableflush)$
@@ -414,13 +419,10 @@ $if(notitle)$
 
 $else$
 \begin{flushleft}
-\titlefont\LARGE{$title$} \\ 
-\vspace{.2cm}
-$if(subtitle)$
-\titlefont\Large{$subtitle$} \\
+$if(subject)$
+\rmfamily\large{$subject$} \\
 $endif$
 $if(author)$
-\vspace{.4cm}
 \rmfamily\large{$author$} \\
 $endif$
 $if(affiliation)$
@@ -428,6 +430,11 @@ $if(affiliation)$
 $endif$
 $if(date)$
 \rmfamily\large{$date$} \\
+$endif$
+\vspace{10mm}
+\titlefont\huge{$title$} 
+$if(subtitle)$
+\titlefont\Large{$subtitle$} \\
 $endif$
 \end{flushleft}
 \vspace{-.5cm}
