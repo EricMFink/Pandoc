@@ -205,17 +205,34 @@ $if(graphics)$
 $endif$
 
 
-
 % ==========
 % = Tables =
 % ==========
 
 \usepackage{longtable}
 \usepackage{supertabular,booktabs}
-$if(norule)$
-\setlength\heavyrulewidth{$norule$}
-\setlength\lightrulewidth{$norule$}
-$endif$
+
+% $if(norule)$
+% \setlength\heavyrulewidth{$norule$}
+% \setlength\lightrulewidth{$norule$}
+% $endif$
+
+
+% $if(tableflush)$
+% \usepackage{floatrow}
+% 
+% \floatsetup[table]{style=ruled,
+%   objectset=raggedright,
+%   margins=raggedright,
+%   midcode=captionskip,
+%   captionskip=10pt}
+% $endif$
+% 
+% \floatsetup[figure]{%
+%   objectset=raggedright,
+%   margins=raggedright,
+%   midcode=captionskip,
+%   captionskip=10pt}
 
 
 
