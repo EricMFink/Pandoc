@@ -389,23 +389,23 @@ $else$
 $endif$
 
 $if(citecolor)$
-\definecolor{mycites}{HTML}{$linkcolor$}
+\definecolor{mycites}{HTML}{$citecolor$}
 $else$
-\definecolor{mycites}{HTML}{3498DB} 
+\definecolor{mycites}{HTML}{231F20} 
 $endif$
 
 $if(urlcolor)$
-\definecolor{myurls}{HTML}{$linkcolor$}
+\definecolor{myurls}{HTML}{$urlcolor$}
 $else$
 \definecolor{myurls}{HTML}{3498DB} 
 $endif$
 
 \usepackage[unicode=true]{hyperref}
-$if(plainlinks)$
+% $if(plainlinks)$
 \hypersetup{colorlinks=false}
-$else$
-\hypersetup{colorlinks=true, linkcolor=mylinks, citecolor=mycites, urlcolor=myurls,}
-$endif$
+% $else$
+% \hypersetup{colorlinks=true, linkcolor=mylinks, citecolor=mycites, urlcolor=myurls,}
+% $endif$
 
 % =============================================================================
 % ============================== BEGIN DOCUMENT =============================== 
@@ -432,8 +432,9 @@ $if(date)$
 \rmfamily\large{$date$} \\
 $endif$
 \vspace{10mm}
-\titlefont\huge{$title$} 
+\titlefont\huge{$title$} \\
 $if(subtitle)$
+\vspace{5mm}
 \titlefont\Large{$subtitle$} \\
 $endif$
 \end{flushleft}
