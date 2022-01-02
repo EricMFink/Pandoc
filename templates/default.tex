@@ -149,8 +149,10 @@ $endif$
 \setlist[itemize,5]{label=\diamond}
 \setlist[itemize,6]{label=\textopenbullet}
 
-\setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
+$if(flushlists)$
+ \setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
 \setlist[enumerate]{topsep=0.5em,itemsep=0.5em,partopsep=0em,parsep=0em,align=left}
+% $endif$
 
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -267,7 +269,7 @@ $endif$
 
 \begin{flushleft}
 $if(subject)$
-\rmfamily\ti{$subject$} \\
+\rmfamily\footnotesize{$subject$} \\
 $endif$
 $if(author)$
 \rmfamily\footnotesize{$author$} \\
