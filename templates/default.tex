@@ -172,24 +172,80 @@ $endif$
 }
 {\endlist}
 
+% ==========
+% = Tables =
+% ==========
+
+\usepackage{longtable}
+\usepackage{supertabular,booktabs}
+
+% $if(norule)$
+% \setlength\heavyrulewidth{$norule$}
+% \setlength\lightrulewidth{$norule$}
+% $endif$
+
+
+% $if(tableflush)$
+% \usepackage{floatrow}
+%
+% \floatsetup[table]{style=ruled,
+%   objectset=raggedright,
+%   margins=raggedright,
+%   midcode=captionskip,
+%   captionskip=10pt}
+% $endif$
+%
+% \floatsetup[figure]{%
+%   objectset=raggedright,
+%   margins=raggedright,
+%   midcode=captionskip,
+%   captionskip=10pt}
+
+
+% ==============
+% = Blank Page =
+% ==============
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-2}%
+    \newpage}
+
+
 % ============
 % = Graphics =
 % ============
 
-\usepackage{caption}
-\captionsetup[figure]{labelformat=empty}
 
-$if(graphics)$
-\usepackage{graphicx,grffile}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-$endif$
+\usepackage[justification=centering,font={scriptsize},skip=1em]{caption}
+% Sizes: scriptsize, footnotesize, small, normalsize, large, Large
+\captionsetup[figure]{labelformat=empty,width=.8\linewidth}
+
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \oldincludegraphics[#1,max width=.75\linewidth]{#2}}
+
+
+% =============
+% = Footnotes =
+% =============
+
+\usepackage[hang,flushmargin]{footmisc}
+
+% $if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
 
 
 % ==============
@@ -197,7 +253,7 @@ $endif$
 % ==============
 
 \usepackage{hyperref}
-\hypersetup{colorlinks=true,allcolors=black,}
+\hypersetup{colorlinks=true,linkcolor=mybrightred, citecolor=myblack, urlcolor=mybrightred,}
 \urlstyle{same}
 
 
@@ -205,14 +261,29 @@ $endif$
 % =============================== BEGIN DOCUMENT ===============================
 % ==============================================================================
 
+\color{myblack}
 \begin{document}
 \thispagestyle{empty}
 
 \begin{flushleft}
-
-\titlefont\huge{$title$} \\
+$if(subject)$
+\rmfamily\small{$subject$} \\
+$endif$
+$if(author)$
+\rmfamily\small{$author$} \\
+$endif$
+$if(affiliation)$
+\rmfamily\small{$affiliation$}  \\
+$endif$
+$if(date)$
+\rmfamily\small{$date$} \\
+$endif$
 \vspace{5mm}
-\titlefont\Large{$cite$} ({$published$}) \\
+\titlefont\LARGE{$title$} \\
+$if(subtitle)$
+\vspace{2mm}
+\titlefont\Large{$subtitle$} \\
+$endif$
 \end{flushleft}
 \vspace{-.5cm}
 
