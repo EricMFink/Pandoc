@@ -90,11 +90,11 @@ $endif$
 \usepackage[compact]{titlesec}
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
-\titlespacing*{\section}{0em}{2em}{.5em}
-\titlespacing*{\subsection}{0em}{1.5em}{.5em}
-\titlespacing*{\subsubsection}{0em}{1em}{.5em}
-\titlespacing*{\paragraph}{0em}{0.5em}{0em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
+\titlespacing*{\section}{0em}{1.5em}{.5em}
+\titlespacing*{\subsection}{0em}{0em}{.5em}
+\titlespacing*{\subsubsection}{0em}{0em}{.5em}
+\titlespacing*{\paragraph}{0em}{0em}{.5em}
+\titlespacing*{\subparagraph}{0em}{0em}{.5em}
 
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
@@ -267,30 +267,35 @@ $endif$
 
 \begin{flushleft}
 $if(subject)$
-\rmfamily\small{$subject$} \\
+\rmfamily\ti{$subject$} \\
 $endif$
 $if(author)$
-\rmfamily\small{$author$} \\
+\rmfamily\footnotesize{$author$} \\
 $endif$
 $if(affiliation)$
-\rmfamily\small{$affiliation$}  \\
+\rmfamily\footnotesize{$affiliation$}  \\
 $endif$
 $if(date)$
-\rmfamily\small{$date$} \\
+\rmfamily\footnotesize{$date$} \\
 $endif$
-\vspace{5mm}
+\vspace{10mm}
 \titlefont\LARGE{$title$} \\
 $if(subtitle)$
 \vspace{2mm}
 \titlefont\Large{$subtitle$} \\
 $endif$
 \end{flushleft}
-\vspace{-.5cm}
-
 
 \singlespacing
 
-
+$if(columns)$
+\setlength{\columnsep}{5em}
+\begin{multicols*}{2}
 $body$
+\end{multicols*}
+
+$else$
+$body$
+$endif$
 
 \end{document}
