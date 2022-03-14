@@ -7,7 +7,24 @@
 % = Layout & Spacing =
 % ====================
 
-\documentclass[11pt,letterpaper,twoside]{article}
+\documentclass[
+$if(fontsize)$
+  $fontsize$,
+$else$
+  11pt,
+$endif$
+$if(papersize)$
+  $papersize$paper,
+$else$
+  letterpaper,
+$endif$
+$if(oneside)$
+  oneside
+$else$
+  twoside,
+$endif$
+]{article}
+
 \usepackage[hmarginratio=1:1,top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
 
 \usepackage{setspace}
@@ -91,10 +108,10 @@ $endif$
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 
 \titlespacing*{\section}{0em}{1.5em}{.5em}
-\titlespacing*{\subsection}{0em}{1em}{.5em}
-\titlespacing*{\subsubsection}{0em}{0em}{.5em}
-\titlespacing*{\paragraph}{0em}{0em}{.5em}
-\titlespacing*{\subparagraph}{0em}{0em}{.5em}
+\titlespacing*{\subsection}{0em}{1em}{.2em}
+\titlespacing*{\subsubsection}{0em}{0em}{0em}
+\titlespacing*{\paragraph}{0em}{0em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{0em}
 
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
@@ -150,9 +167,14 @@ $endif$
 \setlist[itemize,6]{label=\textopenbullet}
 
 $if(flushlists)$
- \setlist[itemize]{leftmargin=*,topsep=.2em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
-\setlist[enumerate]{topsep=0.5em,itemsep=0.5em,partopsep=0em,parsep=0em,align=left}
-% $endif$
+ \setlist[itemize]{leftmargin=*,topsep=0em,itemsep=0em,partopsep=0em,parsep=0em,align=left}
+\setlist[enumerate]{topsep=0.2em,itemsep=0.2em,partopsep=0em,parsep=0em,align=left}
+
+$else$
+
+\setlist{topsep=0em,itemsep=0em,partopsep=0em,parsep=0em}
+
+$endif$
 
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -267,6 +289,8 @@ $if(flushlists)$
 \begin{document}
 \thispagestyle{empty}
 
+\singlespacing
+
 \begin{flushleft}
 $if(subject)$
 \rmfamily\footnotesize{$subject$} \\
@@ -280,15 +304,12 @@ $endif$
 $if(date)$
 \rmfamily\footnotesize{$date$} \\
 $endif$
-\vspace{10mm}
-\titlefont\LARGE{$title$} \\
+\vspace{5mm}
+\titlefont\LARGE{$title$} 
 $if(subtitle)$
-\vspace{2mm}
-\titlefont\Large{$subtitle$} \\
+\titlefont\Large{$subtitle$} 
 $endif$
 \end{flushleft}
-
-\singlespacing
 
 $if(columns)$
 \setlength{\columnsep}{5em}
