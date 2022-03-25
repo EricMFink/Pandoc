@@ -3,7 +3,7 @@
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
 %%% 
 
-\documentclass[letterpaper,11pt,twoside,justified,marginals=raggedright]{tufte-book}
+\documentclass[letterpaper,11pt,twoside,marginals=raggedright]{tufte-book}
 
 % ============
 % = Packages =
@@ -13,10 +13,37 @@
 \usepackage{semantic}
 \usepackage{pdflscape}
 \usepackage{framed}
+\usepackage{mdframed}
 \usepackage{ifxetex}
 \usepackage{mdframed}
 \usepackage{titlesec}
 \usepackage[]{ccicons}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage[none]{hyphenat}
+\usepackage{etoolbox}
+\usepackage{relsize}
+\usepackage{fourier}
+\usepackage{fontawesome}
+
+
+% ===================================
+% = Use md inside latex environment =
+% ===================================
+
+\let\Begin\begin
+\let\End\end
+
+% ====================
+% = Layout & Spacing =
+% ====================
+
+\RaggedRight
+\raggedbottom
+\frenchspacing
+
+%\setlength{\parindent}{0em}
+%\setlength{\parskip}{1em}
 
 
 % ==========
@@ -38,17 +65,19 @@
 
 \usepackage{fontspec}
 
-\setmainfont[Numbers=OldStyle, Scale = 1.0, Colour=myblack]{Sabon LT}
-\setsansfont[Colour=myblack]{Lato}
-\setmonofont[Color=myblack]{Cousine}
+\setmainfont[Numbers=OldStyle, Scale = 1.0]{Sabon LT}
+\setsansfont[]{Lato}
+\setmonofont[]{Inconsolata}
 
 \newfontface\titlefont{Lato}[Colour=mydarkred]
 \newfontface\partfont{Sabon LT}[Colour=mydarkred]
 \newfontface\chapterfont{Lato Bold}[Colour=mydarkred]
+\newfontface\sectionfont{Sabon LT Bold}[Colour=mydarkred]
+\newfontface\headfont{Lato}[Colour=mydarkred]
 \newfontface\marginfont{Lato Light}
 
 \setsidenotefont{\rmfamily\scriptsize}
-\setmarginnotefont{\sffamily\tiny}
+\setmarginnotefont{\sffamily\scriptsize}
 \setcaptionfont{\sffamily\scriptsize}
 
 
@@ -88,13 +117,14 @@
 
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}{\usepackage{hyperref}
 \hypersetup{
+  colorlinks=true,
+  linkcolor=mydarkblue,
   pdftitle={$title$},
   pdfauthor={$author$},
-  hidelinks,
   pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{sf}
 
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 
@@ -153,20 +183,57 @@
 
 \usepackage{enumitem}
 \setlistdepth{20}
-\renewlist{itemize}{itemize}{20}
-\renewlist{enumerate}{enumerate}{20}
+%\renewlist{itemize}{itemize}{10}
+%\renewlist{enumerate}{enumerate}{10}
 
 %\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 
 \providecommand{\tightlist}{%
-  \setlength{\itemsep}{1em}\setlength{\parskip}{0pt}}
+  \setlength{\itemsep}{0em}\setlength{\parskip}{.5em}}
 
-\setlist{nosep}
-\setlist{itemindent=2em}
-\setlist[1]{itemindent=1em}
+%\setlist{nosep}
+\setlist[enumerate]{itemindent=2em}
+\setlist[enumerate,1]{itemindent=.5em}
 
-\setlength\intextsep{15mm}
-  
+% \setlength\intextsep{15mm}
+
+
+% ================================
+% = Cases, Statutes, Rules, etc. =
+% ================================
+
+
+% Heading for cases
+
+\newcommand{\case}[3]{\noindent{\headfont\bfseries\Large{#1}}\newline\noindent{\large{#2}}\newline\noindent{\itshape{#3}}}
+
+% Heading for readings
+
+\newcommand{\reading}[3]{\noindent{\headfont\bfseries\Large{#1}}\newline\noindent{#2}\newline\noindent{#3}}
+
+
+
+% Colored textbox for statutes, rules, etc. 
+
+\mdfdefinestyle{lightgrey}{leftmargin=0em,rightmargin=0em,%
+innerleftmargin=2em,innerrightmargin=2em,linecolor=lightgrey,backgroundcolor=lightgrey,font=\footnotesize}
+
+\newenvironment{legalcode}
+    {\noindent\vspace{2em}\Begin{mdframed}[style=lightgrey]
+    }
+    { 
+    \vspace{1em}\End{mdframed}\vspace{2em}
+    }
+
+
+\newenvironment{statute}
+    {\noindent\Begin{adjustwidth}{1em}{1em}\small
+    }
+    { 
+    \End{adjustwidth}\vspace{.5em}\halfsep\vspace{1em}
+    }
+
+
 % ============
 % = Headings =
 % ============
@@ -174,17 +241,12 @@
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\part}{0pt}{0pt}{20pt}
 \titlespacing*{\chapter}{0em}{0em}{.5em}
-\titlespacing*{\section}{0em}{4em}{1.5em}
-\titlespacing*{\subsection}{0em}{2em}{1.5em}
-\titlespacing*{\subsubsection}{0em}{2em}{.5em}
-\titlespacing*{\paragraph}{0em}{2em}{.5em}
-\titlespacing*{\subparagraph}{0em}{2em}{.5em}
+\titlespacing*{\section}{0em}{2em}{1.5em}
+\titlespacing*{\subsection}{0em}{2em}{1em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{.5em}
+\titlespacing*{\paragraph}{0em}{1em}{.5em}
+\titlespacing*{\subparagraph}{0em}{1em}{.5em}
 
-% No page break before chapter
-% \usepackage{etoolbox}
-% \makeatletter
-% \patchcmd{\chapter}{\cleardoublepage}{}{}{}
-% \makeatother
 
 \titleformat{\part}
   [display]
@@ -204,15 +266,15 @@
   
 \titleformat{\section}%
   [block]% shape
-  {\raggedright\normalfont\huge\sffamily}% format applied to label+text
+  {\raggedright\sectionfont\LARGE}% format applied to label+text
   {\thesection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
   []% after the title body
 
-\titleformat{\subsection}%
+\titleformat{\subsection}
   [block]% shape
-  {\raggedright\normalfont\LARGE\itshape}% format applied to label+text
+  {\raggedright\normalfont\Large\itshape}% format applied to label+text
   {\thesubsection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -221,16 +283,17 @@
 \titleclass{\subsubsection}{straight}
 \titleformat{\subsubsection}%
   [block]% shape
-  {\raggedright\normalfont\Large\bfseries}% format applied to label+text
+  {\raggedright\headfont\large}% format applied to label+text
   {\thesubsubsection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
   []% after the title body
   
+% Heading for statutes, rules, etc. 
 \titleclass{\paragraph}{straight}
 \titleformat{\paragraph}%
   [block]% shape
-  {\raggedright\normalfont\large\bfseries}% format applied to label+text
+  {\raggedright\headfont\normalsize}% format applied to label+text
   {\theparagraph}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -244,30 +307,6 @@
   {1em}% horizontal separation between label and title body
   {}% before the title body
   []% after the title body
-  
-
-% =========================
-% = Cases, Statutes, etc. =
-% =========================
-
-\newcommand{\statute}[1]{{\vspace{2em}}\seprule{\vspace{.1em}}{\noindent\Large\bfseries{#1}}}
-
-\newcommand{\frcp}[1]{{\vspace{2em}}\seprule{\vspace{.1em}}{\noindent\Large\bfseries{Fed. R. Civ. P. {#1}}}}
-
-\newcommand{\case}[1]{{\vspace{2em}}\seprule{\vspace{.1em}}{\noindent\LARGE\bfseries{#1}}}
-
-\newcommand{\misc}[1]{{\vspace{2em}}\seprule{\vspace{.1em}}{\noindent\LARGE\bfseries{#1}}}
-
-\newcommand{\casecite}[1]{{\noindent\large{#1}}}
-
-\newcommand{\caseauth}[1]{{\noindent\large{#1}}}
-
-\newcommand{\misccite}[1]{{\noindent\large{#1}}}
-
-\newcommand{\miscauth}[1]{{\noindent\large{#1}}}
-
-\newcommand{\questions}[1]{{\vspace{2em}}\seprule{\vspace{.1em}}{\noindent\Large\itshape{#1}}}
-
 
 % ==========
 % = Tables =
@@ -281,7 +320,7 @@ $if(multirow)$
 $endif$
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
+%\usepackage{etoolbox}
 \makeatletter
 \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
 \makeatother
@@ -289,13 +328,31 @@ $endif$
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
 $endif$
-
   
 % ==========
 % = Quotes =
 % ==========
 
-\usepackage[font=sffamily,indentfirst=false,leftmargin=0.5em]{quoting}
+% Relative size for quote/quotation
+
+\renewenvironment{quotation}
+               {\list{}{\listparindent 1pc%
+                        \itemindent    \listparindent
+                        \rightmargin   \leftmargin
+                        \parsep        \z@ \@plus\p@}%
+                \smaller%
+                \item\relax\noindent\ignorespaces}
+               {\endlist}
+\renewenvironment{quote}
+               {\list{}{\rightmargin\leftmargin}%
+                \smaller%
+                \item\relax}
+               {\endlist}
+
+
+% Blockquotes with Left Bar
+
+\usepackage[indentfirst=false,leftmargin=1em]{quoting}
 
 \renewenvironment{leftbar}[1][\hsize]
 {
@@ -308,23 +365,25 @@ $endif$
 }
 {\endMakeFramed}  
 
-\newenvironment{myquotation}{\setlength{\parindent}{0em}\vspace{2em}\begin{leftbar}\small\quoting}{\endquoting\vspace{1em}\end{leftbar}\vspace{1em}}
+\newenvironment{blockquote}{\setlength{\parindent}{0em}\vspace{2em}\begin{leftbar}\small\quoting}{\endquoting\vspace{1em}\end{leftbar}\vspace{1em}}
 
-%\renewenvironment{quote}%
-%{\begin{leftbar}\begin{quotation}}%
-%{\end{quotation}\end{leftbar}}
+% Epigraph
 
-
+\newcommand{\openepigraph}[3]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
+\noindent\rmfamily\normalsize
+{\itshape{#1}}
+\begin{flushright}\noindent{#2}, {\itshape{#3}} \end{flushright}
+}
   
 % ==============
 % = Separators =
 % ==============
 
-%\newcommand{\colorrule}{%
-%    \textcolor{mydarkred}{\rule{.5\textwidth}{1pt}} %change red to blue, green black whatever.
-%}
+\newcommand{\halfsep}{%
+    \textcolor{mydarkred}{\noindent\hfil\rule{.5\textwidth}{.5pt}\hfil} 
+}
 
-\newcommand*{\seprule}{%
+\newcommand*{\fullsep}{%
   \par
   \begingroup
     \centering
@@ -378,9 +437,13 @@ $endif$
   \vspace{11.5pc}%
   \fontsize{36}{40}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{\thanklesstitle}}%
   \vspace{5pc}%
-  \fontsize{24}{28}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{\plainsubtitle}}%
+  \fontsize{20}{24}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{\plainsubtitle}}%
   \vfill%
+  $if(publisher)$
   \fontsize{14}{16}\selectfont\par\noindent\allcaps{\thanklesspublisher}%
+  $else$
+  \fontsize{14}{16}\selectfont\par\noindent\allcaps{$date$}%
+  $endif$
   \end{fullwidth}%
   }
   \thispagestyle{empty}%
@@ -406,13 +469,13 @@ $endif$
 \usepackage{titletoc,tocloft}
 
 \renewcommand\cfttoctitlefont{\Huge\titlefont}
-\renewcommand\cftpartfont{\huge\bfseries}
-\renewcommand\cftchapfont{\LARGE\bfseries}
-\renewcommand\cftsecfont{\Large\itshape}
+\renewcommand\cftpartfont{\Large\bfseries}
+\renewcommand\cftchapfont{\large\bfseries}
+\renewcommand\cftsecfont{\normalsize\itshape}
 
-\renewcommand\cftpartpagefont{\huge}
-\renewcommand\cftchappagefont{\LARGE}
-\renewcommand\cftsecpagefont{\Large}
+\renewcommand\cftpartpagefont{\Large}
+\renewcommand\cftchappagefont{\large}
+\renewcommand\cftsecpagefont{\normalsize}
 
 \renewcommand\cftpartafterpnum{\vskip1em}
 \renewcommand\cftchapafterpnum{\vskip1em}
@@ -423,22 +486,24 @@ $endif$
 \setlength{\cftsubsecindent}{6em}
 \setlength{\cftsubsubsecindent}{8em}
 
+
 % ===================
 % = Pandoc citeproc =
 % ===================
 
+% Pandoc citation processing
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
-% For Pandoc 2.8 to 2.11
-\newenvironment{cslreferences}%
-  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
-  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
-  {\par}
-% For pandoc 2.11+ using new --citeproc
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
 \newlength{\cslentryspacingunit} % times entry-spacing
 \setlength{\cslentryspacingunit}{\parskip}
+% for Pandoc 2.8 to 2.10.1
+%\newenvironment{cslreferences}%
+%  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+%  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+%  {\par}
+% For Pandoc 2.11+
 \newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
  {% don't indent paragraphs
   \setlength{\parindent}{0pt}
@@ -454,8 +519,12 @@ $endif$
 \usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+
+
+
 
 % =============================================================================
 % ============================== BEGIN DOCUMENT =============================== 
@@ -463,36 +532,61 @@ $endif$
 
 
 \begin{document}
-\bibliographystyle{plainnat}
 
 \frontmatter
 \maketitle
+
+\clearpage
 
 \pagestyle{empty}
 \begingroup
 \parindent 0pt
 \vspace*{\fill}
-\ccbyncsa
 
-\footnotesize
-This work is licensed under a Creative Commons Attribution 4.0 International License.
-
+\begin{small}
+Published in the United States of America by \\
 Eric M. Fink \\
 Elon University School of Law \\
-Greensboro, North Carolina \\
-\texttt{efink@elon.edu}
+Greensboro, North Carolina 27408
+
+\vspace{1em}
+
+\end{small}
+
+{\ccbyncsa} 
+
+\begin{small}
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. \\
+\url{https://creativecommons.org/licenses/by-nc-sa/4.0/}
+
+\vspace{1em}
+
+Source code \\
+\url{https://github.com/EricMFink/CivProCasebook/}
 
 \itshape{Version 1.0, March 2022}
+
+\end{small}
 
 \endgroup
 \clearpage
 
 \setcounter{tocdepth}{1}
 \tableofcontents
+\cleardoublepage
+
+%----------------------------------------------------------------------------------------
+%	EPIGRAPH
+%----------------------------------------------------------------------------------------
+
+\topskip0pt
+\vspace*{\fill}
+\openepigraph{$epigraph$}{\aldine ~$epigraph-author$}{$epigraph-source$}
+\vspace*{\fill}
 
 \mainmatter
 
 $body$
 
-
+\clearpage
 \end{document}

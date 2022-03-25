@@ -166,18 +166,8 @@ $endif$
 \setlist[itemize,5]{label=\diamond}
 \setlist[itemize,6]{label=\textopenbullet}
 
-$if(flushlists)$
- \setlist[itemize]{leftmargin=*,topsep=0em,itemsep=0em,partopsep=0em,parsep=0em,align=left}
-\setlist[enumerate]{topsep=0.2em,itemsep=0.2em,partopsep=0em,parsep=0em,align=left}
-
-$else$
-
-\setlist{topsep=0em,itemsep=0em,partopsep=0em,parsep=0em}
-
-$endif$
-
 \providecommand{\tightlist}{%
-\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\itemsep}{0em}\setlength{\parskip}{.5em}}
 
 
 % ==========
