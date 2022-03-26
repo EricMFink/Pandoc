@@ -54,10 +54,11 @@
 
 \definecolor{myblack}{HTML}{231F20} 
 \definecolor{mybrightred}{HTML}{EC1F27} 
-\definecolor{mydarkred}{HTML}{b03a2e} 
+\definecolor{mydarkred}{HTML}{8C2E24} 
 \definecolor{mydarkblue}{HTML}{154360}
 \definecolor{mylightblue}{HTML}{3498DB} 
 \definecolor{lightgrey}{HTML}{DCDCDC}
+\definecolor{mydarkgreen}{HTML}{009f06}
 
 % =========
 % = Fonts =
@@ -203,28 +204,19 @@
 % ================================
 
 
-% Heading for cases
-
-\newcommand{\case}[3]{\noindent{\headfont\bfseries\Large{#1}}\newline\noindent{\large{#2}}\newline\noindent{\itshape{#3}}}
-
-% Heading for readings
-
-\newcommand{\reading}[3]{\noindent{\headfont\bfseries\Large{#1}}\newline\noindent{#2}\newline\noindent{#3}}
-
-
-
 % Colored textbox for statutes, rules, etc. 
 
 \mdfdefinestyle{lightgrey}{leftmargin=0em,rightmargin=0em,%
 innerleftmargin=2em,innerrightmargin=2em,linecolor=lightgrey,backgroundcolor=lightgrey,font=\footnotesize}
 
-\newenvironment{legalcode}
+\newenvironment{shadebox}
     {\noindent\vspace{2em}\Begin{mdframed}[style=lightgrey]
     }
     { 
     \vspace{1em}\End{mdframed}\vspace{2em}
     }
 
+% Indent for statutes, rules, etc. 
 
 \newenvironment{statute}
     {\noindent\Begin{adjustwidth}{1em}{1em}\small
