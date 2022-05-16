@@ -1,9 +1,9 @@
 %%% casebok.tex
 %%% Pandoc template for law school casebook using LaTeX article class
 %%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
-%%%
+%%% 
 
-\documentclass[letterpaper,11pt,twoside,justified,symmetric]{tufte-book}
+\documentclass[letterpaper,10pt,twoside,marginals=raggedright]{tufte-book}
 
 % ============
 % = Packages =
@@ -15,10 +15,12 @@
 \usepackage{framed}
 \usepackage{mdframed}
 \usepackage{ifxetex}
-\usepackage{needspace}
+\usepackage{mdframed}
 \usepackage{titlesec}
 \usepackage[]{ccicons}
-\usepackage[]{hyphenat}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage[none]{hyphenat}
 \usepackage{etoolbox}
 \usepackage{relsize}
 \usepackage{fourier}
@@ -35,18 +37,22 @@
 % ====================
 % = Layout & Spacing =
 % ====================
-%\usepackage{setspace}
-\usepackage{ragged2e}
 
-% \RaggedRight
+\RaggedRight
 \raggedbottom
 
-\setlength{\parskip}{1\baselineskip}
 \setlength{\parindent}{0em}
 \setlength{\RaggedRightParindent}{0em}
-\setlength{\JustifyingParindent}{0em}
+\setlength{\parskip}{1em}
 
-\usepackage[defaultlines=3,all]{nowidow}
+\clubpenalty=9996
+\widowpenalty=9999
+\brokenpenalty=4991
+\predisplaypenalty=10000
+\postdisplaypenalty=1549
+\displaywidowpenalty=1602
+
+% \usepackage[defaultlines=3,all]{nowidow}
 
 
 % ==========
@@ -55,11 +61,11 @@
 
 \usepackage{xcolor}
 
-\definecolor{myblack}{HTML}{231F20}
-\definecolor{mybrightred}{HTML}{EC1F27}
-\definecolor{mydarkred}{HTML}{8C2E24}
+\definecolor{myblack}{HTML}{231F20} 
+\definecolor{mybrightred}{HTML}{EC1F27} 
+\definecolor{mydarkred}{HTML}{8C2E24} 
 \definecolor{mydarkblue}{HTML}{154360}
-\definecolor{mylightblue}{HTML}{3498DB}
+\definecolor{mylightblue}{HTML}{3498DB} 
 \definecolor{paleblue}{HTML}{e1f0fa}
 \definecolor{palepink}{HTML}{fef5f9}
 \definecolor{lightgrey}{HTML}{e9e9e9}
@@ -91,8 +97,7 @@
 \DeclareRobustCommand{\ltseries}{\fontseries{l}\selectfont}
 
 \newfontface\titlefont{Lato}[Colour=mydarkred]
-\newfontface\redroman{Sabon LT}[Colour=mydarkred]
-\newfontface\boldred{Sabon LT Bold}[Colour=mydarkred]
+\newfontface\partfont{Sabon LT}[Colour=mydarkred]
 
 \setsidenotefont{\rmfamily\scriptsize}
 \setcaptionfont{\sffamily\scriptsize}
@@ -209,64 +214,56 @@
 % \setlength\intextsep{15mm}
 
 
-
-
 % ================================
 % = Cases, Statutes, Rules, etc. =
 % ================================
 
-\newcommand{\case}[3]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE{#1}}\fullsep\vspace{.5em}{#2} ({#3})
-}
 
-\newcommand{\uscode}[2]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE{#1} U.S.C. \S~{#2}}\fullsep
-}
+% Colored textbox for statutes, rules, etc. 
 
-\newcommand{\constitution}[2]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE U.S. Const. art. {#1}, \S~{#2}}\fullsep
-}
+\mdfdefinestyle{statute}{leftmargin=0em,rightmargin=0em,innerleftmargin=1.5em,innerrightmargin=2em,innertopmargin=\baselineskip,%
+innerbottommargin=\baselineskip,linecolor=lightgrey,backgroundcolor=paleblue,font=\small}
 
-\newcommand{\frcp}[1]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE Fed. R. Civ. P., Rule {#1}}\fullsep
-}
+\newenvironment{statute}
+    {\vspace{1em}\Begin{mdframed}[style=statute]\sffamily
+    }
+    {\End{mdframed}\vspace{1em}
+    }
 
-\newcommand{\mrpc}[1]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE Model Rules of Prof. Conduct, Rule {#1}}\fullsep
-}
-
-\newcommand{\legalcode}[2]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE {#1} {#2}}\fullsep
-}
-
-\newcommand{\restatement}[3]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE Rest. ({#1}) of {#2}, \S~{#3}}\fullsep
-}
-
-% Colored textbox for questions
-\mdfdefinestyle{pinkbox}{leftmargin=0em,rightmargin=0em,innerleftmargin=1.5em,innerrightmargin=2em,innertopmargin=\baselineskip,%
+\mdfdefinestyle{questions}{leftmargin=0em,rightmargin=0em,innerleftmargin=1.5em,innerrightmargin=2em,innertopmargin=\baselineskip,%
 innerbottommargin=\baselineskip,linecolor=lightgrey,backgroundcolor=palepink,font=\small}
 
 \newenvironment{questions}
-    {\begin{samepage}\vspace{1em}\Begin{mdframed}[style=pinkbox]{\noindent\boldred\LARGE{Questions}}
+    {\vspace{1em}\Begin{mdframed}[style=questions]\sffamily
     }
-    {\End{mdframed}\vspace{1em}\end{samepage}
+    {\End{mdframed}\vspace{1em}
     }
 
 % Indented block
+
 \newenvironment{indented}
     {\noindent\Begin{adjustwidth}{1em}{1em}\small
     }
-    {
+    { 
     \End{adjustwidth}\vspace{.5em}\halfsep\vspace{1em}
     }
+
+
+\newcommand{\case}[3]{ % #1=case title; #2=reporter; #3=court and date
+\newpage\fullsep\par\noindent
+{\bfseries\Large{#1}} \\ \vspace{.5em}{#2} ({#3})
+}
+
+
+\mdfdefinestyle{summary}{leftmargin=0em,rightmargin=0em,innerleftmargin=1.5em,innerrightmargin=2em,innertopmargin=\baselineskip,%
+innerbottommargin=\baselineskip,linecolor=lightgrey,backgroundcolor=lightgrey,font=\small}
+
+\newenvironment{summary}
+    {\vspace{1em}\Begin{mdframed}[style=summary]\sffamily
+    }
+    {\End{mdframed}\vspace{1em}
+    }
+
 
 % ============
 % = Headings =
@@ -275,16 +272,16 @@ innerbottommargin=\baselineskip,linecolor=lightgrey,backgroundcolor=palepink,fon
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\part}{0pt}{0pt}{20pt}
 \titlespacing*{\chapter}{0em}{0em}{2em}
-\titlespacing*{\section}{0em}{2em}{1em}
-\titlespacing*{\subsection}{0em}{1.5em}{.5em}
-\titlespacing*{\subsubsection}{0em}{1.5em}{.5em}
-\titlespacing*{\paragraph}{0em}{0em}{.5em}
-\titlespacing*{\subparagraph}{0em}{1em}{.5em}
+\titlespacing*{\section}{0em}{2em}{.5em}
+\titlespacing*{\subsection}{0em}{1.5em}{0em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0em}
+\titlespacing*{\paragraph}{0em}{0em}{0em}
+\titlespacing*{\subparagraph}{0em}{0em}{.5em}
 
 $if(secnum)$
 \setcounter{secnumdepth}{$secnum$}
 $else$
-\setcounter{secnumdepth}{1}
+\setcounter{secnumdepth}{0}
 $endif$
 
 \renewcommand\thechapter{\arabic{chapter}}
@@ -293,23 +290,23 @@ $endif$
 
 \titleformat{\part}
   [display]
-  {\begin{fullwidth}\vspace*{\fill}\redroman\huge\bfseries}
+  {\vspace*{\fill}\partfont\huge\bfseries}
   {{\partname} \thepart}
   {0pt}
   {\vspace{2pt}\Huge}
-  [\vspace*{\fill}\end{fullwidth}]
+  [\vspace*{\fill}]
 
 \titleformat{\chapter}
   [block]
-  {\begin{fullwidth}\raggedright\titlefont\Huge}
+  {\begin{fullwidth}\raggedright\titlefont\huge}
   {Chapter \thechapter \\ }% label
   {0em}
   {}
   [\end{fullwidth}]
-
+  
 \titleformat{\section}%
   [block]
-  {\raggedright\titlefont\huge}
+  {\raggedright\titlefont\LARGE}
   {\thesection.~}
   {0em}
   {}
@@ -317,36 +314,35 @@ $endif$
 
 \titleformat{\subsection}
   [block]
-  {\raggedright\sffamily\LARGE}
+  {\raggedright\sffamily\Large}
   {\thesubsection}
   {0.5em}
   {}
   []
-
+  
 \titleclass{\subsubsection}{straight}
-\titleformat{\subsubsection}
+\titleformat{\subsubsection}%
   [block]
-  {\raggedright\sffamily\itshape\Large}
+  {\raggedright\sffamily\large\itshape}
   {\thesubsubsection}
   {0.5em}
   {}
   []
-
-
-% H4 & H5: Use for headings in Cases, Statutes, etc.
+  
+% Heading for statutes, rules, etc. 
 \titleclass{\paragraph}{straight}
 \titleformat{\paragraph}
   [block]
-  {\raggedright\rmfamily\large\bfseries}
+  {\raggedright\titlefont\large}
   {\theparagraph}
   {0.5em}
   {}
   []
-
+  
 \titleclass{\subparagraph}{straight}
 \titleformat{\subparagraph}
   [block]
-  {\raggedright\rmfamily\normalsize\itshape}
+  {\raggedright\sffamily\normalsize}
   {\thesubparagraph}
   {0.5em}
   {}
@@ -354,7 +350,7 @@ $endif$
 
 % ==========
 % = Tables =
-% ==========
+% ========== 
 
 % table with pandoc
 $if(tables)$
@@ -372,12 +368,27 @@ $endif$
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
 $endif$
-
+  
 % ==========
 % = Quotes =
 % ==========
 
 % Relative size for quote/quotation
+
+\renewenvironment{quotation}
+               {\list{}{\listparindent 1pc%
+                        \itemindent    \listparindent
+                        \rightmargin   \leftmargin
+                        \parsep        \z@ \@plus\p@}%
+                \relsize{-1}%
+                \item\relax\noindent\ignorespaces}
+               {\endlist}
+\renewenvironment{quote}
+               {\list{}{\rightmargin\leftmargin}%
+                \relsize{-1}%
+                \item\relax}
+               {\endlist}
+
 
 % Blockquotes with Left Bar
 
@@ -392,20 +403,11 @@ $endif$
     }
     \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
 }
-{\endMakeFramed}
+{\endMakeFramed}  
 
 \newenvironment{blockquote}{\setlength{\parindent}{0em}\vspace{0em}\begin{leftbar}\small\quoting}{\endquoting\vspace{1em}\end{leftbar}\vspace{0em}}
 
-% ============
-% = Epigraph =
-% ============
-
-\usepackage{epigraph}
-% \setlength\epigraphwidth{.5\textwidth}
-\setlength\epigraphrule{0pt}
-\renewcommand{\epigraphsize}{\footnotesize}
-
-% Full Page Epigraph in Frontmatter
+% Epigraph
 
 \newcommand{\openepigraph}[3]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
 {\noindent\rmfamily\normalsize
@@ -413,17 +415,22 @@ $endif$
 \begin{flushright}\noindent\aldine ~{#2}, {\itshape{#3}} \end{flushright}}
 }
 
+\newcommand{\chapquote}[3]{ 
+{\noindent\sffamily\ltseries\small
+{\itshape{#1}} \\ \hspace{2em} --- {#2}, {\itshape{#3}}}
+}
 
+  
 % ==============
 % = Separators =
 % ==============
 
 \newcommand{\halfsep}{%
-    \textcolor{mydarkred}{\noindent\hfil\rule{.5\textwidth}{.5pt}\hfil}
+    \textcolor{mydarkred}{\noindent\hfil\rule{.5\textwidth}{.5pt}\hfil} 
 }
 
 \newcommand*{\fullsep}{%
-    \\\textcolor{mydarkred}{\noindent\rule{\textwidth}{2pt}}\par
+    \textcolor{mydarkred}{\noindent\hfil\rule{\textwidth}{.5pt}\hfil} 
 }
 
 
@@ -473,14 +480,14 @@ $endif$
   $if(publisher)$
   \fontsize{14}{16}\selectfont\par\noindent\allcaps{\thanklesspublisher}%
   $endif$
-  \fontsize{14}{16}\selectfont\par\noindent\allcaps{$date$}%
+  \fontsize{12}{14}\selectfont\par\noindent\allcaps{$date$}%
   }
   \thispagestyle{empty}%
   \clearpage%
 }
 \makeatother
 
-\title{$title$}
+\title{$title$} 
 $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
@@ -556,7 +563,7 @@ $endif$
 
 
 % =============================================================================
-% ============================== BEGIN DOCUMENT ===============================
+% ============================== BEGIN DOCUMENT =============================== 
 % =============================================================================
 
 
@@ -584,7 +591,7 @@ Greensboro, North Carolina 27408
 
 $if(cc0)$
 
-{\ccZero}
+{\ccZero} 
 
 \begin{small}
 This work is published under a Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication. \\
@@ -592,7 +599,7 @@ This work is published under a Creative Commons CC0 1.0 Universal (CC0 1.0) Publ
 
 $else$
 
-{\ccbyncsa}
+{\ccbyncsa} 
 
 \begin{small}
 This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. \\
