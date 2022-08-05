@@ -1,13 +1,14 @@
 %%% casebok.tex
-%%% Pandoc template for law school casebook using LaTeX article class
-%%% Created by Eric M. Fink (https://github.com/LuckyJimJD/pandoc-templates)
+%%% Pandoc template for law school casebook using LaTeX tufte-book class
+%%% Created by Eric M. Fink (https://github.com/EricMFink/Pandoc/templates)
 %%%
 
-\documentclass[letterpaper,11pt,twoside,justified,symmetric]{tufte-book}
+\documentclass[letterpaper,twoside,openright]{tufte-book}
 
 % ============
 % = Packages =
 % ============
+
 
 \usepackage{lipsum}
 \usepackage{semantic}
@@ -16,21 +17,25 @@
 \usepackage{mdframed}
 \usepackage{ifxetex}
 \usepackage{needspace}
-\usepackage{titlesec}
+\usepackage[]{titlesec}
 \usepackage[]{ccicons}
-\usepackage[]{hyphenat}
+\usepackage[none]{hyphenat}
 \usepackage{etoolbox}
 \usepackage{relsize}
 \usepackage{fourier}
 \usepackage{fontawesome}
-
+\usepackage{calc} 
 
 % ===================================
 % = Use md inside latex environment =
 % ===================================
 
+
 \let\Begin\begin
 \let\End\end
+\let\Marginnote\marginnote
+\let\Footnote\footnote
+
 
 % ====================
 % = Layout & Spacing =
@@ -41,7 +46,9 @@
 % \RaggedRight
 \raggedbottom
 
-\setlength{\parskip}{1\baselineskip}
+\usepackage{parskip}
+
+%\setlength{\parskip}{1\baselineskip}
 \setlength{\parindent}{0em}
 \setlength{\RaggedRightParindent}{0em}
 \setlength{\JustifyingParindent}{0em}
@@ -69,34 +76,27 @@
 % = Fonts =
 % =========
 
+\usepackage{crimson}
+\usepackage[defaultsans,scale=0.95]{lato}
+\usepackage{inconsolata}
+
+
 \usepackage{fontspec}
 
-\setmainfont{Sabon LT}[Numbers=OldStyle, Scale = 1.0]
-\setsansfont{Lato}[ %
-  Extension=.ttf,
-  UprightFont=*-Reg,
-  ItalicFont=*-RegIta,
-  BoldFont=*-Bol,
-  BoldItalicFont=*-BolIta,
-  FontFace={xl}{n}{*-Hai},
-  FontFace={xl}{it}{*-HaiIta},
-  FontFace={l}{n}{*-Lig},
-  FontFace={l}{it}{*-LigIta},
-  FontFace={k}{n}{*-Bla},
-  FontFace={k}{it}{*-BlaIta},
-]
+\fontspec{inconsolata}
 
-\setmonofont[]{Inconsolata}
+%\setmainfont{Crimson}[Mapping={tex-text},Scale = 1.0]
+%\setsansfont{Lato}[Mapping=tex-text]
+\setmonofont[Scale=0.90]{Inconsolata}
 
-\DeclareRobustCommand{\ltseries}{\fontseries{l}\selectfont}
+%\DeclareRobustCommand{\ltseries}{\fontseries{l}\selectfont}
 
-\newfontface\titlefont{Lato}[Colour=mydarkred]
-\newfontface\redroman{Sabon LT}[Colour=mydarkred]
-\newfontface\boldred{Sabon LT Bold}[Colour=mydarkred]
+%\newfontface\marginfont{Alegreya Sans}
+
 
 \setsidenotefont{\rmfamily\scriptsize}
 \setcaptionfont{\sffamily\scriptsize}
-\setmarginnotefont{\sffamily\ltseries\scriptsize}
+\setmarginnotefont{\sffamily\fontseries{l}\scriptsize}
 
 
 % =========
@@ -135,7 +135,7 @@
   pdftitle={$title$},
   pdfauthor={$author$},
   pdfcreator={LaTeX via pandoc}}
-\urlstyle{sf}
+\urlstyle{texttt}
 
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 
@@ -197,18 +197,27 @@
 %\renewlist{itemize}{itemize}{10}
 %\renewlist{enumerate}{enumerate}{10}
 
+
+
 %\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 
 \providecommand{\tightlist}{%
-  \setlength{\itemsep}{0em}\setlength{\parskip}{.5em}}
+  \setlength{\itemsep}{0em}\setlength{\parskip}{.2em}}
 
-%\setlist{nosep}
-\setlist[enumerate]{itemindent=2em}
-\setlist[enumerate,1]{itemindent=.5em}
+\setlist{nosep}
+%\setlist[enumerate]{labelindent=0pt,labelwidth=1.5em,leftmargin=!}
+\setlist[enumerate]{wide=0pt,labelwidth=1.3333em,labelsep=0.3333em,leftmargin=\dimexpr\labelwidth + \labelsep\relax }
+%\setlist[enumerate]{itemindent=2em}
+% \setlist[enumerate]{itemindent=0em}
+% \setlist[itemize]{itemindent=2em}
+% \setlist[itemize,1]{itemindent=0em}
 
-% \setlength\intextsep{15mm}
-
-
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=\guilsinglright}
+\setlist[itemize,3]{label=\textperiodcentered}
+\setlist[itemize,4]{label=\textendash}
+\setlist[itemize,5]{label=\diamond}
+\setlist[itemize,6]{label=\textopenbullet}
 
 
 % ================================
@@ -216,57 +225,147 @@
 % ================================
 
 \newcommand{\case}[3]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE{#1}}\fullsep\vspace{.5em}{#2} ({#3})
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE{#1}}}\fullsep\\{\Large{#2} ({#3})}}
 }
 
-\newcommand{\uscode}[2]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE{#1} U.S.C. \S~{#2}}\fullsep
+\newcommand{\reading}[3]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE{#1}}}\fullsep\\{\Large{#2} {#3}}\vspace{1\baselineskip}}
 }
+
+\newcommand{\references}{
+\noindent\vspace{3\baselineskip}
+\textcolor{mydarkred}{\rule{\textwidth}{2pt}}\par{\rmfamily\bfseries\LARGE{References}}
+}
+
+
+\newenvironment{legalcode}
+    {\sffamily\small}
+    {\vspace{1\baselineskip}
+    }
+
 
 \newcommand{\constitution}[2]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE U.S. Const. art. {#1}, \S~{#2}}\fullsep
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE U.S. Constitution, Art. {#1}} {#2}}}}\fullsep
 }
 
+
+\newcommand{\uscode}[2]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE {#1} U.S.C. \S~{#2}}}}\fullsep
+}
+
+\newcommand{\statute}[1]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE {#1}}}}\fullsep
+}
+
+
 \newcommand{\frcp}[1]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE Fed. R. Civ. P., Rule {#1}}\fullsep
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Federal Rules of Civil Procedure {#1}}}}\fullsep
 }
 
 \newcommand{\mrpc}[1]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE Model Rules of Prof. Conduct, Rule {#1}}\fullsep
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Model Rules of Professional Conduct {#1}}}}\fullsep
 }
 
-\newcommand{\legalcode}[2]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE {#1} {#2}}\fullsep
+\newcommand{\restatement}[2]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Rest. {#1} of {#2}}}}\fullsep
 }
 
-\newcommand{\restatement}[3]{
-\noindent
-\needspace{5\baselineskip}\vspace{3em}\noindent{\boldred\LARGE Rest. ({#1}) of {#2}, \S~{#3}}\fullsep
+\newcommand{\restlawyers}[1]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Rest. (3d) of the Law Governing Lawyers {#1}}}}\fullsep
 }
+
+\newcommand{\restagency}[1]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Rest. (3d) of Agency {#1}}}}\fullsep
+}
+
+\newcommand{\restconflicts}[1]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Rest. (2d) of Conflict of Laws {#1}}}}\fullsep
+}
+
+\newcommand{\restjudgments}[1]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Rest. (2d) of Judgments {#1}}}}\fullsep
+}
+
+\newcommand{\restemployment}[1]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE Rest. of Employment Law {#1}}}}\fullsep
+}
+
+\newcommand{\codetitle}[1]{
+\vspace{3\baselineskip}
+\noindent{\raggedright{\rmfamily\bfseries\textcolor{mydarkred}{\LARGE {#1}}}}\fullsep
+}
+
+\newcommand{\codesec}[1]{
+\vspace{1.5\baselineskip}\noindent{\raggedright{\bfseries{\large {#1}}}}
+}
+
+\newcommand{\codesubsec}[1]{
+\vspace{1\baselineskip}\noindent{\raggedright{{\normalsize {#1}}}}
+}
+
+
+% Indented block (for indented, unenumerated paragraphs in FRCP etc.) 
+\newenvironment{indented}
+    {\noindent\Begin{adjustwidth}{1em}{0em}
+    }
+    {
+    \End{adjustwidth}
+    }
+
+
+% Explanatory Note following Case 
+\newenvironment{comment}
+    {\sffamily\small
+    }
+    {
+    \vspace{.5em}\vspace{1em}
+    }
+    
+% Quotation in Explanatory Note
+\newenvironment{notequote}
+    {\Begin{adjustwidth}{1.5em}{1.5em}\itshape\smaller
+    }
+    {
+    \End{adjustwidth}
+    }
+
 
 % Colored textbox for questions
-\mdfdefinestyle{pinkbox}{leftmargin=0em,rightmargin=0em,innerleftmargin=1.5em,innerrightmargin=2em,innertopmargin=\baselineskip,%
+\mdfdefinestyle{questionbox}{leftmargin=0em,rightmargin=0em,innerleftmargin=1.5em,innerrightmargin=2em,innertopmargin=\baselineskip,%
 innerbottommargin=\baselineskip,linecolor=lightgrey,backgroundcolor=palepink,font=\small}
 
 \newenvironment{questions}
-    {\begin{samepage}\vspace{1em}\Begin{mdframed}[style=pinkbox]{\noindent\boldred\LARGE{Questions}}
+    {\begin{samepage}\vspace{1\baselineskip}\Begin{mdframed}[style=questionbox]{\noindent\rmfamily\bfseries\textcolor{mydarkred}\Large{Questions}}
     }
-    {\End{mdframed}\vspace{1em}\end{samepage}
+    {\End{mdframed}\vspace{1\baselineskip}\end{samepage}
     }
 
-% Indented block
-\newenvironment{indented}
-    {\noindent\Begin{adjustwidth}{1em}{1em}\small
+
+% Colored textbox for questions
+\mdfdefinestyle{codebox}{leftmargin=0em,rightmargin=0em,innerleftmargin=1.5em,innerrightmargin=2em,innertopmargin=.2em,%
+innerbottommargin=\baselineskip,linecolor=lightgrey,backgroundcolor=paleblue,font=\small}
+
+
+
+\newenvironment{preface}
+    {{\noindent\rmfamily\itshape\Huge\color{mydarkred}{Preface}}
     }
-    {
-    \End{adjustwidth}\vspace{.5em}\halfsep\vspace{1em}
+    {\vspace{1\baselineskip}
     }
+
 
 % ============
 % = Headings =
@@ -275,16 +374,16 @@ innerbottommargin=\baselineskip,linecolor=lightgrey,backgroundcolor=palepink,fon
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\part}{0pt}{0pt}{20pt}
 \titlespacing*{\chapter}{0em}{0em}{2em}
-\titlespacing*{\section}{0em}{2em}{1em}
-\titlespacing*{\subsection}{0em}{1.5em}{.5em}
-\titlespacing*{\subsubsection}{0em}{1.5em}{.5em}
-\titlespacing*{\paragraph}{0em}{0em}{.5em}
-\titlespacing*{\subparagraph}{0em}{1em}{.5em}
+\titlespacing*{\section}{0em}{4\baselineskip}{1\baselineskip}
+\titlespacing*{\subsection}{0em}{3\baselineskip}{1\baselineskip}
+\titlespacing*{\subsubsection}{0em}{1.5\baselineskip}{.5\baselineskip}
+\titlespacing*{\paragraph}{0em}{1.5\baselineskip}{.5\baselineskip}
+\titlespacing*{\subparagraph}{0em}{1\baselineskip}{.5\baselineskip}
 
 $if(secnum)$
 \setcounter{secnumdepth}{$secnum$}
 $else$
-\setcounter{secnumdepth}{1}
+\setcounter{secnumdepth}{2}
 $endif$
 
 \renewcommand\thechapter{\arabic{chapter}}
@@ -293,7 +392,7 @@ $endif$
 
 \titleformat{\part}
   [display]
-  {\begin{fullwidth}\vspace*{\fill}\redroman\huge\bfseries}
+  {\begin{fullwidth}\vspace*{\fill}\sffamily\huge\bfseries\color{mydarkred}}
   {{\partname} \thepart}
   {0pt}
   {\vspace{2pt}\Huge}
@@ -301,34 +400,36 @@ $endif$
 
 \titleformat{\chapter}
   [block]
-  {\begin{fullwidth}\raggedright\titlefont\Huge}
-  {Chapter \thechapter \\ }% label
+  {\begin{fullwidth}\raggedright\rmfamily\itshape\LARGE\color{mydarkred}}
+  {Chapter \thechapter\\}
   {0em}
-  {}
+  {\vspace{2pt}\rmfamily\Huge}
   [\end{fullwidth}]
 
 \titleformat{\section}%
   [block]
-  {\raggedright\titlefont\huge}
-  {\thesection.~}
+  {\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
+  {\needspace{4\baselineskip}\thesection.~}
+  {0em}
+  {}
+  [\end{fullwidth}]
+
+\titleformat{\subsection}
+  [block]
+  {\raggedright\rmfamily\LARGE\color{mydarkred}}
+  {\needspace{3\baselineskip}\thesubsection~}
   {0em}
   {}
   []
 
-\titleformat{\subsection}
-  [block]
-  {\raggedright\sffamily\LARGE}
-  {\thesubsection}
-  {0.5em}
-  {}
-  []
 
+% Use for Judge Name in Cases
 \titleclass{\subsubsection}{straight}
 \titleformat{\subsubsection}
   [block]
-  {\raggedright\sffamily\itshape\Large}
-  {\thesubsubsection}
-  {0.5em}
+  {\raggedright\rmfamily\bfseries\Large}
+  {\needspace{4\baselineskip}\thesubsubsection}
+  {0em}
   {}
   []
 
@@ -338,17 +439,17 @@ $endif$
 \titleformat{\paragraph}
   [block]
   {\raggedright\rmfamily\large\bfseries}
-  {\theparagraph}
-  {0.5em}
+  {\needspace{4\baselineskip}\theparagraph}
+  {0em}
   {}
   []
 
 \titleclass{\subparagraph}{straight}
 \titleformat{\subparagraph}
   [block]
-  {\raggedright\rmfamily\normalsize\itshape}
-  {\thesubparagraph}
-  {0.5em}
+  {\raggedright\rmfamily\large\itshape}
+  {\needspace{4\baselineskip}\thesubparagraph}
+  {0em}
   {}
   []
 
@@ -362,7 +463,7 @@ $if(tables)$
 $if(multirow)$
 \usepackage{multirow}
 $endif$
-\usepackage{calc} % for calculating minipage widths
+%\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 %\usepackage{etoolbox}
 \makeatletter
@@ -377,24 +478,26 @@ $endif$
 % = Quotes =
 % ==========
 
-% Relative size for quote/quotation
+
+%\AtBeginEnvironment{quote}{\vspace{-1\baselineskip}}% Stuff before {quote}
+%\AtEndEnvironment{quote}{\vspace{-1\baselineskip}}% Stuff after {quote}
 
 % Blockquotes with Left Bar
 
-\usepackage[indentfirst=false,leftmargin=1em,rightmargin=0em,vskip=0em]{quoting}
+\usepackage[indentfirst=false,leftmargin=1em,rightmargin=2em,vskip=0em,font={small,itshape}]{quoting}
 
 \renewenvironment{leftbar}[1][\hsize]
 {
     \def\FrameCommand
     {
-        {\color{mydarkred}\hspace{2em}\vrule width 3pt}
+        {\color{mydarkred}\hspace{1em}\vrule width 3pt}
         \hspace{0em}
     }
     \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
 }
 {\endMakeFramed}
 
-\newenvironment{blockquote}{\setlength{\parindent}{0em}\vspace{0em}\begin{leftbar}\small\quoting}{\endquoting\vspace{1em}\end{leftbar}\vspace{0em}}
+\newenvironment{blockquote}{\setlength{\parindent}{0em}\vspace{0em}\begin{leftbar}\quoting}{\endquoting\vspace{1\baselineskip}\end{leftbar}\vspace{0em}}
 
 % ============
 % = Epigraph =
@@ -418,14 +521,9 @@ $endif$
 % = Separators =
 % ==============
 
-\newcommand{\halfsep}{%
-    \textcolor{mydarkred}{\noindent\hfil\rule{.5\textwidth}{.5pt}\hfil}
-}
+\newcommand*{\halfsep}{\noindent\hfil\textcolor{mydarkred}{\rule{0.5\textwidth}{.5pt}}\hfil}
 
-\newcommand*{\fullsep}{%
-    \\\textcolor{mydarkred}{\noindent\rule{\textwidth}{2pt}}\par
-}
-
+\newcommand*{\fullsep}{\newline\noindent\textcolor{mydarkred}{\rule{\textwidth}{2pt}}}
 
 % ============
 % = Graphics =
@@ -463,17 +561,20 @@ $endif$
 \renewcommand{\maketitlepage}[0]{%
   \cleardoublepage%
   {%
-  \titlefont%
+  \sffamily%
+  \raggedright%
+  \begin{fullwidth}%
   \fontsize{18}{20}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{\thanklessauthor}}%
   \vspace{11.5pc}%
   \fontsize{36}{40}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{\thanklesstitle}}\par%
   \vspace{5pc}%
   \fontsize{20}{24}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{\plainsubtitle}}%
   \vfill%
-  $if(publisher)$
-  \fontsize{14}{16}\selectfont\par\noindent\allcaps{\thanklesspublisher}%
+  $if(affiliation)$
+  \fontsize{14}{16}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{\thanklesspublisher}}%
   $endif$
-  \fontsize{14}{16}\selectfont\par\noindent\allcaps{$date$}%
+  \fontsize{14}{16}\selectfont\par\noindent\textcolor{mydarkred}{\allcaps{$date$}}%
+  \end{fullwidth}%
   }
   \thispagestyle{empty}%
   \clearpage%
@@ -485,8 +586,8 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 \author{$author$}
-$if(publisher)$
-\publisher{$publisher$}
+$if(affiliation)$
+\publisher{$affiliation$}
 $endif$
 \date{$date$}
 
@@ -497,24 +598,40 @@ $endif$
 
 \usepackage{titletoc,tocloft}
 
-\renewcommand\cfttoctitlefont{\Huge\titlefont}
-\renewcommand\cftpartfont{\Large\bfseries}
+\renewcommand\cfttoctitlefont{\Huge\sffamily\textcolor{mydarkred}}
+\renewcommand\cftpartfont{\LARGE\bfseries}
 \renewcommand\cftchapfont{\large\bfseries}
 \renewcommand\cftsecfont{\normalsize\itshape}
 
-\renewcommand\cftpartpagefont{\Large}
+\renewcommand\cftpartpagefont{\LARGE}
 \renewcommand\cftchappagefont{\large}
 \renewcommand\cftsecpagefont{\normalsize}
 
-\renewcommand\cftpartafterpnum{\vskip1em}
-\renewcommand\cftchapafterpnum{\vskip1em}
-\renewcommand\cftsecafterpnum{\vskip1em}
+\renewcommand\cftpartafterpnum{\vskip2mm}
+\renewcommand\cftchapafterpnum{\vskip2mm}
+\renewcommand\cftsecafterpnum{\vskip2mm}
+\renewcommand\cftsubsecafterpnum{\vskip2mm}
 
 \setlength{\cftchapindent}{2em}
 \setlength{\cftsecindent}{4em}
 \setlength{\cftsubsecindent}{6em}
 \setlength{\cftsubsubsecindent}{8em}
 
+\titlecontents{part}% <section-type>
+  [0em]% <left>
+  {}% <above-code>
+  {\vskip2mm\LARGE\partname~ \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip2mm\LARGE\partname~}% <numberless-entry-format>
+  {\LARGE\hfill\contentspage}% <filler-page-format>
+  [\vskip2mm]% <below-code>
+
+\titlecontents{chapter}% <section-type>
+  [2em]% <left>
+  {}% <above-code>
+  {\large\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
+  {\large}% <numberless-entry-format>
+  {\large\hfill\contentspage}% <filler-page-format>
+  [\vskip2mm]% <below-code>
 
 % ===================
 % = Pandoc citeproc =
@@ -572,38 +689,44 @@ $endif$
 \parindent 0pt
 \vspace*{\fill}
 
-\begin{small}
-Published in the United States of America by \\
-Eric M. Fink \\
-Elon University School of Law \\
-Greensboro, North Carolina 27408
 
-\vspace{1em}
 
-\end{small}
 
 $if(cc0)$
 
-{\ccZero}
+{\ccZero} 
 
 \begin{small}
-This work is published under a Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication. \\
+\raggedright{This work is published under a Creative Commons CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.} \\
 \url{https://creativecommons.org/publicdomain/zero/1.0/}
-
+\end{small}
 $else$
 
-{\ccbyncsa}
+\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{\ccbyncsa} 
 
 \begin{small}
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. \\
+\raggedright{This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.} \\
 \url{https://creativecommons.org/licenses/by-nc-sa/4.0/}
-
+\end{small}
 $endif$
 
-Source code \\
-\url{https://github.com/EricMFink/PRcasebook/}
+\vspace{1em}
 
-\itshape{Version 1.0, May 2022}
+\begin{small}
+Eric M. Fink\\
+Associate Professor of Law \\
+Elon University School of Law \\
+Greensboro, North Carolina 27408 \\
+\url{https://www.emfink.net/ElonLaw/}
+
+
+\vspace{1em}
+
+
+Source code \\
+\url{https://github.com/EricMFink/$repo$}
+
+\itshape{$if(version)$$version$, $endif$$published$}
 
 \end{small}
 
@@ -623,6 +746,8 @@ $if(epigraph)$
 \openepigraph{$epigraph$}{$epigraph-author$}{$epigraph-source$}
 \vspace*{\fill}
 $endif$
+
+\needspace{4\baselineskip}
 
 \mainmatter
 
