@@ -69,11 +69,16 @@
 \definecolor{paleblue}{HTML}{e1f0fa}
 \definecolor{palepink}{HTML}{fef5f9}
 \definecolor{lightgrey}{HTML}{e9e9e9}
-\definecolor{mydarkgreen}{HTML}{006403}
+\definecolor{mydarkgreen}{HTML}{003a02}
 
 % =========
 % = Fonts =
 % =========
+
+% \usepackage{scrextend} 
+% \changefontsizes[14.4pt]{12pt}
+
+
 
 \usepackage{crimson}
 \usepackage[defaultsans,scale=0.95]{lato}
@@ -466,12 +471,14 @@ $endif$
 
 \renewcommand\cfttoctitlefont{\Huge\sffamily\textcolor{mydarkred}}
 \renewcommand\cftpartfont{\LARGE\bfseries}
-\renewcommand\cftchapfont{\large\bfseries}
-\renewcommand\cftsecfont{\normalsize\itshape}
+\renewcommand\cftchapfont{\Large\bfseries}
+\renewcommand\cftsecfont{\Large\itshape}
+\renewcommand\cftsubsecfont{\normalsize}
 
 \renewcommand\cftpartpagefont{\LARGE}
-\renewcommand\cftchappagefont{\large}
-\renewcommand\cftsecpagefont{\normalsize}
+\renewcommand\cftchappagefont{\Large}
+\renewcommand\cftsecpagefont{\Large}
+\renewcommand\cftsubsecpagefont{\normalsize}
 
 \renewcommand\cftpartafterpnum{\vskip2mm}
 \renewcommand\cftchapafterpnum{\vskip2mm}
@@ -544,6 +551,8 @@ $endif$
 
 
 \begin{document}
+
+% \relsize{1}
 
 \frontmatter
 \maketitle
