@@ -69,7 +69,7 @@
 \definecolor{paleblue}{HTML}{e1f0fa}
 \definecolor{palepink}{HTML}{fef5f9}
 \definecolor{lightgrey}{HTML}{e9e9e9}
-\definecolor{mydarkgreen}{HTML}{003a02}
+\definecolor{mydarkgreen}{HTML}{006403}
 
 % =========
 % = Fonts =
@@ -98,8 +98,8 @@
 %\newfontface\marginfont{Alegreya Sans}
 
 
-\setsidenotefont{\rmfamily\scriptsize}
-\setcaptionfont{\sffamily\scriptsize}
+\setsidenotefont{\rmfamily\footnotesize}
+\setcaptionfont{\sffamily\footnotesize}
 \setmarginnotefont{\sffamily\fontseries{l}\scriptsize}
 
 
@@ -237,18 +237,12 @@
 
 % Explanatory Notes
 \newenvironment{comment}
-    {\sffamily
+    {\halfsep\newline \sffamily {\bfseries\large{Note}}
     }
     {
     \vspace{.5em}\vspace{1em}
     }
 
-
-% Headings in Explanatory Notes
-
-%\newcommand{\h4}[1]{\sffamily{#1}}
-%\newcommand{\h5}[1]{\sffamily{#1}}
-   
 
 % ============
 % = Headings =
@@ -257,7 +251,7 @@
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\part}{0pt}{0pt}{20pt}
 \titlespacing*{\chapter}{0em}{0em}{2em}
-\titlespacing*{\section}{0em}{4\baselineskip}{1\baselineskip}
+\titlespacing*{\section}{0em}{4\baselineskip}{2\baselineskip}
 \titlespacing*{\subsection}{0em}{3\baselineskip}{.25\baselineskip}
 \titlespacing*{\subsubsection}{0em}{1\baselineskip}{1\baselineskip}
 \titlespacing*{\paragraph}{0em}{1.5\baselineskip}{.5\baselineskip}
@@ -282,17 +276,17 @@ $endif$
   [\vspace*{\fill}\end{fullwidth}]
 
 \titleformat{\chapter}
-  [block]
-  {\begin{fullwidth}\raggedright\rmfamily\itshape\LARGE\color{mydarkred}}
+  [display]
+  {\begin{fullwidth}\vspace*{\fill}\raggedright\rmfamily\itshape\LARGE\color{mydarkred}}
   {Chapter \thechapter\\}
   {0em}
   {\vspace{2pt}\rmfamily\Huge}
-  [\end{fullwidth}]
+  [\vspace*{\fill}\end{fullwidth}]
 
 \titleformat{\section}%
   [block]
-  {\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
-  {\thesection.~}
+  {\newpage\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
+  {\thesection ~~}
   {0em}
   {}
   [\end{fullwidth}]
@@ -302,7 +296,7 @@ $endif$
 \titleformat{\subsection}
   [block]
   {\raggedright\rmfamily\bfseries\LARGE\color{mydarkred}}
-  {\thesubsection~}
+  {\thesubsection ~~}
   {0em}
   {}
   [\vspace{-1em}\textcolor{mydarkred}{\rule{\textwidth}{2pt}}]
@@ -336,8 +330,7 @@ $endif$
   {0em}
   {}
   []
-  
-% For subsequent heading levels, use **bold** or _italics_
+
 
 % ==========
 % = Tables =
@@ -483,7 +476,7 @@ $endif$
 \renewcommand\cftpartafterpnum{\vskip2mm}
 \renewcommand\cftchapafterpnum{\vskip2mm}
 \renewcommand\cftsecafterpnum{\vskip2mm}
-\renewcommand\cftsubsecafterpnum{\vskip2mm}
+\renewcommand\cftsubsecafterpnum{\vskip1mm}
 
 \setlength{\cftchapindent}{2em}
 \setlength{\cftsecindent}{4em}
@@ -496,15 +489,24 @@ $endif$
   {\vskip2mm\LARGE\partname~ \thecontentslabel\quad}% <numbered-entry-format>
   {\vskip2mm\LARGE\partname~}% <numberless-entry-format>
   {\LARGE\hfill\contentspage}% <filler-page-format>
-  [\vskip2mm]% <below-code>
+  []% <below-code>
 
 \titlecontents{chapter}% <section-type>
   [2em]% <left>
   {}% <above-code>
-  {\large\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
-  {\large}% <numberless-entry-format>
-  {\large\hfill\contentspage}% <filler-page-format>
-  [\vskip2mm]% <below-code>
+  {\vskip2mm\Large\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip2mm\Large}% <numberless-entry-format>
+  {\Large\hfill\contentspage}% <filler-page-format>
+  []% <below-code>
+
+\titlecontents{section}% <section-type>
+  [4em]% <left>
+  {}% <above-code>
+  {\vskip1mm\Large\itshape \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip1mm\Large\itshape}% <numberless-entry-format>
+  {\Large\hfill\contentspage}% <filler-page-format>
+  [\vskip2mm]% <below-code> 
+
 
 % ===================
 % = Pandoc citeproc =
