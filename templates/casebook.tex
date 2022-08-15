@@ -237,7 +237,7 @@
 
 % Explanatory Notes
 \newenvironment{comment}
-    {\halfsep\newline \sffamily {\bfseries\large{Note}}
+    {\sffamily 
     }
     {
     \vspace{.5em}\vspace{1em}
@@ -249,18 +249,18 @@
 % ============
 
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\part}{0pt}{0pt}{20pt}
-\titlespacing*{\chapter}{0em}{0em}{2em}
-\titlespacing*{\section}{0em}{4\baselineskip}{2\baselineskip}
-\titlespacing*{\subsection}{0em}{3\baselineskip}{.25\baselineskip}
-\titlespacing*{\subsubsection}{0em}{1\baselineskip}{1\baselineskip}
-\titlespacing*{\paragraph}{0em}{1.5\baselineskip}{.5\baselineskip}
+\titlespacing*{\part}{0em}{0em}{0em}
+\titlespacing*{\chapter}{0em}{0em}{0em}
+\titlespacing*{\section}{0em}{4\baselineskip}{1\baselineskip}
+\titlespacing*{\subsection}{0em}{2\baselineskip}{1\baselineskip}
+\titlespacing*{\subsubsection}{0em}{2\baselineskip}{.25\baselineskip}
+\titlespacing*{\paragraph}{0em}{1\baselineskip}{1\baselineskip}
 \titlespacing*{\subparagraph}{0em}{1\baselineskip}{.5\baselineskip}
 
 $if(secnum)$
 \setcounter{secnumdepth}{$secnum$}
 $else$
-\setcounter{secnumdepth}{1}
+\setcounter{secnumdepth}{2}
 $endif$
 
 \renewcommand\thechapter{\arabic{chapter}}
@@ -271,48 +271,47 @@ $endif$
   [display]
   {\begin{fullwidth}\vspace*{\fill}\sffamily\huge\bfseries\color{mydarkred}}
   {{\partname} \thepart}
-  {0pt}
-  {\vspace{2pt}\Huge}
+  {0em}
+  {\vspace{1em}\Huge}
   [\vspace*{\fill}\end{fullwidth}]
 
 \titleformat{\chapter}
   [display]
-  {\begin{fullwidth}\vspace*{\fill}\raggedright\rmfamily\itshape\LARGE\color{mydarkred}}
-  {Chapter \thechapter\\}
+  {\begin{fullwidth}\vspace*{\fill}\raggedright\rmfamily\itshape\huge\color{mydarkred}}
+  {Chapter \thechapter}
   {0em}
-  {\vspace{2pt}\rmfamily\Huge}
+  {\vspace{1em}\rmfamily\Huge}
   [\vspace*{\fill}\end{fullwidth}]
 
 \titleformat{\section}%
   [block]
-  {\newpage\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
+  {\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
   {\thesection ~~}
   {0em}
   {}
   [\end{fullwidth}]
 
 
-% Title of Statute, Rule, Case, Reading, etc. 
 \titleformat{\subsection}
   [block]
-  {\raggedright\rmfamily\bfseries\LARGE\color{mydarkred}}
+  {\begin{fullwidth}\raggedright\rmfamily\LARGE\color{mydarkred}}
+  {\thesubsection ~~}
+  {0em}
+  {}
+  [\end{fullwidth}]
+
+
+% Title of Statute, Rule, Case, Reading, etc. 
+\titleclass{\subsubsection}{straight}
+\titleformat{\subsubsection}
+  [block]
+  {\raggedright\rmfamily\bfseries\Large\color{mydarkred}}
   {\thesubsection ~~}
   {0em}
   {}
   [\vspace{-1em}\textcolor{mydarkred}{\rule{\textwidth}{2pt}}]
 
-
 % Judge name for Case; Subtitle for Statute, Rule, etc.; Author/Source for other readings 
-
-\titleclass{\subsubsection}{straight}
-\titleformat{\subsubsection}
-  [block]
-  {\raggedright\rmfamily\bfseries\Large}
-  {\thesubsubsection}
-  {0em}
-  {}
-  []
-
 \titleclass{\paragraph}{straight}
 \titleformat{\paragraph}
   [block]
@@ -464,24 +463,24 @@ $endif$
 
 \renewcommand\cfttoctitlefont{\Huge\sffamily\textcolor{mydarkred}}
 \renewcommand\cftpartfont{\LARGE\bfseries}
-\renewcommand\cftchapfont{\Large\bfseries}
+\renewcommand\cftchapfont{\LARGE\bfseries}
 \renewcommand\cftsecfont{\Large\itshape}
-\renewcommand\cftsubsecfont{\normalsize}
+\renewcommand\cftsubsecfont{\Large}
 
 \renewcommand\cftpartpagefont{\LARGE}
-\renewcommand\cftchappagefont{\Large}
+\renewcommand\cftchappagefont{\LARGE}
 \renewcommand\cftsecpagefont{\Large}
-\renewcommand\cftsubsecpagefont{\normalsize}
+\renewcommand\cftsubsecpagefont{\Large}
 
-\renewcommand\cftpartafterpnum{\vskip2mm}
-\renewcommand\cftchapafterpnum{\vskip2mm}
-\renewcommand\cftsecafterpnum{\vskip2mm}
-\renewcommand\cftsubsecafterpnum{\vskip1mm}
+\renewcommand\cftpartafterpnum{\vskip0mm}
+\renewcommand\cftchapafterpnum{\vskip0mm}
+\renewcommand\cftsecafterpnum{\vskip0mm}
+\renewcommand\cftsubsecafterpnum{\vskip0mm}
 
-\setlength{\cftchapindent}{2em}
-\setlength{\cftsecindent}{4em}
-\setlength{\cftsubsecindent}{6em}
-\setlength{\cftsubsubsecindent}{8em}
+\setlength{\cftchapindent}{1em}
+\setlength{\cftsecindent}{2em}
+\setlength{\cftsubsecindent}{3em}
+\setlength{\cftsubsubsecindent}{5em}
 
 \titlecontents{part}% <section-type>
   [0em]% <left>
@@ -492,20 +491,28 @@ $endif$
   []% <below-code>
 
 \titlecontents{chapter}% <section-type>
-  [2em]% <left>
+  [1em]% <left>
   {}% <above-code>
-  {\vskip2mm\Large\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip2mm\Large}% <numberless-entry-format>
+  {\vskip1mm\LARGE\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip1mm\LARGE}% <numberless-entry-format>
   {\Large\hfill\contentspage}% <filler-page-format>
   []% <below-code>
 
 \titlecontents{section}% <section-type>
-  [4em]% <left>
+  [2em]% <left>
   {}% <above-code>
-  {\vskip1mm\Large\itshape \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip1mm\Large\itshape}% <numberless-entry-format>
+  {\vskip0mm\Large\itshape \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip0mm\Large\itshape}% <numberless-entry-format>
   {\Large\hfill\contentspage}% <filler-page-format>
-  [\vskip2mm]% <below-code> 
+  []% <below-code> 
+  
+\titlecontents{subsection}% <section-type>
+  [3em]% <left>
+  {}% <above-code>
+  {\vskip0mm\large\itshape \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip0mm\large\itshape}% <numberless-entry-format>
+  {\large\hfill\contentspage}% <filler-page-format>
+  []% <below-code> 
 
 
 % ===================
@@ -610,7 +617,7 @@ Source code \\
 \endgroup
 \clearpage
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
 \tableofcontents
 \cleardoublepage
 
