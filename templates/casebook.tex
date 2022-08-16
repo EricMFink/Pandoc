@@ -260,7 +260,7 @@
 $if(secnum)$
 \setcounter{secnumdepth}{$secnum$}
 $else$
-\setcounter{secnumdepth}{2}
+\setcounter{secnumdepth}{0}
 $endif$
 
 \renewcommand\thechapter{\arabic{chapter}}
@@ -281,11 +281,11 @@ $endif$
   {Chapter \thechapter}
   {0em}
   {\vspace{1em}\rmfamily\Huge}
-  [\vspace*{\fill}\end{fullwidth}]
+  [\vspace*{\fill}\end{fullwidth}\newpage]
 
 \titleformat{\section}%
   [block]
-  {\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
+  {\newpage\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
   {\thesection ~~}
   {0em}
   {}
@@ -294,7 +294,7 @@ $endif$
 
 \titleformat{\subsection}
   [block]
-  {\begin{fullwidth}\raggedright\rmfamily\LARGE\color{mydarkred}}
+  {\needspace{7\baselineskip}\begin{fullwidth}\raggedright\rmfamily\LARGE\color{mydarkred}}
   {\thesubsection ~~}
   {0em}
   {}
@@ -305,7 +305,7 @@ $endif$
 \titleclass{\subsubsection}{straight}
 \titleformat{\subsubsection}
   [block]
-  {\raggedright\rmfamily\bfseries\Large\color{mydarkred}}
+  {\raggedright\rmfamily\Large\color{mydarkred}}
   {\thesubsection ~~}
   {0em}
   {}
@@ -324,7 +324,7 @@ $endif$
 \titleclass{\subparagraph}{straight}
 \titleformat{\subparagraph}
   [block]
-  {\raggedright\rmfamily\large\itshape}
+  {\raggedright\rmfamily\large}
   {\thesubparagraph}
   {0em}
   {}
@@ -477,10 +477,10 @@ $endif$
 \renewcommand\cftsecafterpnum{\vskip0mm}
 \renewcommand\cftsubsecafterpnum{\vskip0mm}
 
-\setlength{\cftchapindent}{1em}
-\setlength{\cftsecindent}{2em}
-\setlength{\cftsubsecindent}{3em}
-\setlength{\cftsubsubsecindent}{5em}
+\setlength{\cftchapindent}{2em}
+\setlength{\cftsecindent}{4em}
+\setlength{\cftsubsecindent}{6em}
+\setlength{\cftsubsubsecindent}{7em}
 
 \titlecontents{part}% <section-type>
   [0em]% <left>
@@ -491,7 +491,7 @@ $endif$
   []% <below-code>
 
 \titlecontents{chapter}% <section-type>
-  [1em]% <left>
+  [2em]% <left>
   {}% <above-code>
   {\vskip1mm\LARGE\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
   {\vskip1mm\LARGE}% <numberless-entry-format>
@@ -499,7 +499,7 @@ $endif$
   []% <below-code>
 
 \titlecontents{section}% <section-type>
-  [2em]% <left>
+  [4em]% <left>
   {}% <above-code>
   {\vskip0mm\Large\itshape \thecontentslabel\quad}% <numbered-entry-format>
   {\vskip0mm\Large\itshape}% <numberless-entry-format>
@@ -507,7 +507,7 @@ $endif$
   []% <below-code> 
   
 \titlecontents{subsection}% <section-type>
-  [3em]% <left>
+  [6em]% <left>
   {}% <above-code>
   {\vskip0mm\large\itshape \thecontentslabel\quad}% <numbered-entry-format>
   {\vskip0mm\large\itshape}% <numberless-entry-format>
@@ -631,7 +631,7 @@ $if(epigraph)$
 \vspace*{\fill}
 $endif$
 
-\needspace{4\baselineskip}
+\needspace{5\baselineskip}
 
 \mainmatter
 
