@@ -260,7 +260,7 @@ $if(casebook)$
 $if(secnum)$
 \setcounter{secnumdepth}{$secnum$}
 $else$
-\setcounter{secnumdepth}{1}
+\setcounter{secnumdepth}{2}
 $endif$
 
 \renewcommand\thechapter{\arabic{chapter}}
@@ -280,12 +280,12 @@ $endif$
   {\begin{fullwidth}\vspace*{\fill}\raggedright\sffamily\Huge\color{mydarkred}}
   {Chapter \thechapter}
   {0em}
-  {\vspace{1em}\rmfamily\Huge}
+  {\vspace{1em}\sffamily\Huge}
   [\vspace*{\fill}\end{fullwidth}\clearpage]
 
 \titleformat{\section}%
   [block]
-  {\newpage\begin{fullwidth}\raggedright\sffamily\huge\color{mydarkred}}
+  {\newpage\begin{fullwidth}\raggedright\sffamily\Huge\color{mydarkred}}
   {\thesection ~~}
   {0em}
   {}
@@ -294,7 +294,7 @@ $endif$
 
 \titleformat{\subsection}
   [block]
-  {\begin{fullwidth}\raggedright\sffamily\LARGE\color{mydarkred}}
+  {\needspace{2\baselineskip}\begin{fullwidth}\raggedright\sffamily\huge\color{mydarkred}}
   {\thesubsection ~~}
   {0em}
   {}
@@ -462,14 +462,14 @@ $endif$
 \usepackage{titletoc,tocloft}
 
 \renewcommand\cfttoctitlefont{\Huge\sffamily\textcolor{mydarkred}}
-\renewcommand\cftpartfont{\LARGE\bfseries}
-\renewcommand\cftchapfont{\LARGE\bfseries}
-\renewcommand\cftsecfont{\Large\itshape}
-\renewcommand\cftsubsecfont{\Large}
+\renewcommand\cftpartfont{\rmfamily\Huge\bfseries}
+\renewcommand\cftchapfont{\rmfamily\huge\bfseries}
+\renewcommand\cftsecfont{\rmfamily\LARGE}
+\renewcommand\cftsubsecfont{\rmfamily\Large}
 
-\renewcommand\cftpartpagefont{\LARGE}
-\renewcommand\cftchappagefont{\LARGE}
-\renewcommand\cftsecpagefont{\Large}
+\renewcommand\cftpartpagefont{\rmfamily\Huge}
+\renewcommand\cftchappagefont{\rmfamily\huge}
+\renewcommand\cftsecpagefont{\rmfamily\LARGE}
 \renewcommand\cftsubsecpagefont{\Large}
 
 \renewcommand\cftpartafterpnum{\vskip0mm}
@@ -485,9 +485,9 @@ $endif$
 \titlecontents{part}% <section-type>
   [0em]% <left>
   {}% <above-code>
-  {\vskip2mm\LARGE\partname~ \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip2mm\LARGE\partname~}% <numberless-entry-format>
-  {\LARGE\hfill\contentspage}% <filler-page-format>
+  {\vskip2mm\Huge\partname~ \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip2mm\Huge\partname~}% <numberless-entry-format>
+  {\Huge\hfill\contentspage}% <filler-page-format>
   []% <below-code>
 
 \titlecontents{chapter}% <section-type>
@@ -495,23 +495,23 @@ $endif$
   {}% <above-code>
   {\vskip1mm\LARGE\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
   {\vskip1mm\LARGE}% <numberless-entry-format>
-  {\Large\hfill\contentspage}% <filler-page-format>
+  {\LARGE\hfill\contentspage}% <filler-page-format>
   []% <below-code>
 
 \titlecontents{section}% <section-type>
   [4em]% <left>
   {}% <above-code>
-  {\vskip0mm\Large\itshape \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip0mm\Large\itshape}% <numberless-entry-format>
-  {\Large\hfill\contentspage}% <filler-page-format>
+  {\vskip0mm\LARGE \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip0mm\LARGE}% <numberless-entry-format>
+  {\LARGE\hfill\contentspage}% <filler-page-format>
   []% <below-code> 
   
 \titlecontents{subsection}% <section-type>
   [6em]% <left>
   {}% <above-code>
-  {\vskip0mm\large\itshape \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip0mm\large\itshape}% <numberless-entry-format>
-  {\large\hfill\contentspage}% <filler-page-format>
+  {\vskip0mm\Large \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip0mm\Large}% <numberless-entry-format>
+  {\Large\hfill\contentspage}% <filler-page-format>
   []% <below-code> 
 
 
