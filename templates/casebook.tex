@@ -3,6 +3,8 @@
 %%% Created by Eric M. Fink (https://github.com/EricMFink/Pandoc/templates)
 %%%
 
+
+
 \documentclass[letterpaper,twoside,openright]{tufte-book}
 
 % ============
@@ -75,11 +77,6 @@
 % = Fonts =
 % =========
 
-% \usepackage{scrextend} 
-% \changefontsizes[14.4pt]{12pt}
-
-
-
 \usepackage{crimson}
 \usepackage[defaultsans,scale=0.95]{lato}
 \usepackage{inconsolata}
@@ -98,8 +95,8 @@
 %\newfontface\marginfont{Alegreya Sans}
 
 
-\setsidenotefont{\rmfamily\footnotesize}
-\setcaptionfont{\sffamily\footnotesize}
+\setsidenotefont{\rmfamily\scriptsize}
+\setcaptionfont{\sffamily\scriptsize}
 \setmarginnotefont{\sffamily\fontseries{l}\scriptsize}
 
 
@@ -260,7 +257,7 @@
 $if(secnum)$
 \setcounter{secnumdepth}{$secnum$}
 $else$
-\setcounter{secnumdepth}{1}
+\setcounter{secnumdepth}{2}
 $endif$
 
 \renewcommand\thechapter{\arabic{chapter}}
@@ -277,15 +274,15 @@ $endif$
 
 \titleformat{\chapter}
   [display]
-  {\begin{fullwidth}\vspace*{\fill}\raggedright\rmfamily\itshape\huge\color{mydarkred}}
+  {\begin{fullwidth}\vspace*{\fill}\raggedright\sffamily\Huge\color{mydarkred}}
   {Chapter \thechapter}
   {0em}
-  {\vspace{1em}\rmfamily\Huge}
-  [\vspace*{\fill}\end{fullwidth}\newpage]
+  {\vspace{1em}\sffamily\Huge}
+  [\vspace*{\fill}\end{fullwidth}\clearpage]
 
 \titleformat{\section}%
   [block]
-  {\newpage\begin{fullwidth}\raggedright\rmfamily\huge\color{mydarkred}}
+  {\newpage\begin{fullwidth}\raggedright\sffamily\Huge\color{mydarkred}}
   {\thesection ~~}
   {0em}
   {}
@@ -294,7 +291,7 @@ $endif$
 
 \titleformat{\subsection}
   [block]
-  {\needspace{7\baselineskip}\begin{fullwidth}\raggedright\rmfamily\LARGE\color{mydarkred}}
+  {\needspace{2\baselineskip}\begin{fullwidth}\raggedright\sffamily\huge\color{mydarkred}}
   {\thesubsection ~~}
   {0em}
   {}
@@ -305,7 +302,7 @@ $endif$
 \titleclass{\subsubsection}{straight}
 \titleformat{\subsubsection}
   [block]
-  {\raggedright\rmfamily\Large\color{mydarkred}}
+  {\raggedright\rmfamily\bfseries\LARGE}
   {\thesubsection ~~}
   {0em}
   {}
@@ -462,14 +459,14 @@ $endif$
 \usepackage{titletoc,tocloft}
 
 \renewcommand\cfttoctitlefont{\Huge\sffamily\textcolor{mydarkred}}
-\renewcommand\cftpartfont{\LARGE\bfseries}
-\renewcommand\cftchapfont{\LARGE\bfseries}
-\renewcommand\cftsecfont{\Large\itshape}
-\renewcommand\cftsubsecfont{\Large}
+\renewcommand\cftpartfont{\rmfamily\Huge\bfseries}
+\renewcommand\cftchapfont{\rmfamily\huge\bfseries}
+\renewcommand\cftsecfont{\rmfamily\LARGE}
+\renewcommand\cftsubsecfont{\rmfamily\Large}
 
-\renewcommand\cftpartpagefont{\LARGE}
-\renewcommand\cftchappagefont{\LARGE}
-\renewcommand\cftsecpagefont{\Large}
+\renewcommand\cftpartpagefont{\rmfamily\Huge}
+\renewcommand\cftchappagefont{\rmfamily\huge}
+\renewcommand\cftsecpagefont{\rmfamily\LARGE}
 \renewcommand\cftsubsecpagefont{\Large}
 
 \renewcommand\cftpartafterpnum{\vskip0mm}
@@ -485,9 +482,9 @@ $endif$
 \titlecontents{part}% <section-type>
   [0em]% <left>
   {}% <above-code>
-  {\vskip2mm\LARGE\partname~ \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip2mm\LARGE\partname~}% <numberless-entry-format>
-  {\LARGE\hfill\contentspage}% <filler-page-format>
+  {\vskip2mm\Huge\partname~ \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip2mm\Huge\partname~}% <numberless-entry-format>
+  {\Huge\hfill\contentspage}% <filler-page-format>
   []% <below-code>
 
 \titlecontents{chapter}% <section-type>
@@ -495,23 +492,23 @@ $endif$
   {}% <above-code>
   {\vskip1mm\LARGE\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
   {\vskip1mm\LARGE}% <numberless-entry-format>
-  {\Large\hfill\contentspage}% <filler-page-format>
+  {\LARGE\hfill\contentspage}% <filler-page-format>
   []% <below-code>
 
 \titlecontents{section}% <section-type>
   [4em]% <left>
   {}% <above-code>
-  {\vskip0mm\Large\itshape \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip0mm\Large\itshape}% <numberless-entry-format>
-  {\Large\hfill\contentspage}% <filler-page-format>
+  {\vskip0mm\LARGE \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip0mm\LARGE}% <numberless-entry-format>
+  {\LARGE\hfill\contentspage}% <filler-page-format>
   []% <below-code> 
   
 \titlecontents{subsection}% <section-type>
   [6em]% <left>
   {}% <above-code>
-  {\vskip0mm\large\itshape \thecontentslabel\quad}% <numbered-entry-format>
-  {\vskip0mm\large\itshape}% <numberless-entry-format>
-  {\large\hfill\contentspage}% <filler-page-format>
+  {\vskip0mm\Large \thecontentslabel\quad}% <numbered-entry-format>
+  {\vskip0mm\Large}% <numberless-entry-format>
+  {\Large\hfill\contentspage}% <filler-page-format>
   []% <below-code> 
 
 
@@ -639,4 +636,3 @@ $body$
 
 \clearpage
 \end{document}
-
