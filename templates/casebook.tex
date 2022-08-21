@@ -1,5 +1,5 @@
-%%% casebok.tex
-%%% Pandoc template for law school casebook using LaTeX tufte-book class
+%%% casebook.tex
+%%% Pandoc template for law school casebook
 %%% Created by Eric M. Fink (https://github.com/EricMFink/Pandoc/templates)
 %%%
 
@@ -260,7 +260,7 @@
 $if(secnum)$
 \setcounter{secnumdepth}{$secnum$}
 $else$
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{1}
 $endif$
 
 \renewcommand\thechapter{\arabic{chapter}}
@@ -639,3 +639,4 @@ $body$
 
 \clearpage
 \end{document}
+
