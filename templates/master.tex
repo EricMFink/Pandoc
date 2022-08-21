@@ -93,14 +93,11 @@ $if(casebook)$
 %\setsansfont{Lato}[Mapping=tex-text]
 \setmonofont[Scale=0.90]{Inconsolata}
 
-%\DeclareRobustCommand{\ltseries}{\fontseries{l}\selectfont}
-
-%\newfontface\marginfont{Alegreya Sans}
 
 
 \setsidenotefont{\rmfamily\scriptsize}
 \setcaptionfont{\sffamily\scriptsize}
-\setmarginnotefont{\sffamily\fontseries{l}\scriptsize}
+\setmarginnotefont{\sffamily\scriptsize}
 
 
 % =========
@@ -281,7 +278,7 @@ $endif$
   {Chapter \thechapter}
   {0em}
   {\vspace{1em}\sffamily\Huge}
-  [\vspace*{\fill}\end{fullwidth}\clearpage]
+  [\vspace*{\fill}\end{fullwidth}\cleardoublepage]
 
 \titleformat{\section}%
   [block]
@@ -294,11 +291,11 @@ $endif$
 
 \titleformat{\subsection}
   [block]
-  {\needspace{2\baselineskip}\begin{fullwidth}\raggedright\sffamily\huge\color{mydarkred}}
+  {\needspace{2\baselineskip}\raggedright\sffamily\huge\color{mydarkred}}
   {\thesubsection ~~}
   {0em}
   {}
-  [\end{fullwidth}]
+  []
 
 
 % Title of Statute, Rule, Case, Reading, etc. 
@@ -617,8 +614,11 @@ Source code \\
 \endgroup
 \clearpage
 
+\begin{fullwidth}
 \setcounter{tocdepth}{3}
 \tableofcontents
+\end{fullwidth}
+
 \cleardoublepage
 
 %----------------------------------------------------------------------------------------
