@@ -1642,10 +1642,15 @@ $endif$
 \setlist[itemize,5]{label=\diamond}
 \setlist[itemize,6]{label=\textopenbullet}
 
+$if(nolistsep)$
+\setlist{nosep}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0em}\setlength{\parskip}{0em}}
+$else$
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0em}\setlength{\parskip}{.5em}}
+$endif$
 
-%\setlist{nosep}
 %\setlist[enumerate]{itemindent=2em}
 %\setlist[enumerate,1]{itemindent=.5em}
 
@@ -1800,8 +1805,9 @@ $if(date)$
 \rmfamily\footnotesize{$date$} \\
 $endif$
 \vspace{5mm}
-\titlefont\LARGE{$title$} 
+\titlefont\LARGE{$title$} \\
 $if(subtitle)$
+\vspace{.5cm}
 \titlefont\Large{$subtitle$} 
 $endif$
 
