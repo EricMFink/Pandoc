@@ -163,15 +163,15 @@ $if(casebook)$
 }
 
 % https://tex.stackexchange.com/questions/307745/xelatex-latin-modern-mathbb-and-mathcal
-\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
-\let\mathbb\relax % remove the definition by unicode-math
-\DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
-
-\mathlig{<N>}{\mathbb{N}}
-
+% \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+% \let\mathbb\relax % remove the definition by unicode-math
+% \DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
+% 
+% \mathlig{<N>}{\mathbb{N}}
+% 
 % These are broken by default for an unknown reason. We fix them with matlig:
-\mathlig{-}{\minus} % Normally renders as whitespace due to missing character.
-\mathlig{|}{\mid} % Normally renders as "j"
+% \mathlig{-}{\minus} % Normally renders as whitespace due to missing character.
+% \mathlig{|}{\mid} % Normally renders as "j"
 
 
 % https://tex.stackexchange.com/questions/37561/getting-started-with-minion-pro-xelatex-and-mathspec
@@ -298,7 +298,7 @@ $endif$
   []
 
 
-% Title of Statute, Rule, Case, Reading, etc. 
+% Title & Cite for Statute, Rule, Case, Reading, etc. 
 \titleclass{\subsubsection}{straight}
 \titleformat{\subsubsection}
   [block]
@@ -308,7 +308,7 @@ $endif$
   {}
   [\vspace{-1em}\textcolor{mydarkred}{\rule{\textwidth}{2pt}}]
 
-% Judge name for Case; Subtitle for Statute, Rule, etc.; Author/Source for other readings 
+% 1st level heading for case, reading, etc.
 \titleclass{\paragraph}{straight}
 \titleformat{\paragraph}
   [block]
@@ -318,10 +318,11 @@ $endif$
   {}
   []
 
+% 2nd level heading for case, reading, etc.
 \titleclass{\subparagraph}{straight}
 \titleformat{\subparagraph}
   [block]
-  {\raggedright\rmfamily\large}
+  {\raggedright\textit\large}
   {\thesubparagraph}
   {0em}
   {}
