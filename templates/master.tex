@@ -162,19 +162,6 @@ $if(casebook)$
     \end{landscape}
 }
 
-% https://tex.stackexchange.com/questions/307745/xelatex-latin-modern-mathbb-and-mathcal
-% \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
-% \let\mathbb\relax % remove the definition by unicode-math
-% \DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
-% 
-% \mathlig{<N>}{\mathbb{N}}
-% 
-% These are broken by default for an unknown reason. We fix them with matlig:
-% \mathlig{-}{\minus} % Normally renders as whitespace due to missing character.
-% \mathlig{|}{\mid} % Normally renders as "j"
-
-
-% https://tex.stackexchange.com/questions/37561/getting-started-with-minion-pro-xelatex-and-mathspec
 \ifxetex
   \newcommand{\ttls}[2][5]{%
     \begingroup\addfontfeatures{LetterSpace=#1}#2\endgroup
@@ -197,18 +184,17 @@ $if(casebook)$
 \setlistdepth{20}
 %\renewlist{itemize}{itemize}{10}
 %\renewlist{enumerate}{enumerate}{10}
-
-
-
 %\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0em}\setlength{\parskip}{.2em}}
 
 \setlist{nosep}
+
 %\setlist[enumerate]{labelindent=0pt,labelwidth=1.5em,leftmargin=!}
+
 \setlist[enumerate]{wide=0pt,labelwidth=1.3333em,labelsep=0.3333em,leftmargin=\dimexpr\labelwidth + \labelsep\relax }
-%\setlist[enumerate]{itemindent=2em}
+% \setlist[enumerate]{itemindent=2em}
 % \setlist[enumerate]{itemindent=0em}
 % \setlist[itemize]{itemindent=2em}
 % \setlist[itemize,1]{itemindent=0em}
@@ -231,7 +217,6 @@ $if(casebook)$
     {\vspace{1\baselineskip}
     }
 
-
 % Explanatory Notes
 \newenvironment{comment}
     {\sffamily 
@@ -239,7 +224,6 @@ $if(casebook)$
     {
     \vspace{.5em}\vspace{1em}
     }
-
 
 % ============
 % = Headings =
@@ -1623,7 +1607,7 @@ $endif$
 
 \usepackage{enumitem}
 \setlistdepth{5}
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{2}
 
 % ============
 % = Headings =
@@ -1674,27 +1658,27 @@ $if(lawreview)$
 {}
 
 $else$
-\titleformat{\section}[block]
+\titleformat{\section}[hang]
   {\large\bfseries}
-  {\thesection}
+  {\thesection.}
   {1em}
   {}
-\titleformat{\subsection}[block]
-  {\normalsize\bfseries}
+\titleformat{\subsection}[hang]
+  {\large\bfseries}
   {\thesubsection}
   {1em}
   {}
-\titleformat{\subsubsection}[block]
-  {\normalsize\itshape}
+\titleformat{\subsubsection}[hang]
+  {\large\itshape}
   {\thesubsubsection}
   {1em}
   {}
-\titleformat{\paragraph}[block]
+\titleformat{\paragraph}[hang]
   {\normalsize\itshape}
   {\thesubparagraph}
   {1em}
   {}
-\titleformat{\subparagraph}[block]
+\titleformat{\subparagraph}[hang]
   {\normalsize\itshape}
   {\theparagraph}
   {1em}
@@ -1732,7 +1716,6 @@ $endif$
 \setlength\epigraphrule{0pt}
 \renewcommand{\epigraphsize}{\footnotesize}
 
-
 % ============
 % = Graphics =
 % ============
@@ -1751,8 +1734,6 @@ $if(graphics)$
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 $endif$
-
-
 
 % ===================
 % = Pandoc citeproc =
