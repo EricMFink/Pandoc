@@ -1716,6 +1716,24 @@ $endif$
 \setlength\epigraphrule{0pt}
 \renewcommand{\epigraphsize}{\footnotesize}
 
+
+% ==========
+% = Quotes =
+% ==========
+
+\usepackage{csquotes}
+
+\AtBeginEnvironment{quote}{\small}
+
+\renewenvironment{quote}{%
+   \list{}{%
+     \leftmargin2em   % this is the adjusting screw
+     \rightmargin\leftmargin\parsep 0mm }
+   \item\relax
+}
+{\endlist}
+
+
 % ============
 % = Graphics =
 % ============
