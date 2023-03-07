@@ -632,6 +632,7 @@ $elseif(syllabus)$
 
 % START OF SYLLABUS TEMPLATE
 
+
 % ====================
 % = Layout & Spacing =
 % ====================
@@ -674,7 +675,7 @@ $elseif(syllabus)$
 % = Colors & Fonts =
 % ==================
 
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \definecolor{myblack}{HTML}{231F20} 
 \definecolor{mybrightred}{HTML}{EC1F27} 
 \definecolor{mydarkred}{HTML}{b03a2e} 
@@ -682,6 +683,7 @@ $elseif(syllabus)$
 \definecolor{mylightblue}{HTML}{3498DB} 
 \definecolor{mydarkgrey}{HTML}{566573} 
 \definecolor{mylightgrey}{HTML}{D5D8DC} 
+
 
 
 \usepackage{fontspec}
@@ -712,7 +714,7 @@ $elseif(syllabus)$
 \fancyhead[CO]{\textsc{$affiliation$}}
 \fancyhead[LE]{\textsc{\thepage}}
 \fancyhead[LO]{\textsc{$term$}}
-\fancyhead[RE]{\textsc{$author$}}
+\fancyhead[RE]{\textsc{Prof. Fink}}
 \fancyhead[RO]{\textsc{\thepage}}
 
 
@@ -743,10 +745,10 @@ $elseif(syllabus)$
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{2em}{1em}
-\titlespacing*{\subsection}{0em}{2em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{1em}{0.1em}
-\titlespacing*{\subparagraph}{0em}{1.5em}{1.5em}
+\titlespacing*{\subsection}{0em}{1em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1em}{.2em}
+\titlespacing*{\paragraph}{0em}{.5em}{.5em}
+\titlespacing*{\subparagraph}{.5em}{.5em}{0em}
 
 
 $if(secnumdepth)$
@@ -764,13 +766,13 @@ $endif$
   {}
 % H2
 \titleformat{\subsection}[hang]
-  {\large\titlefont}
+  {\large\bfseries\rmfamily}
   {\thesubsection}
   {1em}
   {}
 % H3
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\rmfamily}
+  {\large\titlefont}
   {\thesubsubsection}
   {1em}
   {}
@@ -783,7 +785,7 @@ $endif$
 
 % H5
 \titleformat{\subparagraph}[block]
-  {\normalsize\itshape\rmfamily}
+  {\normalsize\rmfamily}
   {}
   {0em}
   {}
@@ -856,6 +858,8 @@ $endif$
 
 % \setlength\LTleft{0pt}
 % \setlength\LTright{0pt}
+
+
 
 % ============
 % = Graphics =
@@ -971,43 +975,18 @@ $if(room)$
 $endif$
 \vspace{1em}
 
+{$author$}  \\
+\texttt{\href{mailto:{$email$}}{$email$}}  \\
+{$phone$}  \\
+{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
+\end{footnotesize}
 
 $if(ta)$
-\begin{minipage}[t]{2.5in} 
-{\itshape{Professor:}}  \\
-{$author$}  \\
-\texttt{\href{mailto:{$email$}}{$email$}}  \\
-{$phone$}  \\
-{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
-\end{minipage}
-\hfill     
-%\begin{minipage}[t]{0.0in}
-% dummy (needed here)
-%\end{minipage}
-\hfill
-\begin{minipage}[t]{3in}
-{\itshape{Teaching Assistants:}}  \\
+\vspace{1em}
+{\itshape{Teaching Assistant:}}  \\
 {$ta$}  \\
 \texttt{\href{mailto:{$ta-email$}}{$ta-email$}}  \\
-$if(ta2)$
-\vspace{0.5em}
-{$ta2$}  \\
-\texttt{\href{mailto:{$ta2-email$}}{$ta2-email$}}  \\
 $endif$
-$if(ta3)$
-\vspace{0.5em}
-{$ta3$}  \\
-\texttt{\href{mailto:{$ta3-email$}}{$ta3-email$}}  \\
-$endif$
-\end{minipage}
-
-$else$
-{$author$}  \\
-\texttt{\href{mailto:{$email$}}{$email$}}  \\
-{$phone$}  \\
-{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
-$endif$
-\end{footnotesize}
 
 \vspace{2em}
 
@@ -1019,7 +998,6 @@ $endif$
 $body$
 
 \end{document}
-
 % END OF SYLLABUS TEMPLATE
 
 $elseif(vita)$

@@ -86,7 +86,7 @@
 \fancyhead[CO]{\textsc{$affiliation$}}
 \fancyhead[LE]{\textsc{\thepage}}
 \fancyhead[LO]{\textsc{$term$}}
-\fancyhead[RE]{\textsc{$author$}}
+\fancyhead[RE]{\textsc{Prof. Fink}}
 \fancyhead[RO]{\textsc{\thepage}}
 
 
@@ -117,10 +117,10 @@
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{2em}{1em}
-\titlespacing*{\subsection}{0em}{2em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{1em}{0.1em}
-\titlespacing*{\subparagraph}{0em}{1.5em}{1.5em}
+\titlespacing*{\subsection}{0em}{1em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1em}{.2em}
+\titlespacing*{\paragraph}{0em}{.5em}{.5em}
+\titlespacing*{\subparagraph}{.5em}{.5em}{0em}
 
 
 $if(secnumdepth)$
@@ -138,13 +138,13 @@ $endif$
   {}
 % H2
 \titleformat{\subsection}[hang]
-  {\large\titlefont}
+  {\large\bfseries\rmfamily}
   {\thesubsection}
   {1em}
   {}
 % H3
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\rmfamily}
+  {\large\titlefont}
   {\thesubsubsection}
   {1em}
   {}
@@ -157,7 +157,7 @@ $endif$
 
 % H5
 \titleformat{\subparagraph}[block]
-  {\normalsize\itshape\rmfamily}
+  {\normalsize\rmfamily}
   {}
   {0em}
   {}
@@ -231,28 +231,6 @@ $endif$
 % \setlength\LTleft{0pt}
 % \setlength\LTright{0pt}
 
-
-% tables
-\definecolor{table-row-color}{HTML}{F5F5F5}
-\definecolor{table-rule-color}{HTML}{999999}
-
-\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
-\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
-\setlength\lightrulewidth{0.1ex}      % thickness of \midrule
-\renewcommand{\arraystretch}{1.3}     % spacing (padding)
-
-\let\oldlongtable\longtable
-\let\endoldlongtable\endlongtable
-\renewenvironment{longtable}{
-\rowcolors{3}{}{table-row-color!100}  % row color
-\oldlongtable} {
-\endoldlongtable
-\global\rownum=0\relax}
-
-
-\usepackage[table]{xcolor}
-\usepackage{tabularx}
-\usepackage{colortbl}
 
 
 % ============
