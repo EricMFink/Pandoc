@@ -47,7 +47,7 @@
 % = Colors & Fonts =
 % ==================
 
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \definecolor{myblack}{HTML}{231F20} 
 \definecolor{mybrightred}{HTML}{EC1F27} 
 \definecolor{mydarkred}{HTML}{b03a2e} 
@@ -55,6 +55,7 @@
 \definecolor{mylightblue}{HTML}{3498DB} 
 \definecolor{mydarkgrey}{HTML}{566573} 
 \definecolor{mylightgrey}{HTML}{D5D8DC} 
+
 
 
 \usepackage{fontspec}
@@ -230,6 +231,30 @@ $endif$
 % \setlength\LTleft{0pt}
 % \setlength\LTright{0pt}
 
+
+% tables
+\definecolor{table-row-color}{HTML}{F5F5F5}
+\definecolor{table-rule-color}{HTML}{999999}
+
+\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
+\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
+\setlength\lightrulewidth{0.1ex}      % thickness of \midrule
+\renewcommand{\arraystretch}{1.3}     % spacing (padding)
+
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{
+\rowcolors{3}{}{table-row-color!100}  % row color
+\oldlongtable} {
+\endoldlongtable
+\global\rownum=0\relax}
+
+
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{colortbl}
+
+
 % ============
 % = Graphics =
 % ============
@@ -271,6 +296,46 @@ $endif$
 
 $if(notesymbols)$\renewcommand{\thefootnote}{\fnsymbol{footnote}}$endif$
 
+
+
+% ===================
+% = Pandoc citeproc =
+% ===================
+
+$if(csl-refs)$
+% Pandoc citation processing
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+% for Pandoc 2.8 to 2.10.1
+%\newenvironment{cslreferences}%
+%  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+%  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+%  {\par}
+% For Pandoc 2.11+
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+$endif$
+
 % ==============
 % = Hyperlinks =
 % ==============
@@ -304,43 +369,18 @@ $if(room)$
 $endif$
 \vspace{1em}
 
+{$author$}  \\
+\texttt{\href{mailto:{$email$}}{$email$}}  \\
+{$phone$}  \\
+{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
+\end{footnotesize}
 
 $if(ta)$
-\begin{minipage}[t]{2.5in} 
-{\itshape{Professor:}}  \\
-{$author$}  \\
-\texttt{\href{mailto:{$email$}}{$email$}}  \\
-{$phone$}  \\
-{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
-\end{minipage}
-\hfill     
-%\begin{minipage}[t]{0.0in}
-% dummy (needed here)
-%\end{minipage}
-\hfill
-\begin{minipage}[t]{3in}
-{\itshape{Teaching Assistants:}}  \\
+\vspace{1em}
+{\itshape{Teaching Assistant:}}  \\
 {$ta$}  \\
 \texttt{\href{mailto:{$ta-email$}}{$ta-email$}}  \\
-$if(ta2)$
-\vspace{0.5em}
-{$ta2$}  \\
-\texttt{\href{mailto:{$ta2-email$}}{$ta2-email$}}  \\
 $endif$
-$if(ta3)$
-\vspace{0.5em}
-{$ta3$}  \\
-\texttt{\href{mailto:{$ta3-email$}}{$ta3-email$}}  \\
-$endif$
-\end{minipage}
-
-$else$
-{$author$}  \\
-\texttt{\href{mailto:{$email$}}{$email$}}  \\
-{$phone$}  \\
-{Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
-$endif$
-\end{footnotesize}
 
 \vspace{2em}
 
