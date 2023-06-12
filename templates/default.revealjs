@@ -14,13 +14,13 @@ $endfor$
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<link rel="stylesheet" href="/home/efink/reveal.js/dist/reveal.css">
-<link rel="stylesheet" href="/home/efink/reveal.js/dist/reset.css">
+<link rel="stylesheet" href="/home/efink/GitHub/revealjs/dist/reveal.css">
+<link rel="stylesheet" href="/home/efink/GitHub/revealjs/dist/reset.css">
 
 $if(theme)$
-<link rel="stylesheet" href="/home/efink/Documents/Computer/Revealjs/$theme$.css" id="theme">
+<link rel="stylesheet" href="/home/efink/GitHub/revealjs/dist/theme/$theme$.css" id="theme">
 $else$
-<link rel="stylesheet" href="/home/efink/Documents/Computer/Revealjs/emf.css" id="theme">
+<link rel="stylesheet" href="/home/efink/GitHub/revealjs/dist/theme/emf-white.css" id="theme">
 $endif$
 
 
@@ -67,14 +67,14 @@ $body$
 
   </div>
 
-<script src="/home/efink/reveal.js/dist/reveal.js"></script>
-<script src="/home/efink/Documents/Computer/Revealjs/reveal-scroll.js"></script>
-<script src="/home/efink/reveal.js/plugin/zoom/zoom.js"></script>
-<script src="/home/efink/reveal.js/plugin/notes/notes.js"></script>
-<script src="/home/efink/reveal.js/plugin/search/search.js"></script>
-<script src="/home/efink/reveal.js/plugin/markdown/markdown.js"></script>
-<script src="/home/efink/reveal.js/plugin/highlight/highlight.js"></script>
-<script src="/home/efink/Documents/Computer/Revealjs/plugin/menu/menu.js"></script>
+<script src="/home/efink/GitHub/revealjs/dist/reveal.js"></script>
+<script src="/home/efink/GitHub/revealjs/dist/reveal-scroll.js"></script>
+<script src="/home/efink/GitHub/revealjs/plugin/zoom/zoom.js"></script>
+<script src="/home/efink/GitHub/revealjs/plugin/notes/notes.js"></script>
+<script src="/home/efink/GitHub/revealjs/plugin/search/search.js"></script>
+<script src="/home/efink/GitHub/revealjs/plugin/markdown/markdown.js"></script>
+<script src="/home/efink/GitHub/revealjs/plugin/highlight/highlight.js"></script>
+<script src="/home/efink/GitHub/revealjs/plugin/menu/menu.js"></script>
 
 
 <script>
