@@ -35,12 +35,11 @@ $endif$
 
   <div class="slides">
 
-
 $if(title)$
 <section id="$idprefix$title-slide"$for(title-slide-attributes)$ $it.key$="$it.value$"$endfor$>
   <h1 class="title">$title$</h1>
 $if(subtitle)$
-  <h2>$subtitle$</h2>
+  <h2 class="title">$subtitle$</h2>
 $endif$
 $for(author)$
   <h3>$author$</h3>
