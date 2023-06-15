@@ -6,6 +6,12 @@
 
 		<title>$pagetitle$</title>
 
+		<meta name="author" content="Eric M. Fink">
+
+		$if(description)$
+		<meta name="description" content="$description$" />
+		$endif$
+
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		
@@ -16,6 +22,18 @@
 		$endif$
 		<!-- Theme for syntax highlighting -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		
+		
+	<!-- Adobe Fonts -->
+	<link rel="stylesheet" href="https://use.typekit.net/viv2jun.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Proza+Libre:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&display=swap" rel="stylesheet">
+
 		
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
@@ -34,17 +52,22 @@
 		<div class="reveal">
 			<div class="slides">
 				$if(title)$
-					<section id="$idprefix$title-slide"$for(title-slide-attributes/pairs)$ $it.key$="$it.value$"$endfor$>
+					<section id="$idprefix$title-slide"$for(title-slide-attributes/pairs)$ $it.key$="$it.value$"$endfor$>					
+						<div class="title">
 						<h1 class="title">$title$</h1>
 						$if(subtitle)$
-						<p class="subtitle">$subtitle$</p>
+						<h2 class="title">$subtitle$</h2>
 						$endif$
 						$for(author)$
-						<p class="author">$author$</p>
+						<h3 class="title">$author$</h3>
 						$endfor$
-						$if(date)$
-						<p class="date">$date$</p>
+						$if(affiliation)$
+						<h3 class="title">$affiliation$</h2>
 						$endif$
+						$if(date)$
+						<h4 class="title">$date$</h4>
+						$endif$
+						</div>
 					</section>
 				$endif$
 				$if(toc)$
@@ -58,9 +81,13 @@
 		</div>
 
 		<script src="dist/reveal.js"></script>
+		<script src="dist/reveal-scroll.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/menu/menu.js"></script>
+		
+		
 		<script>
 		// More info about initialization & config:
 		// - https://revealjs.com/initialization/
@@ -69,7 +96,7 @@
 		hash: true,
 
 		// Learn about plugins: https://revealjs.com/plugins/
-		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu ]
 		});
 		</script>
 

@@ -3,43 +3,43 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>$pagetitle$</title>
-		
-	$for(author-meta)$
-	  <meta name="author" content="$author-meta$">
-	$endfor$
+<title>$pagetitle$</title>
 
-	<link rel="stylesheet" href="../assets/reveal.js/dist/reveal.css">
-	<link rel="stylesheet" href="../assets/reveal.js/dist/reset.css">
+$for(author-meta)$
+<meta name="author" content="$author-meta$">
+$endfor$
 
-	$if(theme)$
-	<link rel="stylesheet" href="../assets/reveal.js/dist/theme/$theme$.css" id="theme">
-	$else$
-	<link rel="stylesheet" href="../assets/reveal.js/dist/theme/emf-white.css" id="theme">
-	$endif$
+<link rel="stylesheet" href="../assets/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="../assets/reveal.js/dist/reset.css">
+
+$if(theme)$
+<link rel="stylesheet" href="../assets/reveal.js/dist/theme/$theme$.css" id="theme">
+$else$
+<link rel="stylesheet" href="../assets/reveal.js/dist/theme/emf-white.css" id="theme">
+$endif$
 
 <!-- Custom icon fonts -->
 
-	<link rel="stylesheet" type="text/css" href="https:www.emfink.net/revealjs/assets/css/academicons.css">
+<link rel="stylesheet" type="text/css" href="https:www.emfink.net/revealjs/assets/css/academicons.css">
 
-	<link rel="stylesheet" type="text/css" href="https:www.emfink.net/revealjs/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css" href="https:www.emfink.net/revealjs/assets/css/fontawesome-all.min.css">
 
-	<!-- Adobe Fonts -->
-	<link rel="stylesheet" href="https://use.typekit.net/viv2jun.css">
+<!-- Adobe Fonts -->
+<link rel="stylesheet" href="https://use.typekit.net/viv2jun.css">
 
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css2?family=Proza+Libre:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Proza+Libre:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&display=swap" rel="stylesheet">
 
 
 </head>
