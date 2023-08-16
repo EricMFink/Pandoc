@@ -286,7 +286,7 @@ $endif$
 \titleclass{\subsubsection}{straight}
 \titleformat{\subsubsection}
   [block]
-  {\raggedright\rmfamily\bfseries\LARGE}
+  {\raggedright\rmfamily\bfseries\LARGE\color{mydarkred}}
   {\thesubsection ~~}
   {0em}
   {}
@@ -306,7 +306,7 @@ $endif$
 \titleclass{\subparagraph}{straight}
 \titleformat{\subparagraph}
   [block]
-  {\raggedright\textit\large}
+  {\raggedright\itshape\large}
   {\thesubparagraph}
   {0em}
   {}
@@ -338,7 +338,7 @@ $endif$
 % = Quotes =
 % ==========
 
-
+\AtBeginEnvironment{quote}{\normalsize}
 %\AtBeginEnvironment{quote}{\vspace{-1\baselineskip}}% Stuff before {quote}
 %\AtEndEnvironment{quote}{\vspace{-1\baselineskip}}% Stuff after {quote}
 
@@ -976,18 +976,15 @@ $endif$
 \vspace{1em}
 
 {$author$}  \\
-\texttt{\href{mailto:{$email$}}{$email$}}  \\
+\texttt{\href{mailto:{$email$}}{$email$}} \\
 {$phone$}  \\
 {Office Hours: }\href{https://calendly.com/emfink}{\texttt{calendly.com/emfink}} 
-\end{footnotesize}
 
 $if(ta)$
-\vspace{1em}
-{\itshape{Teaching Assistant:}}  \\
-{$ta$}  \\
-\texttt{\href{mailto:{$ta-email$}}{$ta-email$}}  \\
+{Teaching Assistant:} {$ta$} \\
+\texttt{\href{mailto:{$ta-email$}}{$ta-email$}} \\
 $endif$
-
+\end{footnotesize}
 \vspace{2em}
 
 \needspace{3\baselineskip}
