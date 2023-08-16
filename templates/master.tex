@@ -80,18 +80,24 @@ $if(casebook)$
 % = Fonts =
 % =========
 
-\usepackage{crimson}
-\usepackage[defaultsans,scale=0.95]{lato}
-\usepackage{inconsolata}
+% \usepackage{crimson}
+% \usepackage[defaultsans,scale=0.95]{lato}
+% \usepackage{inconsolata}
+
+
 
 
 \usepackage{fontspec}
 
-\fontspec{inconsolata}
+% \fontspec{inconsolata}
 
+
+\setmainfont{Portada Text}[Mapping={tex-text}]
+
+\setsansfont{Adelle Sans}[Mapping=tex-text]
 %\setmainfont{Crimson}[Mapping={tex-text},Scale = 1.0]
 %\setsansfont{Lato}[Mapping=tex-text]
-\setmonofont[Scale=0.90]{Inconsolata}
+\setmonofont[Scale=0.90]{LFT Etica Mono}
 
 
 
@@ -586,9 +592,11 @@ Elon University School of Law \\
 Greensboro, North Carolina 27408 \\
 \url{https://www.emfink.net/ElonLaw/}
 
+$if(colophon)$
+{$colophon$}
+$endif$
 
 \vspace{1em}
-
 
 Source code \\
 \url{https://github.com/EricMFink/$repo$}
