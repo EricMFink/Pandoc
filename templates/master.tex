@@ -28,6 +28,7 @@ $if(casebook)$
 \usepackage{fourier}
 \usepackage{fontawesome}
 \usepackage{calc} 
+\usepackage{wrapfig}
 
 % ===================================
 % = Use md inside latex environment =
@@ -692,19 +693,17 @@ $elseif(syllabus)$
 \definecolor{mydarkgrey}{HTML}{566573} 
 \definecolor{mylightgrey}{HTML}{D5D8DC} 
 
-
-
 \usepackage{fontspec}
 
 \setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
 \setsansfont{Proza Libre}[Mapping=tex-text]
-\setmonofont{Cousine}[Mapping=tex-text,Scale=0.8]
+\setmonofont{LFT Etica Mono}[Mapping=tex-text,Scale=0.8]
+%\setmonofont{Cousine}[Mapping=tex-text,Scale=0.8]
 \newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
 
 \usepackage{textcomp}
 % \usepackage{fontawesome}
 % \newfontfamily{\FA}{[FontAwesome.otf]}
-
 
 \usepackage{amssymb}
 
@@ -752,11 +751,11 @@ $elseif(syllabus)$
 
 \usepackage[compact]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\section}{0em}{2em}{1em}
-\titlespacing*{\subsection}{0em}{1em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{1em}{.2em}
-\titlespacing*{\paragraph}{0em}{.5em}{.5em}
-\titlespacing*{\subparagraph}{.5em}{.5em}{0em}
+\titlespacing*{\section}{0em}{0em}{0.5em}
+\titlespacing*{\subsection}{0em}{2em}{1em}
+\titlespacing*{\subsubsection}{0em}{1em}{0.5em}
+\titlespacing*{\paragraph}{0em}{1em}{.2em}
+\titlespacing*{\subparagraph}{0em}{.5em}{.5em}
 
 
 $if(secnumdepth)$
@@ -765,27 +764,33 @@ $else$
 \setcounter{secnumdepth}{0}
 $endif$
 
-
 % H1
 \titleformat{\section}[hang]
+  {\Huge\titlefont}
+  {}
+  {0pt}
+  {}
+
+% H2
+\titleformat{\subsection}[hang]
   {\Large\titlefont}
   {}
   {0pt}
   {}
-% H2
-\titleformat{\subsection}[hang]
+% H3
+\titleformat{\subsubsection}[hang]
   {\large\bfseries\rmfamily}
   {\thesubsection}
   {1em}
   {}
-% H3
-\titleformat{\subsubsection}[hang]
+% H4
+\titleformat{\paragraph}[hang]
   {\large\titlefont}
   {\thesubsubsection}
   {1em}
   {}
-% H4
-\titleformat{\paragraph}[block]
+% H5
+\titleformat{\subparagraph}[block]
   {\normalsize\itshape\rmfamily}
   {}
   {0em}
@@ -810,7 +815,7 @@ $endif$
 
 \usepackage{csquotes}
 
-\AtBeginEnvironment{quote}{\scriptsize\itshape} 
+\AtBeginEnvironment{quote}{\scriptsize} 
 
 \renewenvironment{quote}{%
    \list{}{%
@@ -969,8 +974,7 @@ $endif$
 
 % \maketitle
 
-{\huge\bfseries\titlefont{$course$}} \\
-\vspace{1em}
+\section{$course$}
 
 \begin{footnotesize}
 {$affiliation$} \\
@@ -995,10 +999,7 @@ $endif$
 \end{footnotesize}
 \vspace{2em}
 
-\needspace{3\baselineskip}
-
-
-% \needspace{3em}% Controls page break before headings 
+\needspace{1\baselineskip}
 
 $body$
 
