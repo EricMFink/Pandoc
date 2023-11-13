@@ -758,26 +758,19 @@ $endif$
   {}
 % H3
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\rmfamily}
+  {\Large\itshape\rmfamily}
   {\thesubsection}
   {1em}
   {}
 % H4
 \titleformat{\paragraph}[hang]
-  {\large\titlefont}
+  {\normalsize\bfseries\rmfamily}
   {\thesubsubsection}
   {1em}
   {}
 % H5
 \titleformat{\subparagraph}[block]
   {\normalsize\itshape\rmfamily}
-  {}
-  {0em}
-  {}
-
-% H5
-\titleformat{\subparagraph}[block]
-  {\normalsize\rmfamily}
   {}
   {0em}
   {}
@@ -794,7 +787,7 @@ $endif$
 
 \usepackage{csquotes}
 
-\AtBeginEnvironment{quote}{\scriptsize} 
+\AtBeginEnvironment{quote}{\small\itshape} 
 
 \renewenvironment{quote}{%
    \list{}{%
