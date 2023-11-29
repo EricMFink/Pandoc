@@ -85,13 +85,9 @@ $if(casebook)$
 % \usepackage[defaultsans,scale=0.95]{lato}
 % \usepackage{inconsolata}
 
-
-
-
 \usepackage{fontspec}
 
 % \fontspec{inconsolata}
-
 
 \setmainfont{Portada Text}[Mapping={tex-text}]
 
@@ -100,12 +96,9 @@ $if(casebook)$
 %\setsansfont{Lato}[Mapping=tex-text]
 \setmonofont[Scale=0.90]{LFT Etica Mono}
 
-
-
 \setsidenotefont{\rmfamily\scriptsize}
 \setcaptionfont{\sffamily\scriptsize}
 \setmarginnotefont{\sffamily\scriptsize}
-
 
 % =========
 % = Tufte =
@@ -1151,14 +1144,36 @@ $elseif(exam)$
 
 % START OF EXAM TEMPLATE
 
+\documentclass[12pt,letterpaper,twoside]{article}
+
+% ============
+% = Packages =
+% ============
+
+\usepackage{needspace}
+\usepackage[none]{hyphenat}
+\usepackage{etoolbox}
+\usepackage{relsize}
+\usepackage{fourier}
+\usepackage{fontawesome}
+\usepackage{calc} 
+\usepackage{wrapfig}
+
+% ===================================
+% = Use md inside latex environment =
+% ===================================
+
+\let\Begin\begin
+\let\End\end
+\let\Marginnote\marginnote
+\let\Footnote\footnote
+\let\lipsumj\lipsum
 
 % ====================
 % = Layout & Spacing =
 % ====================
 
-\documentclass[11pt,letterpaper,twoside]{article}
-
-\usepackage[hmarginratio=1:1,top=1in,bottom=.75in,left=1.5in,right=1.5in]{geometry}
+\usepackage[hmarginratio=1:1,top=1in,bottom=.75in,left=1.25in,right=1.25in]{geometry}
 
 \usepackage{setspace}
 \usepackage{ragged2e}
@@ -1167,11 +1182,15 @@ $elseif(exam)$
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 \raggedbottom
+\onehalfspacing
+%\setstretch{1.3}
 
+\usepackage[defaultlines=3,all]{nowidow}
 
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 
 \usepackage{multicol}
+
 
 % ==========================
 % = Language & Date Format =
@@ -1197,13 +1216,14 @@ $elseif(exam)$
 
 \usepackage{fontspec}
 
-\setmainfont{Cormorant Garamond}[Mapping={tex-text},SmallCapsFont={Cormorant SC}]
+%\setmainfont{Crimson}[Mapping={tex-text},Scale = 1.0]
+\setmainfont{Portada Text}[Mapping={tex-text}]
+% \setsansfont{Adelle Sans}[Mapping=tex-text]
+\setsansfont{Lato}[Mapping=tex-text]
+\setmonofont[Scale=1.0]{LFT Etica Mono}
+%\setmonofont{Cousine}[Mapping=tex-text,Scale=0.8]
 
-\setsansfont{Proza Libre}[Mapping=tex-text]
-
-\setmonofont{Cousine}[Mapping=tex-text,Scale=0.8]
-
-\newfontface\titlefont{Proza Libre Bold}[Colour=mydarkred]
+\newfontface\titlefont{Lato Bold}[Colour=mydarkred]
 
 % =======================
 % = Headers and Footers =
@@ -1241,9 +1261,9 @@ $endif$
 
 \titlespacing*{\section}{0em}{1.5em}{.5em}
 \titlespacing*{\subsection}{0em}{1em}{.2em}
-\titlespacing*{\subsubsection}{0em}{0em}{0em}
-\titlespacing*{\paragraph}{0em}{0em}{0em}
-\titlespacing*{\subparagraph}{0em}{0em}{0em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0em}
+\titlespacing*{\paragraph}{0em}{1em}{0em}
+\titlespacing*{\subparagraph}{0em}{1em}{0em}
 
 $if(secnumdepth)$
 \setcounter{secnumdepth}{$secnumdepth$}
@@ -1268,17 +1288,18 @@ $endif$
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\normalsize\bfseries\sffamily}
+  {\large\itshape\sffamily}
   {\thesubsubsection}
   {1em}
   {}
-\titleformat{\paragraph}[hang]
-  {\normalsize\bfseries\rmfamily}
+% Internal Headings in Pleading, etc.
+\titleformat{\paragraph}
+  {\centering\normalsize\bfseries\ttfamily}
   {\theparagraph}
   {1em}
   {}
-\titleformat{\subparagraph}[hang]
-  {\normalsize\itshape\rmfamily}
+\titleformat{\subparagraph}
+  {\centering\normalsize\itshape\ttfamily}
   {\thesubparagraph}
   {1em}
   {}
@@ -1308,6 +1329,20 @@ $endif$
 \setlist[itemize]{leftmargin=*,topsep=0em,itemsep=.2em,partopsep=0em,parsep=0em,align=left}
 % \setlist[enumerate]{leftmargin=4em,topsep=0.5em,itemsep=0.2em,partopsep=0em,parsep=0em,align=left}
 
+% ====================
+% = New Environments =
+% ====================
+
+% Pleading
+\newenvironment{pleading}% environment name
+{% begin code
+  \par\vspace{\baselineskip}\noindent
+  \hfil\rule{0.75\textwidth}{.5pt}\hfil\begin{ttfamily}%
+}%
+{% end code
+  \end{ttfamily}\hfil\rule{0.75\textwidth}{.5pt}\hfil\vspace{2\baselineskip}
+}
+
 
 
 % ==========
@@ -1316,7 +1351,7 @@ $endif$
 
 \usepackage{csquotes}
 
-\AtBeginEnvironment{quote}{\small\itshape}
+\AtBeginEnvironment{quote}{\sffamily}
 
 \renewenvironment{quote}{%
    \list{}{%
@@ -1426,7 +1461,7 @@ $endif$
 
 \begin{document}
 \thispagestyle{empty}
-\singlespacing
+%\singlespacing
 
 \begin{flushleft}
 
