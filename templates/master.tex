@@ -647,8 +647,8 @@ $elseif(syllabus)$
 % ==========================
 
 \usepackage[english]{babel}  
-\usepackage[us, nodayofweek]{datetime}
-\newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
+\usepackage{datetime}
+\newdateformat{mydate}{\THEDAY-\monthname-\THEYEAR}
 \usepackage{currfile}
 
 
@@ -983,8 +983,8 @@ $else$
 $endif$
 
 \usepackage[english]{babel}  
-\usepackage[us, nodayofweek]{datetime}
-\newdateformat{mydate}{\THEDAY \ \monthname \ \THEYEAR}
+\usepackage{datetime}
+\newdateformat{mydate}{\THEDAY-\monthname-\THEYEAR}
 \usepackage{changepage}% http://ctan.org/pkg/changepage
 \usepackage{currfile}
 
@@ -1197,9 +1197,8 @@ $elseif(exam)$
 % ==========================
 
 \usepackage[english]{babel}
-% \usepackage[us,nodayofweek]{datetime}
-\usepackage[nodayofweek]{datetime}
-\newdateformat{mydate}{\THEDAY -\shortmonthname -\THEYEAR}
+\usepackage{datetime}
+\newdateformat{mydate}{\THEDAY-\monthname-\THEYEAR}
 
 % ==================
 % = Colors & Fonts =
@@ -1233,7 +1232,7 @@ $elseif(exam)$
 \pagestyle{fancy}
 
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt{Revised: \today}}
+\fancyfoot[R]{\tiny\texttt{Revised: \mydate\today}}
 \fancyfoot[L]{}
 
 $if(subtitle)$
@@ -1341,6 +1340,16 @@ $endif$
 }%
 {% end code
   \end{ttfamily}\hfil\rule{0.75\textwidth}{.5pt}\hfil\vspace{2\baselineskip}
+}
+
+% Model Answer
+\newenvironment{model-answer}% environment name
+{% begin code
+  \par\vspace{\baselineskip}\noindent
+  \hfil\rule{0.75\textwidth}{.5pt}\hfil\begin{sffamily}%
+}%
+{% end code
+  \end{sffamily}\hfil\rule{0.75\textwidth}{.5pt}\hfil\vspace{2\baselineskip}
 }
 
 
@@ -1521,9 +1530,8 @@ $endif$
 % ==========================
 
 \usepackage[english]{babel}  
-% \usepackage[us,nodayofweek]{datetime}
-\usepackage[nodayofweek]{datetime}
-\newdateformat{mydate}{\THEDAY -\shortmonthname -\THEYEAR}
+\usepackage{datetime}
+\newdateformat{mydate}{\THEDAY-\monthname-\THEYEAR}
 
 
 % ==================
@@ -1901,9 +1909,8 @@ $endif$
 % ==========================
 
 \usepackage[english]{babel}
-% \usepackage[us,nodayofweek]{datetime}
-\usepackage[nodayofweek]{datetime}
-\newdateformat{mydate}{\THEDAY -\shortmonthname -\THEYEAR}
+\usepackage{datetime}
+\newdateformat{mydate}{\THEDAY-\monthname-\THEYEAR}
 
 % ==================
 % = Colors & Fonts =
@@ -1936,7 +1943,7 @@ $endif$
 \pagestyle{fancy}
 
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt{Revised: \today}}
+\fancyfoot[R]{\tiny\texttt{Revised: \mydate\today}}
 \fancyfoot[L]{}
 
 $if(subtitle)$
@@ -2210,22 +2217,6 @@ $endif$
 
 \begin{flushleft}
 
-$if(publication)$
-
-\titlefont\LARGE{$title$} \\
-$if(subtitle)$
-\vspace{.25cm}
-\titlefont\Large{$subtitle$} 
-$endif$
-
-\vspace{.25cm}
-\rmfamily\large{$author$} \\
-
-\vspace{.25cm}
-\rmfamily\large{$publication$} $if(date)$\rmfamily\large{($date$)}$endif$
-
-$else$
-
 $if(subject)$
 \rmfamily\footnotesize{$subject$} \\
 $endif$
@@ -2243,8 +2234,6 @@ $endif$
 $if(subtitle)$
 \vspace{.5cm}
 \titlefont\Large{$subtitle$} 
-$endif$
-
 $endif$
 
 \end{flushleft}
