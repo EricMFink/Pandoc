@@ -1056,37 +1056,37 @@ $endif$
 % = Headings =
 % ============
 
-\usepackage[largestsep]{titlesec}  
+\usepackage[]{titlesec}  
 
 % \titlespacing*{\LEVEL}{LEFT}{BEFORE}{AFTER}
-\titlespacing*{\section}{0em}{2em}{0.5em}
-\titlespacing*{\subsection}{0em}{0.5em}{0.5em}
-\titlespacing*{\subsubsection}{0em}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{0.5em}{0.5em}
-\titlespacing*{\subparagraph}{0em}{1.5em}{0.75em}
+\titlespacing{\section}{0em}{2em}{1em}
+\titlespacing{\subsection}{0em}{1.5em}{0.5em}
+\titlespacing{\subsubsection}{0em}{0.5em}{0.5em}
+\titlespacing{\paragraph}{0em}{1.5em}{0.5em}
+\titlespacing{\subparagraph}{0em}{1.5em}{0.75em}
 
-\titleformat{\section}
+\titleformat{\section}[hang]
   {\Large\titlefont\raggedright}
   {}{0em}
   {}
   [\titlerule]
 
-\titleformat{\subsection}
+\titleformat{\subsection}[hang]
   {\Large\rmfamily\bfseries\raggedright}
   {}{0em}
   {}
 
-\titleformat{\subsubsection}
+\titleformat{\subsubsection}[hang]
+  {\large\rmfamily\itshape\raggedright}
+  {}{0em}
+  {}
+
+\titleformat{\paragraph}[hang]
   {\large\rmfamily\bfseries\raggedright}
   {}{0em}
   {}
 
-\titleformat{\paragraph}
-  {\large\itshape\raggedright}
-  {}{0em}
-  {} 
-
-\titleformat{\subparagraph}
+\titleformat{\subparagraph}[hang]
   {\large\bfseries\raggedright}
   {}{0em}
   {} 
