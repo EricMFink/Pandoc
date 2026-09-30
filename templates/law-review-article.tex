@@ -1,29 +1,29 @@
 %%% article.tex
-%%% Academic article template for pandoc with options for legal-style (1, 1.1, 1.1.1, etc.) or law review style (I. A. 1. a. i.) section headings
-%%% Use with article.yaml for variables
+%%% Academic article template for pandoc with law review style (I. A. 1. a. i.) section headings
 %%% Created by Eric M. Fink (https://github.com/EricMFink/Pandoc/templates)
-%%% Updated: 2026-09-24T17:57:45-0400-04:00
+%%% Updated: 2026-09-30T17:59:00-0000-04:00
 %%% 
 
 % ====================
 % = Layout & Spacing =
 % ====================
 
-$if(draft)$
 \documentclass[12pt,letterpaper,twoside]{article}
-\usepackage[hmarginratio=1:1,top=1.1in,bottom=1in,left=1.5in,right=1.5in]{geometry}
+\usepackage[hmarginratio=1:1,top=1.5in,bottom=1.25in,left=1.9in,right=1.9in]{geometry}
+
+$if(draft)$
 \usepackage{ragged2e}
 \setlength{\RaggedRightParindent}{2em}
 \usepackage[ragged, bottom]{footmisc}
-\usepackage[none]{hyphenat}
+%\usepackage[none]{hyphenat}
 
 $else$
-\documentclass[12pt,letterpaper,twoside]{article}
-\usepackage[hmarginratio=1:1,top=1.5in,bottom=1.25in,left=1.9in,right=1.9in]{geometry}
 \usepackage[bottom]{footmisc}
 $endif$
 
 \usepackage{setspace}
+
+
 \providecommand{\tightlist}{%
 \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
@@ -47,9 +47,16 @@ $endif$
 \definecolor{RacingGreen}{HTML}{004225}
 
 \usepackage{fontspec}
-\usepackage{CrimsonPro}
-\usepackage[defaultsans,scale=0.90]{lato}
-\setmonofont[Scale=0.9]{LFT Etica Mono}
+
+$if(draft)$
+\setmainfont{LFT Etica Mono}
+$else$
+\setmainfont{Minion Pro}[Mapping=tex-text]
+%\usepackage{CrimsonPro}
+\setsansfont{Lato}[Mapping=tex-text,Scale=0.90]
+%\usepackage[defaultsans,scale=0.90]{lato}
+\setmonofont{LFT Etica Mono}[Scale=0.9]
+$endif$
 
 % =======================
 % = Headers and Footers = 
@@ -60,7 +67,7 @@ $endif$
 \fancyfoot{}
 \fancyfoot[C]{}
 \fancyfoot[R]{\scriptsize\texttt{Revised: {\mydate\today}}}
-\fancyfoot[L]{\scriptsize\texttt{$path$}}
+\fancyfoot[L]{\scriptsize\texttt{}}
 \fancyhead{}
 \fancyhead[C]{\small\textsc{$header$}}
 \fancyhead[RO]{\small{\thepage}}
@@ -82,7 +89,7 @@ $endif$
 
 \usepackage[]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing*{\section}{0em}{3em}{0.5em}
+\titlespacing*{\section}{0em}{2em}{0.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{0.5em}
 \titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
 \titlespacing*{\paragraph}{0em}{1em}{0pt}
@@ -97,27 +104,27 @@ $if(lawreview)$
 \renewcommand{\thesubparagraph}{\roman{subparagraph}}
 
 \titleformat{\section}[block]
-{\normalfont\normalsize\scshape\center}
+{\large\scshape\center}
 {\thesection.}
 {1em}
 {}
 \titleformat{\subsection}[block]
-{\normalfont\itshape\center}
+{\large\itshape\center}
 {\thesubsection.}
 {1em}
 {}
 \titleformat{\subsubsection}
-{\normalfont}
+{\large\center}
 {\thesubsubsection.}
 {1em}
 {}
 \titleformat{\paragraph}
-{\normalfont}
+{\normalsize\itshape\center}
 {\theparagraph.}
 {1em}
 {}
 \titleformat{\subparagraph}
-{\normalfont\small}
+{\normalsize}
 {\thesubparagraph.}
 {1em}
 {}
@@ -134,7 +141,7 @@ $else$
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\normalsize}
+  {\large}
   {\thesubsubsection}
   {1em}
   {}
@@ -280,8 +287,14 @@ $if(epigraph)$
 {$for(epigraph)${$epigraph.by$}\\ {$epigraph.source$}$endfor$}
 $endif$
 
+$if(draft)$
+\doublespacing
+$body$
+
+$else$
 \singlespacing
 
 $body$
+$endif$
 
 \end{document}

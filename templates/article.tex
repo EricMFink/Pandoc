@@ -1,29 +1,30 @@
-%%% ncba.tex
-%%% Pandoc template for NCBA CLE Manuscripts
+%%% article.tex
+%%% Academic article template for pandoc
 %%% Created by Eric M. Fink (https://github.com/EricMFink/Pandoc/templates)
-%%% Updated: 2026-09-24T17:57:45-0400-04:00
+%%% Updated: 2026-09-30T17:59:00-0000-04:00
 %%% 
 
 % ====================
 % = Layout & Spacing =
 % ====================
 
+$if(draft)$
 \documentclass[12pt,letterpaper,twoside]{article}
-
-\usepackage[hmarginratio=1:1,top=1in,bottom=.75in,left=1.5in,right=1.5in]{geometry}
-
-\usepackage{multicol}
-\usepackage{setspace}
+\usepackage[hmarginratio=1:1,top=1.1in,bottom=1in,left=1.5in,right=1.5in]{geometry}
 \usepackage{ragged2e}
-\RaggedRight
+\setlength{\RaggedRightParindent}{2em}
+\usepackage[ragged, bottom]{footmisc}
 \usepackage[none]{hyphenat}
-\setstretch{1.2}
-\setlength{\parindent}{12.7mm}
-\setlength{\parskip}{4.38mm}
-\usepackage[hang,flushmargin]{footmisc}
-\raggedbottom
-\setlength{\emergencystretch}{3em}
-\usepackage{currfile}
+
+$else$
+\documentclass[12pt,letterpaper,twoside]{article}
+\usepackage[hmarginratio=1:1,top=1.5in,bottom=1.25in,left=1.9in,right=1.9in]{geometry}
+\usepackage[bottom]{footmisc}
+$endif$
+
+\usepackage{setspace}
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % ==========================
 % = Language & Date Format =
@@ -31,13 +32,13 @@
 
 \usepackage[english]{babel}  
 \usepackage{datetime}
-\newdateformat{mydate}{\THEDAY-\monthname-\THEYEAR}
+\newdateformat{mydate}{\THEDAY .\monthname .\THEYEAR}
 
 % ==================
 % = Colors & Fonts =
 % ==================
 
-\usepackage[table]{xcolor}
+\usepackage{xcolor}
 \definecolor{OffBlack}{HTML}{191919}
 \definecolor{Maroon}{HTML}{800000}
 \definecolor{TarHeelBlue}{HTML}{4b9cd3}
@@ -46,13 +47,10 @@
 
 \usepackage{fontspec}
 \setmainfont{Minion Pro}[Mapping=tex-text]
+%\usepackage{CrimsonPro}
 \setsansfont{Lato}[Mapping=tex-text,Scale=0.90]
-\setmonofont[Scale=0.90]{LFT Etica Mono}
-
-\usepackage{textcomp}
-\usepackage{amssymb}
-\usepackage[]{ccicons}
-\usepackage{fontawesome5}
+%\usepackage[defaultsans,scale=0.90]{lato}
+\setmonofont{LFT Etica Mono}[Scale=0.9]
 
 % =======================
 % = Headers and Footers = 
@@ -60,38 +58,24 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\fancyfoot{}
 \fancyfoot[C]{}
-\fancyfoot[R]{\tiny\texttt{Revised: \mydate\today}}
-$if(path)$
-\fancyfoot[L]{\tiny\texttt{$path$}}
-$else$
-\fancyfoot[L]{}
-$endif$
-$if(subtitle)$
-\fancyhead[CE]{\small{$title$}}
-\fancyhead[CO]{\small{$subtitle$}}
-\fancyhead[LE]{\small{\thepage}}
-\fancyhead[LO]{\small{}}
-\fancyhead[RE]{\small{}}
+\fancyfoot[R]{\scriptsize\texttt{Revised: {\mydate\today}}}
+\fancyfoot[L]{\scriptsize\texttt{}}
+\fancyhead{}
+\fancyhead[C]{\small\textsc{$header$}}
 \fancyhead[RO]{\small{\thepage}}
-$else$
-\fancyhead[C]{\small{$title$}}
+\fancyhead[RE]{\small{[Draft}}
+\fancyhead[LO]{\small{Draft]}}
 \fancyhead[LE]{\small{\thepage}}
-\fancyhead[LO]{\small{}}
-\fancyhead[RE]{\small{}}
-\fancyhead[RO]{\small{\thepage}}
-$endif$
 
-% =========
-% = Lists =
-% =========
+% =====================
+% = Section Numbering =
+% =====================
 
 \usepackage{enumitem}
-\setlistdepth{6}
-\setlist[itemize]{label=\textbullet}
-\setlist{nosep}
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0em}\setlength{\parskip}{0em}}
+\setlistdepth{5}
+\setcounter{secnumdepth}{3}
 
 % ============
 % = Headings =
@@ -100,33 +84,59 @@ $endif$
 \usepackage[]{titlesec}  
 % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
 \titlespacing*{\section}{0em}{2em}{0.5em}
-\titlespacing*{\subsection}{12.7mm}{1.5em}{0em}
-\titlespacing*{\subsubsection}{25.4mm}{1em}{0em}
-\titlespacing*{\paragraph}{0em}{0.5em}{0pt}
+\titlespacing*{\subsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1.5em}{0.5em}
+\titlespacing*{\paragraph}{0em}{1em}{0pt}
 \titlespacing*{\subparagraph}{0em}{0.5em}{0em}
 
-\setcounter{secnumdepth}{3}
-
+$if(lawreview)$
 \makeatletter
-\renewcommand{\thesection}{\Alph{section}}
-\renewcommand{\thesubsection}{\arabic{subsection}}
-\renewcommand{\thesubsubsection}{\alph{subsubsection}}
-\renewcommand{\theparagraph}{\arabic{paragraph}}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+\renewcommand{\theparagraph}{\alph{paragraph}}
 \renewcommand{\thesubparagraph}{\roman{subparagraph}}
 
+\titleformat{\section}[block]
+{\large\scshape\center}
+{\thesection.}
+{1em}
+{}
+\titleformat{\subsection}[block]
+{\large\itshape\center}
+{\thesubsection.}
+{1em}
+{}
+\titleformat{\subsubsection}
+{\large\center}
+{\thesubsubsection.}
+{1em}
+{}
+\titleformat{\paragraph}
+{\normalsize\itshape\center}
+{\theparagraph.}
+{1em}
+{}
+\titleformat{\subparagraph}
+{\normalsize}
+{\thesubparagraph.}
+{1em}
+{}
+
+$else$
 \titleformat{\section}[hang]
-  {\normalsize\bfseries}
+  {\large\bfseries}
   {\thesection.}
   {1em}
-  {\MakeUppercase}
+  {}
 \titleformat{\subsection}[hang]
-  {\normalsize\bfseries}
-  {\thesubsection.}
+  {\large\itshape}
+  {\thesubsection}
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\normalsize\bfseries}
-  {\thesubsubsection.}
+  {\large}
+  {\thesubsubsection}
   {1em}
   {}
 \titleformat{\paragraph}[hang]
@@ -139,23 +149,30 @@ $endif$
   {\theparagraph}
   {1em}
   {}
-  
-  
+$endif$
 
 % ================
 % = Title Layout =
 % ================
 
 \usepackage{titling}
+% \setlength{\droptitle}{-3cm}
+\usepackage{titling}
+% \setlength{\droptitle}{-3cm}
+\title{\Large\textbf{{$title$}$if(subtitle)$:\\ $subtitle$}$endif$}
 
-\setlength\thanksmarkwidth{.5em}
-\setlength\thanksmargin{-\thanksmarkwidth}
-
-\title{\Large\textbf{$title$}}
-
-\author{$for(author)$\normalsize{$author.name$ -- $author.address$}\thanks{$author.affiliation$. $if(author.thanks)$$author.thanks$$endif$} $sep$ \and $endfor$}
+\author{$for(author)$\normalsize{$author.name$}\thanks{$author.affiliation$, $author.address$. $author.email$. $author.thanks$} $sep$ \and $endfor$}
 
 \date{}
+
+% ============
+% = Epigraph =
+% ============
+
+\usepackage{epigraph}
+% \setlength\epigraphwidth{.5\textwidth}
+\setlength\epigraphrule{0pt}
+\renewcommand{\epigraphsize}{\footnotesize}
 
 % ==========
 % = Quotes =
@@ -171,6 +188,21 @@ $endif$
    \item\relax
 }
 {\endlist}
+
+% ============
+% = Graphics =
+% ============
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
 
 % ===================
 % = Pandoc citeproc =
@@ -216,6 +248,12 @@ $endif$
   colorlinks=true,
   allcolors=black,
   breaklinks=true,
+  pdfusetitle=true,
+  pdftitle={{$title$}$if(subtitle)$: {$subtitle$}$endif$},
+  pdfauthor={$author$},
+  pdfkeywords={$keywords$},
+  pdfproducer={XeLateX with hyperref},
+  pdfcreator={XeLateX with hyperref}
 }
 \usepackage{url}
 \urlstyle{same}
@@ -225,11 +263,25 @@ $endif$
 % ==============================================================================
 
 \begin{document}
-\color{OffBlack}
-\singlespacing
+
 \newcounter{none}
 
 \maketitle
+% \vspace{-0.5in}
+
+$if(abstract)$
+\begin{abstract}
+\footnotesize
+\noindent{$abstract$}
+\end{abstract}
+$endif$
+
+$if(epigraph)$
+\epigraph{{$for(epigraph)$\itshape{$epigraph.text$}$endfor$}}%
+{$for(epigraph)${$epigraph.by$}\\ {$epigraph.source$}$endfor$}
+$endif$
+
+\singlespacing
 
 $body$
 
