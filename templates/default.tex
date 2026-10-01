@@ -24,16 +24,11 @@ $endif$
 \usepackage{ragged2e}
 \RaggedRight
 \usepackage[none]{hyphenat}
-$if(parindent)$
-\setlength{\parindent}{$parindent$}
-\setlength{\parskip}{0.5em}
-$else$
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
-$endif$
 \raggedbottom
 \setlength{\emergencystretch}{3em}
-\usepackage{currfile}
+\usepackage[parent]{currfile}
 
 % ===================
 % = Language & Date =
@@ -51,7 +46,7 @@ $endif$
 \definecolor{OffBlack}{HTML}{191919}
 \definecolor{Maroon}{HTML}{800000}
 \definecolor{TarHeelBlue}{HTML}{4b9cd3}
-\definecolor{HopkinsBlue}{HTML}{002D72}
+\definecolor{DarkMidnightBlue}{HTML}{002D72}
 \definecolor{RacingGreen}{HTML}{004225}
 
 \usepackage{fontspec}
@@ -73,11 +68,7 @@ $endif$
 \pagestyle{fancy}
 \fancyfoot[C]{}
 \fancyfoot[R]{\tiny\texttt{Revised: \mydate\today}}
-$if(path)$
-\fancyfoot[L]{\tiny\texttt{$path$}}
-$else$
-\fancyfoot[L]{}
-$endif$
+\fancyfoot[L]{\tiny\texttt{\parentfilepath}}
 $if(subtitle)$
 \fancyhead[CE]{\small{$title$}}
 \fancyhead[CO]{\small{$subtitle$}}
@@ -128,12 +119,12 @@ $endif$
   {1em}
   {}
 \titleformat{\subsection}[hang]
-  {\Large\bfseries\sffamily\color{Maroon}}
+  {\Large\sffamily\itshape\color{Maroon}}
   {\thesubsection}
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\large\bfseries\sffamily\color{Maroon}}
+  {\large\rmfamily\color{Maroon}}
   {\thesubsubsection}
   {1em}
   {}
@@ -166,12 +157,11 @@ $endif$
 \usepackage{csquotes}
 \usepackage{relsize}
 
-$if(fancyquote)$
+$if(class-notes)$
 \usepackage{tcolorbox}
-\newtcolorbox{BoxQuote}{flush right,colback=Maroon!5!white,colframe=Maroon,toprule=0mm,bottomrule=0mm,leftrule=3mm,rightrule=0mm,boxsep=0mm,width=.95\linewidth}
+\newtcolorbox{BoxQuote}{flush right,colback=Maroon!5!white,colframe=Maroon,toprule=0mm,bottomrule=0mm,leftrule=3mm,rightrule=0mm,boxsep=0mm,width=.95\linewidth,parbox=false}
 \AtBeginEnvironment{quote}{\normalsize}
 \renewenvironment{quote}{\begin{BoxQuote}}{\end{BoxQuote}}
-
 $else$
 \AtBeginEnvironment{quote}{\small}
 \renewenvironment{quote}{%
@@ -234,18 +224,16 @@ $endif$
 % ================
 
 \usepackage{titling}
-% \setlength{\droptitle}{-3cm}
-\usepackage{titling}
-% \setlength{\droptitle}{-3cm}
-\title{\Large\textbf{{$title$}$if(subtitle)$:\\ $subtitle$}$endif$}
 
-\author{$for(author)$\normalsize{$author.name$}\thanks{$author.affiliation$, $author.address$. $author.email$. $author.thanks$} $sep$ \and $endfor$}
+%\setlength{\droptitle}{-3cm}
+
+\title{\Large\textbf{{$title$}$if(subtitle)$:\\$subtitle$$endif$}}
+\author{$for(author)${$author.name$}$if(author.affiliation)$\\$author.affiliation$$endif$$if(author.address)$\\$author.address$$endif$$if(author.email)$\\$author.email$$endif$$endfor$}
 
 \date{}
-
 % Aligns "thanks" footnote symbol with left margin
-\setlength\thanksmarkwidth{.5em}
-\setlength\thanksmargin{-\thanksmarkwidth}
+%\setlength\thanksmarkwidth{.5em}
+%\setlength\thanksmargin{-\thanksmarkwidth}
 
 % ============
 % = Graphics =
@@ -319,7 +307,7 @@ $endif$
 \usepackage[unicode=true]{hyperref}
 \hypersetup{%
   colorlinks=true,
-  allcolors=HopkinsBlue,
+  allcolors=DarkMidnightBlue,
   breaklinks=true,
   pdfusetitle=true,
   pdfauthor={$author$},
@@ -343,39 +331,24 @@ $endif$
 \singlespacing
 \newcounter{none}
 
-$if(full-title)$
-\maketitle
-
-$else$
-
+$if(class-notes)$
 \thispagestyle{empty}
-\begin{flushleft}
-
-$if(subject)$
-\small{$subject$} \\
-$endif$
-$if(author)$
-\small{$author$} \\
-$endif$
-$if(affiliation)$
-\small{$affiliation$}  \\
-$endif$
-$if(term)$
-\small{$term$} \\
-$endif$
-$if(date)$
-\small{$date$} \\
-$endif$
-$if(title)$
-\vspace{5mm}
-\sffamily\centering\Large\textbf{\color{Maroon}{$title$}} \\
-$endif$
+\begin{small}
+$subject$ \\
+Elon Law School \\
+Prof. Fink \\
+$term$ 
+\end{small}
+%\vspace{3mm}
+\begin{center}
+\sffamily{\Large\color{Maroon}$title$}
 $if(subtitle)$
-\vspace{2mm}
-\sffamily\centering\Large\itshape{\color{Maroon}{$subtitle$}} \\
+\sffamily{\Large\color{Maroon}: \\ \vspace{0.5em}$subtitle$}
 $endif$
-\vspace{5mm}
-\end{flushleft}
+\end{center}
+%\vspace{1em}
+$else$
+\maketitle
 $endif$
 
 $if(columns)$
@@ -383,7 +356,6 @@ $if(columns)$
 \begin{multicols*}{2}
 $body$
 \end{multicols*}
-
 $else$
 $body$
 $endif$
