@@ -154,17 +154,13 @@ $endif$
 % ==========
 % = Quotes =
 % ==========
-%\usepackage{csquotes}
-%\usepackage{relsize}
+\usepackage{csquotes}
+\usepackage{relsize}
 
-%\AtBeginEnvironment{quote}{\small}
-%\renewenvironment{quote}{%
-%   \list{}{%
-%     \leftmargin2em   % this is the adjusting screw
-%     \rightmargin\leftmargin\parsep 0mm }
-%   \item\relax
-%}
-%{\endlist}
+\usepackage{tcolorbox}
+\newtcolorbox{BoxQuote}{flush right,colback=Maroon!15!white,colframe=Maroon,toprule=0mm,bottomrule=0mm,leftrule=3mm,rightrule=0mm,top=3mm,right=3mm,bottom=3mm,width=.95\linewidth,parbox=false}
+\AtBeginEnvironment{quote}{\normalsize}
+\renewenvironment{quote}{\begin{BoxQuote}}{\end{BoxQuote}}
 
 
 % ==========
