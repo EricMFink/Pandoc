@@ -119,12 +119,12 @@ $endif$
   {1em}
   {}
 \titleformat{\subsection}[hang]
-  {\Large\sffamily\itshape\color{Maroon}}
+  {\Large\rmfamily\color{Maroon}}
   {\thesubsection}
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\large\rmfamily\color{Maroon}}
+  {\large\rmfamily\itshape\color{Maroon}}
   {\thesubsubsection}
   {1em}
   {}
@@ -321,7 +321,6 @@ $endif$
 \singlespacing
 \newcounter{none}
 
-$if(class-notes)$
 \thispagestyle{empty}
 \begin{small}
 $subject$ \\
@@ -337,17 +336,7 @@ $if(subtitle)$
 $endif$
 \end{center}
 %\vspace{1em}
-$else$
-\maketitle
-$endif$
 
-$if(columns)$
-\setlength{\columnsep}{3em}
-\begin{multicols*}{2}
 $body$
-\end{multicols*}
-$else$
-$body$
-$endif$
 
 \end{document}
