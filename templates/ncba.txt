@@ -1,0 +1,11 @@
+﻿Title
+Eric M. Fink -- Greensboro, NC
+    A. Heading 1
+        1. Heading 2
+            a. Heading 3
+                (1) Heading 4
+                    (a) Heading 5
+First Paragraph
+Body Text. Text Body. Footnote.1 
+Block Text
+
