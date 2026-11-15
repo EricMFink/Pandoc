@@ -105,7 +105,7 @@ $endif$
 \titlespacing*{\section}{0em}{2em}{.5em}
 \titlespacing*{\subsection}{0em}{1.5em}{0em}
 \titlespacing*{\subsubsection}{0em}{.25em}{0em}
-\titlespacing*{\paragraph}{0mm}{6mm}{0mm}
+\titlespacing*{\paragraph}{0mm}{.25mm}{0mm}
 \titlespacing*{\subparagraph}{0em}{.25em}{0em}
 
 $if(secnumdepth)$
@@ -115,28 +115,27 @@ $else$
 $endif$
 
 \titleformat{\section}[hang]
-  {\LARGE\sffamily\color{Maroon}}
+  {\LARGE\sffamily\bfseries\color{Maroon}}
   {\thesection}
   {1em}
   {}
 \titleformat{\subsection}[hang]
-  {\Large\sffamily\itshape\color{Maroon}}
+  {\Large\sffamily\bfseries\color{Maroon}}
   {\thesubsection}
   {1em}
   {}
 \titleformat{\subsubsection}[hang]
-  {\large\rmfamily\color{Maroon}}
+  {\large\rmfamily\bfseries}
   {\thesubsubsection}
   {1em}
   {}
 \titleformat{\paragraph}[hang]
-  {\large\rmfamily\color{Maroon}}
-  {\thesubsubsection ~~}
-  {0em}
+  {\large\rmfamily\itshape}
+  {\thesubsubsection}
+  {1em}
   {}
-  [\vspace{-1.5em}\textcolor{Maroon}{\rule{\textwidth}{.5pt}}]
 \titleformat{\subparagraph}[hang]
-  {\large\itshape\rmfamily}
+  {\normalsize\itshape\rmfamily}
   {\thesubparagraph}
   {1em}
   {}
@@ -336,9 +335,9 @@ $term$
 \end{small}
 %\vspace{3mm}
 \begin{center}
-\sffamily{\Large\color{Maroon}$title$}
+\sffamily{\LARGE\bfseries\color{Maroon}$title$}
 $if(subtitle)$
-\sffamily{\Large\color{Maroon}: \\ \vspace{0.5em}$subtitle$}
+\sffamily{\Large\bfseries\color{Maroon}: \\ \vspace{0.5em}$subtitle$}
 $endif$
 \end{center}
 %\vspace{1em}
